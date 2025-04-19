@@ -54,3 +54,4 @@ Pergunta: [Como é feito o processo de produção do papel?] | Resposta: A não 
 Pergunta: [Quais são os principais componentes de um computador?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são os principais componentes de um computador na para buscar por títulos alternativos.
 Pergunta: [Como funciona o sistema político brasileiro?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona o sistema político brasileiro na para buscar por títulos alternativos.
 Pergunta: [Quais são as principais obras de Leonardo da Vinci?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são as principais obras de Leonardo da Vinci na para buscar por títulos alternativos.
+Pergunta: [Como funciona o GPS?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona o GPS na para buscar por títulos alternativos.
