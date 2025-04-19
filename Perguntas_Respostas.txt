@@ -96,3 +96,4 @@ Pergunta: [Como funciona o sistema endócrino humano?] | Resposta: A não possui
 Pergunta: [Quais são as maiores bibliotecas do mundo?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são as maiores bibliotecas do mundo na para buscar por títulos alternativos.
 Pergunta: [Como ocorre o fenômeno da aurora boreal?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como ocorre o fenômeno da aurora boreal na para buscar por títulos alternativos.
 Pergunta: [Quais são os principais museus de arte do mundo?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são os principais museus de arte do mundo na para buscar por títulos alternativos.
+Pergunta: [Como funciona a fibra óptica na transmissão de dados?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona a fibra óptica na transmissão de dados na para buscar por títulos alternativos.
