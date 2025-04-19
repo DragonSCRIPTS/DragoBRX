@@ -94,3 +94,4 @@ Pergunta: [Como é feito o processamento do petróleo?] | Resposta: A não possu
 Pergunta: [Quais são os principais arquitetos da história e suas obras?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são os principais arquitetos da história e suas obras na para buscar por títulos alternativos.
 Pergunta: [Como funciona o sistema endócrino humano?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona o sistema endócrino humano na para buscar por títulos alternativos.
 Pergunta: [Quais são as maiores bibliotecas do mundo?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são as maiores bibliotecas do mundo na para buscar por títulos alternativos.
+Pergunta: [Como ocorre o fenômeno da aurora boreal?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como ocorre o fenômeno da aurora boreal na para buscar por títulos alternativos.
