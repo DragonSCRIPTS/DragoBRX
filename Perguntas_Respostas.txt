@@ -60,3 +60,4 @@ Pergunta: [Como ocorre a formação das nuvens?] | Resposta: A não possui um ar
 Pergunta: [Quais são as maiores florestas tropicais do planeta?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são as maiores florestas tropicais do planeta na para buscar por títulos alternativos.
 Pergunta: [Como funciona a impressão 3D?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona a impressão 3D na para buscar por títulos alternativos.
 Pergunta: [Quais são as principais teorias sobre a origem do universo?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Quais são as principais teorias sobre a origem do universo na para buscar por títulos alternativos.
+Pergunta: [Como funciona o comércio eletrônico?] | Resposta: A não possui um artigo com este nome exato. Por favor, procure por Como funciona o comércio eletrônico na para buscar por títulos alternativos.
