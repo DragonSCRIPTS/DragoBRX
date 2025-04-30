@@ -1,0 +1,21 @@
+{
+  "query": "Como relaciona se relaciona com google?",
+  "timestamp": "2025-04-30T16:43:21.291478Z",
+  "qa": [
+    {
+      "question": "Veja algumas dicas e como os resultados se relacionam com ... - Google Help",
+      "answer": "A Pesquisa Google verifica como um conteúdo é vinculado a outros na Web para encontrar resultados relevantes. Além das correspondências de palavras na página, a Pesquisa usa o texto em links...",
+      "url": "https://support.google.com/websearch/answer/10563935?hl=pt-BR"
+    },
+    {
+      "question": "Google",
+      "answer": "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for.",
+      "url": "https://www.google.com.br/"
+    },
+    {
+      "question": "Google: O Que É E Como Utilizar Eficazmente",
+      "answer": "O Google é famoso por seu buscador, que permite encontrar informação de forma rápida e fácil. Mas, além de digitar palavras-chave, você pode explorar recursos avançados de pesquisa, como: Pesquisas por imagem: Encontrar imagens relacionadas a um tema específico. Pesquisas por voz: Realizar buscas utilizando comandos de voz.",
+      "url": "https://digitei.com/google-o-que-e-e-como-utilizar-eficazmente/"
+    }
+  ]
+}
