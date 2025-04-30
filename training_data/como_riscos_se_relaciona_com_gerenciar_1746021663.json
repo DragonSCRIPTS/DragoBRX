@@ -1,0 +1,21 @@
+{
+  "query": "Como riscos se relaciona com gerenciar?",
+  "timestamp": "2025-04-30T14:01:04.913722Z",
+  "qa": [
+    {
+      "question": "Gestão de Riscos: o que é, qual a sua importância e como ... - Empiricus",
+      "answer": "Como o próprio nome sugere, a gestão de riscos é uma abordagem estratégica que visa coordenar e otimizar todas as atividades relacionadas à identificação, avaliação e resposta aos riscos que podem afetar uma organização.",
+      "url": "https://www.empiricus.com.br/explica/gestao-de-riscos/"
+    },
+    {
+      "question": "O que é e como fazer gerenciamento de riscos - Sebrae",
+      "answer": "O gerenciamento de riscos em uma empresa é um processo sistematizado que tem como objetivo identificar, analisar, minimizar ou neutralizar as ameaças ao negócio.",
+      "url": "https://sebrae.com.br/sites/PortalSebrae/o-que-e-e-como-fazer-gerenciamento-de-riscos,64a2c53a24187810VgnVCM1000001b00320aRCRD"
+    },
+    {
+      "question": "Gerenciamento de riscos: o que é, benefícios e como fazer",
+      "answer": "O gerenciamento de riscos é o processo de identificar, analisar e controlar (ou minimizar) os riscos do negócio. Trata-se de, sistematicamente, avaliar as incertezas sobre o que a empresa pensa sobre o mundo — no que diz respeito ao seu mercado — e, especialmente, o futuro.",
+      "url": "https://www.totvs.com/blog/negocios/gerenciamento-de-riscos/"
+    }
+  ]
+}
