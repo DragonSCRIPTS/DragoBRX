@@ -1,0 +1,16 @@
+{
+  "query": "Como acervos se relaciona com públicas?",
+  "timestamp": "2025-04-30T15:03:54.167703Z",
+  "qa": [
+    {
+      "question": "PDF Políticas Públicas para Acervos Digitais - gov",
+      "answer": "Os acervos digitais em geral (digitalizados ou não), são multimídias e estão armazenados em multiformatos. Os formatos variam em termos de capacidade de reprodução técnica e fidelidade em relação ao original. Mas, também, variam em relação ao suporte por onde chegarão até o público.",
+      "url": "https://brasiliana.museus.gov.br/wp-content/uploads/2023/08/PoliticasPublicasparaAcervosDigitais.pdf"
+    },
+    {
+      "question": "1 f A GESTÃO DOS ARQUIVOS PÚBLICOS - bdan.an.gov.br",
+      "answer": "implementação de sistemas de arquivos no âmbito dos órgãos públicos federais, como forma de garantir a eficácia dos serviços arquivísticos, visando à preservação dos documentos de valor permanente e ao acesso às informações neles contidas.",
+      "url": "https://bdan.an.gov.br/server/api/core/bitstreams/019367d4-1c9e-4a35-88c9-0a3329f0b1f0/content"
+    }
+  ]
+}
