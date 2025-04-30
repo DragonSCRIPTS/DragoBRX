@@ -1,0 +1,21 @@
+{
+  "query": "Como python se relaciona com relaciona?",
+  "timestamp": "2025-04-30T14:58:36.994952Z",
+  "qa": [
+    {
+      "question": "Banco de Dados Relacionais com Python e SQLite",
+      "answer": "Neste artigo, vamos abordar os conceitos fundamentais de bancos de dados relacionais e como podemos interagir com eles usando a Python DB API. Este conteúdo é essencial para qualquer programador que deseja trabalhar com bancos de dados, principalmente em aplicações desenvolvidas em Python.",
+      "url": "https://www.dio.me/articles/banco-de-dados-relacionais-com-python-e-sqlite"
+    },
+    {
+      "question": "Banco de Dados Relacionais com Python | Julio Okuda | Banco de dados ...",
+      "answer": "O SQLAlchemy oferece uma abordagem mais flexível e poderosa para trabalhar com banco de dados relacionais. Ele permite definir modelos de dados em Python e, em seguida, mapeá-los para tabelas SQL.",
+      "url": "https://www.dio.me/articles/banco-de-dados-relacionais-com-python"
+    },
+    {
+      "question": "Operadores Relacionais em Python: Aprenda tudo sobre eles - Awari",
+      "answer": "Neste artigo, aprendemos sobre os operadores relacionais em Python e como utilizá-los em nossos programas. Vimos que esses operadores são fundamentais para realizar comparações e tomar decisões com base nos resultados.",
+      "url": "https://awari.com.br/operadores-relacionais-em-python-aprenda-tudo-sobre-eles/"
+    }
+  ]
+}
