@@ -1,0 +1,21 @@
+{
+  "query": "Como relações se relaciona com potencial?",
+  "timestamp": "2025-04-30T14:37:24.953610Z",
+  "qa": [
+    {
+      "question": "Como funciona o potencial elétrico? - Electricity - Magnetism",
+      "answer": "Explore o conceito de potencial elétrico, sua relação com campo elétrico, capacitância e a importância na tecnologia moderna e física. O potencial elétrico, frequentemente referido simplesmente como \"potencial\", é um conceito fundamental na eletrostática e é usado para descrever a capacidade de um campo elétrico de realizar trabalho.",
+      "url": "https://www.electricity-magnetism.org/pt-br/como-funciona-o-potencial-eletrico/"
+    },
+    {
+      "question": "Potencial Elétrico - Toda Matéria",
+      "answer": "O potencial elétrico ou potencial eletrostático de um ponto em relação a um ponto de referência, é definido pelo trabalho da força elétrica sobre uma carga eletrizada no deslocamento entre esses dois pontos.",
+      "url": "https://www.todamateria.com.br/potencial-eletrico/"
+    },
+    {
+      "question": "Qual é a relação entre o campo elétrico e o potencial elétrico?",
+      "answer": "Matematicamente, o campo elétrico e o potencial elétrico estão diretamente relacionados. A relação entre eles pode ser entendida por meio da variação do potencial elétrico V com a posição. O campo elétrico é o negativo do gradiente do potencial elétrico, ou seja, ele aponta na direção em que o potencial diminui mais rapidamente.",
+      "url": "https://www.electricity-magnetism.org/pt-br/qual-e-a-relacao-entre-o-campo-eletrico-e-o-potencial-eletrico/"
+    }
+  ]
+}
