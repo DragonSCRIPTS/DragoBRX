@@ -1,0 +1,21 @@
+{
+  "query": "Tendências atuais em tecnologia",
+  "timestamp": "2025-04-30T13:57:53.464442Z",
+  "qa": [
+    {
+      "question": "Novas tecnologias: tendências que estão mudando o mundo - CNN Brasil",
+      "answer": "Realidade virtual, Big Data e drones são alguns exemplos de novas tecnologias que já fazem parte do cotidiano. Mas o que está por vir em 2023? Blockchain, plantação vertical, impressão 4D representam nomes do futuro. E qual é a importância de tudo isso? Entenda melhor a seguir. Qual a importância das novas tecnologias?",
+      "url": "https://www.cnnbrasil.com.br/tecnologia/novas-tecnologias/"
+    },
+    {
+      "question": "5 Tendências Tecnológicas de 2025: Impactos da Inovação",
+      "answer": "O futuro das organizações depende cada vez mais da adoção e adaptação às novas tecnologias. A NTT DATA, uma das principais empresas globais de serviços de TI e consultoria, revelou no relatório NTT DATA Technology Foresight 2025 as cinco tendências tecnológicas que irão moldar os negócios nos próximos anos. Essas inovações não são apenas previsões, mas refletem mudanças já ...",
+      "url": "https://itshow.com.br/5-tendencias-tecnologicas-2025-transformacao/"
+    },
+    {
+      "question": "As 10 tendências tecnológicas estratégicas para 2025",
+      "answer": "Os analistas do Gartner organizaram as 10 principais tendências tecnológicas estratégicas deste ano em três temas: imperativos e riscos de IA, novas fronteiras da computação e sinergia entre seres humanos e máquinas.",
+      "url": "https://www.gartner.com.br/pt-br/artigos/as-10-tendencias-tecnologicas-estrategicas-para-2025"
+    }
+  ]
+}
