@@ -1,0 +1,21 @@
+{
+  "query": "Como artificial se relaciona com desafios?",
+  "timestamp": "2025-04-30T14:49:10.846486Z",
+  "qa": [
+    {
+      "question": "Os Principais Desafios da IA e Como Superá-los - ligaia.com.br",
+      "answer": "Os principais desafios da IA e as possíveis soluções para cada um deles. 1. Viés e Discriminação nos Algoritmos. Os sistemas de IA são treinados com grandes quantidades de dados, que podem conter preconceitos históricos e sociais.",
+      "url": "https://ligaia.com.br/conceitosfundamentais/os-principais-desafios-da-ia/"
+    },
+    {
+      "question": "Inteligência Artificial: avanços, desafios e o futuro do trabalho",
+      "answer": "O Dia da Inteligência Artificial, ... O Dia da Inteligência Artificial, comemorado em 1º de maio, destaca os avanços e desafios da tecnologia. Entenda como a IA impacta diferentes ... Artificial chama atenção para o avanço do uso dessa tecnologia em diferentes setores da sociedade e para os desafios relacionados à sua ...",
+      "url": "https://www.contabeis.com.br/artigos/70568/inteligencia-artificial-avancos-desafios-e-o-futuro-do-trabalho/"
+    },
+    {
+      "question": "Desafios da IA: como ela tem redefinido o mund... | VOCÊ S/A",
+      "answer": "O relatório \"State of AI in 2024\" apontou que 72% das empresas já adotam pelo menos uma solução de Inteligência Artificial (IA) em seus processos. O número impressiona, mas também deve ser um alerta: em meio à euforia da adoção dessas ferramentas, muitas organizações avançam sem ter clareza sobre o que, de fato, estão implementando — e, principalmente, se estão preparadas ...",
+      "url": "https://vocesa.abril.com.br/carreira/desafios-da-ia-como-ela-tem-redefinido-o-mundo-corporativo/"
+    }
+  ]
+}
