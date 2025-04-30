@@ -1,0 +1,21 @@
+{
+  "query": "Como brasil se relaciona com efeitos?",
+  "timestamp": "2025-04-30T14:02:09.277740Z",
+  "qa": [
+    {
+      "question": "Mudanças climáticas: como o aquecimento global afeta a vida no Brasil",
+      "answer": "Em 2021, o Brasil sofreu com a pior seca registrada nos últimos 91 anos. Há também o problema da falta de chuvas. Dados do Cemaden indicam que quase 80% dos municípios brasileiros enfrentavam algum grau de estiagem em setembro de 2021, último mês da estação seca na maior parte do país.",
+      "url": "https://www.nationalgeographicbrasil.com/ciencia/2022/02/mudancas-climaticas-como-o-aquecimento-global-afeta-a-vida-no-brasil"
+    },
+    {
+      "question": "Aquecimento global: o que é, causas, efeitos - Brasil Escola",
+      "answer": "O Brasil integra a lista de um dos maiores poluentes do mundo, contribuindo negativamente para o aquecimento global. O que faz com que o Brasil seja incluso nessa lista é o desmatamento, principalmente, e a atividade agropecuária.",
+      "url": "https://brasilescola.uol.com.br/geografia/aquecimento-global.htm"
+    },
+    {
+      "question": "Em meio a COP30, Brasil põe em risco protagonismo ao lidar com ...",
+      "answer": "Em meio a COP30, Brasil põe em risco protagonismo ao lidar com contradições ambientais Índices de desmatamento e a discussão sobre a possível exploração de petróleo na Amazônia podem ...",
+      "url": "https://noticias.r7.com/brasilia/em-meio-a-cop30-brasil-poe-em-risco-protagonismo-ao-lidar-com-contradicoes-ambientais-30042025/"
+    }
+  ]
+}
