@@ -1,0 +1,21 @@
+{
+  "query": "Como python se relaciona com estatística?",
+  "timestamp": "2025-04-30T15:10:12.003417Z",
+  "qa": [
+    {
+      "question": "Estatística Básica com Python - Medium",
+      "answer": "Nesse texto, usando a linguagem de programação Python e a ferramenta Google Colaboratory, faremos uma análise da natureza dos dados, avaliando os tipos de variáveis, frequência, medidas e...",
+      "url": "https://medium.com/ibmec-quant/estat%C3%ADstica-b%C3%A1sica-com-python-d2330c48756f"
+    },
+    {
+      "question": "Estatística com Python: Introdução e Preprocessamento da ... - Medium",
+      "answer": "Com isso, o objetivo deste projeto é explicar, de forma não-técnica e técnica (matematicamente falando), conceitos de estatística aplicados em Python.",
+      "url": "https://medium.com/henrique-edu/estat%C3%ADstica-com-python-introdu%C3%A7%C3%A3o-e-preprocessamento-da-base-de-dados-e279ab955ff5"
+    },
+    {
+      "question": "Estatística com Python - edvaldo b. guimarães filho",
+      "answer": "Neste tutorial, cobrimos os principais tópicos de estatística básica utilizando Python, desde medidas descritivas até a inferência estatística e regressão. Essas ferramentas são essenciais para a análise de dados e podem ser aplicadas em diversas áreas.",
+      "url": "https://edvaldoguimaraes.com.br/2024/09/10/estatistica-com-python/"
+    }
+  ]
+}
