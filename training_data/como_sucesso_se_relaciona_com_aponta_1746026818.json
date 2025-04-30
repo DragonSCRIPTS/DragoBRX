@@ -1,0 +1,16 @@
+{
+  "query": "Como sucesso se relaciona com aponta?",
+  "timestamp": "2025-04-30T15:26:59.281487Z",
+  "qa": [
+    {
+      "question": "Relatório da OCDE mostra relações entre competências socioemocionais ...",
+      "answer": "Os dados apontam que a autoconfiança está relacionada a um nível mais alto de satisfação com a vida e bem-estar psicológico, e tolerância ao estresse se relaciona a níveis mais baixos de ansiedade e maior controle das emoções, por exemplo.",
+      "url": "https://institutoayrtonsenna.org.br/relatorio-da-ocde-mostra-relacoes-entre-competencias-socioemocionais-aprendizagem-e-saude-mental-de-estudantes-de-9-paises/"
+    },
+    {
+      "question": "Inteligência Emocional ou QI, o que determina o sucesso?",
+      "answer": "Uma recente publicação do relatório do Fórum Econômico Mundial aponta pela primeira vez que a Inteligência Emocional está entre as 10 competências mais valorizadas nos profissionais a partir de 2020. A gestão das emoções é uma das habilidades que a Inteligência Artificial não alcança.",
+      "url": "https://revistanove.com.br/empreendedorismo/inteligencia-emocional-ou-qi-o-que-determina-o-sucesso/"
+    }
+  ]
+}
