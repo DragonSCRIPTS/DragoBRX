@@ -1,0 +1,21 @@
+{
+  "query": "Como escola se relaciona com analista?",
+  "timestamp": "2025-04-30T15:13:20.789312Z",
+  "qa": [
+    {
+      "question": "Psicanálise e educação: o que pode o analista na escola em tempos de ...",
+      "answer": "Este artigo investiga o que pode o analista na instituição escolar frente ao discurso exigente de disciplina e desempenho dos alunos. Utilizamos como métodos a pesquisa bibliográfica, as pesquisas em três sites de sistemas de ensino e a recordação dos fragmentos da escuta pontual no cotidiano escolar.",
+      "url": "https://pepsic.bvsalud.org/scielo.php?script=sci_arttext&pid=S0101-48382023000100012"
+    },
+    {
+      "question": "SciELO Brasil - SISTEMAS DE ENSINO EDUCACIONAL: EXIGÊNCIAS DE ...",
+      "answer": "Pensar o trabalho do analista na instituição escolar vinculada a sistemas de ensino, conforme sinalizamos, significa refletir sobre o trabalho docente, que muitas vezes, se aliena a uma repetição do método proposto pelo sistema.",
+      "url": "https://www.scielo.br/j/pee/a/vFmgWBvN7LLbd7P7hTB4Tdk/"
+    },
+    {
+      "question": "PDF A FORMAÇÃO DO ANALISTA NA ESCOLA - tellesdasilva.com",
+      "answer": "Discurso de abertura ao Colóquio A formação do Analista na Escola, promovido por Traço Freudiano Veredas Lacanianas, em Recife, no dia 15 de setembro de 2006. Enfim, se vocês podem pensar com os subcutâneos frontais, vocês podem também pensar com os pés.",
+      "url": "https://www.tellesdasilva.com/cfFormacaoAnalistaEscola.pdf"
+    }
+  ]
+}
