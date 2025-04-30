@@ -1,0 +1,21 @@
+{
+  "query": "Como relaciona se relaciona com correntes?",
+  "timestamp": "2025-04-30T14:51:48.490311Z",
+  "qa": [
+    {
+      "question": "Corrente elétrica: o que é, tipos, fórmula, efeitos",
+      "answer": "A corrente elétrica é a movimentação de portadores de cargas, como os elétrons, quando aplica-se uma diferença de potencial elétrico a algum material condutor.",
+      "url": "https://brasilescola.uol.com.br/fisica/corrente-eletrica.htm"
+    },
+    {
+      "question": "Corrente Elétrica - Toda Matéria",
+      "answer": "Os condutores elétricos são materiais que permitem a movimentação dos elétrons, ou seja, a passagem da corrente elétrica. Um material é considerado um condutor elétrico dependendo da diferença de potencial ao qual ele está submetido.",
+      "url": "https://www.todamateria.com.br/corrente-eletrica/"
+    },
+    {
+      "question": "Um mergulho profundo na Lei de Kirchhoff das Correntes: Como abordar ...",
+      "answer": "Para aplicar a Lei de Corrente de Kirchhoff (KCL) em um circuito, é crucial conhecer as complexidades das relações entre as várias correntes dentro do circuito. Ela afirma que a soma algébrica das correntes que fluem para um nó e aquelas que fluem para fora é zero.",
+      "url": "https://dadaoenergy.com/pt/blog/kirchhoffs-current-law/"
+    }
+  ]
+}
