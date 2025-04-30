@@ -1,0 +1,16 @@
+{
+  "query": "Como escala se relaciona com relaciona?",
+  "timestamp": "2025-04-30T14:48:00.319982Z",
+  "qa": [
+    {
+      "question": "Como a escala Celsius se relaciona com outras escalas de ... - Brainly",
+      "answer": "A escala Celsius se relaciona com a Fahrenheit e a Kelvin por meio de fórmulas matemáticas que permitem a conversão entre elas. A conversão entre Celsius e Fahrenheit é dada por F = 9/5 × C + 32, enquanto a conversão entre Celsius e Kelvin é K = C + 273,15.",
+      "url": "https://brainly.com.br/tarefa/62580399"
+    },
+    {
+      "question": "Resolvido:Uma escala termométrica X relaciona-se com a escala Celsius ...",
+      "answer": "Uma escala termométrica X relaciona-se com a escala Celsius segundo o gráfico apresentado, no qual em ordenadas se representam os valores de° X (temperaturas expressas na escala X) e em abscissas os valores de°C (temperaturas expressas na escala Celsius).",
+      "url": "https://br.gauthmath.com/solution/1820466062272533/Quest-o-9-Uma-escala-termom-trica-X-relaciona-se-com-a-escala-Celsius-segundo-o-"
+    }
+  ]
+}
