@@ -1,0 +1,21 @@
+{
+  "query": "Como relacionar se relaciona com computação?",
+  "timestamp": "2025-04-30T16:42:18.281543Z",
+  "qa": [
+    {
+      "question": "Pensamento computacional: o que é, e como aplicar",
+      "answer": "Curiosamente, a palavra \"Computacional\" pode até induzir que esteja relacionado estritamente com computação, mas a área é bem mais abrangente! Deseja entender e como aplicar? Neste conteúdo, vamos explicar o que é o pensamento computacional e qual a importância dele.",
+      "url": "https://blog.betrybe.com/tecnologia/pensamento-computacional-tudo-sobre/"
+    },
+    {
+      "question": "Pensamento computacional: o que é e como inseri-lo na escola",
+      "answer": "O pensamento computacional desenvolve diversas competências e habilidades essenciais na Educação 5.0, como: raciocínio lógico; trabalho em grupo; criatividade; análise de dados; gestão de projetos; programação; codificação. Como desenvolver o pensamento computacional na escola?",
+      "url": "https://educacional.com.br/steam/pensamento-computacional-o-que-e-sua-importancia-e-como-inseri-lo-na-escola/"
+    },
+    {
+      "question": "O que é pensamento computacional e como usá-lo em sala de aula",
+      "answer": "Resumidamente, é possível afirmar que o pensamento computacional é um conjunto de habilidades que permite analisar, organizar e resolver problemas de forma lógica e sistemática. Envolve estratégias que ajudam a decompor problemas complexos, identificar padrões, abstrair detalhes irrelevantes e criar processos para solucioná-los.",
+      "url": "https://www.fundacaotelefonicavivo.org.br/noticias/o-que-e-pensamento-computacional/"
+    }
+  ]
+}
