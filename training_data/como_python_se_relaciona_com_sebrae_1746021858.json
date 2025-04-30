@@ -1,0 +1,21 @@
+{
+  "query": "Como python se relaciona com sebrae?",
+  "timestamp": "2025-04-30T14:04:19.370175Z",
+  "qa": [
+    {
+      "question": "PDF Manual_API_Sebrae.pdf · master · publico / client-api-sebrae - GitLab",
+      "answer": "Acesso a API Sebrae para consultas de estatísticas de negócios. Skip to content. GitLab. Explore; Sign in; client-api-sebrae Manual_API_Sebrae.pdf; Find file History Permalink launch · b4d7fbc4 Alexandre authored Feb 19, 2018 inclusão dos códigos em R e Python para acesso às API do Sebrae.",
+      "url": "https://gitlab.sebrae.com.br/publico/client-api-sebrae/-/blob/master/Manual_API_Sebrae.pdf"
+    },
+    {
+      "question": "Acesso a API Sebrae para consultas de estatísticas de negócios",
+      "answer": "Nesse repositório são apresentadas duas formas (em linguagem R e Python) para acesso as API disponibilizadas pelo Sebrae para indicadores/estatísticas de negócio. O PDF apresenta o manual dessas API. Para conhecer outras API, relativas a conteúdo, também disponívels acesse api.sebrae.com.br/api.",
+      "url": "https://github.com/ricardoamedeiros/API-Sebrae"
+    },
+    {
+      "question": "Inovando com IA no Sebrae: Desenvolvendo um Chatbot ... - LinkedIn",
+      "answer": "Desenvolvemos um chatbot inteligente utilizando tecnologias de ponta em IA, combinando o poder dos Large Language Models com dados específicos da nossa organização. ### Stack Tecnológica. -...",
+      "url": "https://www.linkedin.com/pulse/inovando-com-ia-sebrae-desenvolvendo-um-chatbot-python-rafael-ornelas-m7kef"
+    }
+  ]
+}
