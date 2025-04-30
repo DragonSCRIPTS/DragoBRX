@@ -1,0 +1,21 @@
+{
+  "query": "Como introdução se relaciona com python?",
+  "timestamp": "2025-04-30T15:53:15.312437Z",
+  "qa": [
+    {
+      "question": "Introdução ao Python: Por Onde Começar?",
+      "answer": "Introdução ao Python, descubra como começar a programar em Python do zero! Um guia completo para iniciantes, com dicas, recursos e primeiros passos.",
+      "url": "https://skillstecnologicas.com/introducao-ao-python/"
+    },
+    {
+      "question": "Introdução ao Python | Python Education | Google for Developers",
+      "answer": "O Python é uma linguagem dinâmica e interpretada (compilada por bytescode). Não há declarações de tipo de variáveis, parâmetros, funções ou métodos no código-fonte. Isso torna o código...",
+      "url": "https://developers.google.com/edu/python/introduction?hl=pt-BR"
+    },
+    {
+      "question": "O tutorial do Python — Documentação Python 3.13.3",
+      "answer": "Este tutorial introduz informalmente o leitor aos conceitos básicos e aos recursos da linguagem e do sistema Python. É mais fácil se você possuir um interpretador Python para uma experiência prática, mas os exemplos são autossuficientes e, portanto, o tutorial pode apenas ser lido off-line também.",
+      "url": "https://docs.python.org/pt-br/3/tutorial/index.html"
+    }
+  ]
+}
