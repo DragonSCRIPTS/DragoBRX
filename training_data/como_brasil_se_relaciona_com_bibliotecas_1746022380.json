@@ -1,0 +1,21 @@
+{
+  "query": "Como brasil se relaciona com bibliotecas?",
+  "timestamp": "2025-04-30T14:13:01.135136Z",
+  "qa": [
+    {
+      "question": "Novo Plano Nacional e entrega de acervos para bibliotecas de todo o ...",
+      "answer": "A norma determinou que, em todo o Brasil, bibliotecas públicas integrantes da administração direta e indireta dos entes federativos, bem como bibliotecas comunitárias cadastradas no Sistema Nacional de Bibliotecas Públicas (SNBP) do Ministério da Cultura, passem a receber anualmente e de maneira sistemática os livros literários do PNLD para ampliação e atualização de seus acervos e ...",
+      "url": "https://www.gov.br/cultura/pt-br/assuntos/noticias/novo-plano-nacional-e-entrega-de-acervos-para-bibliotecas-de-todo-o-pais-marcam-o-dia-mundial-do-livro"
+    },
+    {
+      "question": "Bibliotecas no Brasil: um olhar histórico | Revista Brasileira de ...",
+      "answer": "Por fim, biblioteca não deve ser entendida apenas como um fenômeno social e cultural, mas sim como uma instituição social das mais complexas e importantes do sistema de comunicação humana. A origem das bibliotecas no Brasil sempre esteve esquecida no decorrer da história.",
+      "url": "https://rbbd.febab.org.br/rbbd/article/view/132"
+    },
+    {
+      "question": "SNBP - Sistema Nacional de Bibliotecas Públicas",
+      "answer": "O Sistema Nacional de Bibliotecas Públicas (SNBP) atua em articulação e parceria com 27 Sistemas Estaduais de Bibliotecas Públicas (SEBPs) a fim de fortalecer as ações de estimulo ao livro, à leitura e às bibliotecas. Saiba mais. Acesse informações dos SEBPs selecionando um estado no mapa interativo abaixo.",
+      "url": "http://snbp.cultura.gov.br/"
+    }
+  ]
+}
