@@ -1,0 +1,16 @@
+{
+  "query": "Como relacionamento se relaciona com abracd?",
+  "timestamp": "2025-04-30T14:56:59.679877Z",
+  "qa": [
+    {
+      "question": "Quem é a ABRACD - ABRACD - ASSOCIAÇÃO BRASILEIRA DE CIÊNCIA DE DADOS",
+      "answer": "A ABRACD é uma organização sem fins lucrativos, de pessoas físicas e jurídicas, com o propósito de desenvolver, capacitar e promover a Ciência dos Dados no Brasil. A Associação foca a sua atividade nestes principais objetivos: Praticar atos para divulgar estas técnicas fomentando assim o mercado de ciência de dados no Brasil.",
+      "url": "https://abracd.org/2018/10/19/0-que-e-a-abracd/"
+    },
+    {
+      "question": "ABRACD TV - YouTube",
+      "answer": "Se você é um profissional ou empreendedor interessado em fazer parte de uma comunidade ativa e influente no setor de dados, junte-se à ABRACD e ajude a moldar o futuro da ciência de dados no ...",
+      "url": "https://www.youtube.com/@ABRACD"
+    }
+  ]
+}
