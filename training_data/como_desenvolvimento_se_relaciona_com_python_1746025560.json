@@ -1,0 +1,16 @@
+{
+  "query": "Como desenvolvimento se relaciona com python?",
+  "timestamp": "2025-04-30T15:06:00.926539Z",
+  "qa": [
+    {
+      "question": "Python: o que é, aplicações, bibliotecas e como começar na área",
+      "answer": "Python é uma linguagem de programação de alto nível, devido a sua sintaxe limpa e fácil de aprender. Ela dispensa o processo de compilação, ou seja, também é considerada uma linguagem interpretada — o que acelera bastante o processo de desenvolvimento.",
+      "url": "https://blog.casadodesenvolvedor.com.br/carreira-de-desenvolvedor-python/"
+    },
+    {
+      "question": "O que você pode fazer com Python? Um guia para as aplicações mais ...",
+      "answer": "Python foi desenvolvido em 1991 por Guido Van Rossum, um programador holandês, para simplificar a programação e torná-la mais acessível. Python possui uma sintaxe limpa e de fácil compreensão, tornando-o uma linguagem ideal para iniciantes.",
+      "url": "https://codelabsacademy.com/pt/blog/what-can-you-do-with-python-a-guide-to-pythons-most-practical-applications"
+    }
+  ]
+}
