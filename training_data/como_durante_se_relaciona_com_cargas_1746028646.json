@@ -1,0 +1,21 @@
+{
+  "query": "Como durante se relaciona com cargas?",
+  "timestamp": "2025-04-30T15:57:26.840437Z",
+  "qa": [
+    {
+      "question": "Eletrostática: teoria, fórmulas e aplicações no cotidiano - Todo Estudo",
+      "answer": "Não há campos elétricos interagindo com as cargas. Existem algumas equações fundamentais da eletrostática. A principal delas é a da força eletrostática, ou Lei de Coulomb. A partir dessa relação, é possível chegar à energia eletrostática.",
+      "url": "https://www.todoestudo.com.br/fisica/eletrostatica"
+    },
+    {
+      "question": "Resumo de Eletricidade: Conservação de Cargas - teachy.com.br",
+      "answer": "As cargas se redistribuem entre os corpos até que ambos tenham a mesma carga. Por exemplo, se uma esfera carregada positivamente toca uma esfera neutra, as cargas positivas se distribuem entre as duas esferas, deixando ambas com carga positiva.",
+      "url": "https://www.teachy.com.br/resumos/ensino-medio/2ano/fisica/conservacao-de-cargas-na-eletricidade-Expositiva"
+    },
+    {
+      "question": "Carga elétrica: fórmula, como calcular, exercícios - Brasil Escola",
+      "answer": "Você sabe o que é carga elétrica, a sua unidade de medida e os tipos de cargas? Aprenda sobre a quantização de carga e confira exemplos de exercícios resolvidos.",
+      "url": "https://brasilescola.uol.com.br/fisica/carga-eletrica.htm"
+    }
+  ]
+}
