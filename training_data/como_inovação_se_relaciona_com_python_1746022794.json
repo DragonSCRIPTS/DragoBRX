@@ -1,0 +1,21 @@
+{
+  "query": "Como inovação se relaciona com python?",
+  "timestamp": "2025-04-30T14:19:54.868601Z",
+  "qa": [
+    {
+      "question": "Python: A Nova Era de Desenvolvimento com Foco em Praticidade e ...",
+      "answer": "Python se destaca entre as linguagens de programação devido à sua simplicidade e flexibilidade. Desde o seu lançamento, a linguagem conquistou uma base crescente de usuários e é amplamente adotada em áreas como ciência de dados, automação, desenvolvimento web e inteligência artificial.",
+      "url": "https://www.eldorado.org.br/blog/python-a-nova-era-de-desenvolvimento-com-foco-em-praticidade-e-inovacao-tecnologica/"
+    },
+    {
+      "question": "Como Python Transforma Soluções de IA em Inovações Práticas",
+      "answer": "Python se consolidou como uma das principais linguagens de programação na área de Inteligência Artificial, graças à sua simplicidade e vasta biblioteca de recursos. Ele oferece ferramentas poderosas que facilitam a criação de algoritmos complexos e soluções inovadoras.",
+      "url": "https://educatic.info/como-python-transforma-solucoes-de-ia-em-inovacoes-praticas"
+    },
+    {
+      "question": "A Revolução da Programação: Python como a Linguagem do Futuro",
+      "answer": "Python, sem dúvida, revolucionou a forma como interagimos com a tecnologia, consolidando-se como uma linguagem essencial para diversas áreas, desde Inteligência Artificial até Cibersegurança e Desenvolvimento Web.",
+      "url": "https://www.dio.me/articles/a-revolucao-da-programacao-python-como-a-linguagem-do-futuro"
+    }
+  ]
+}
