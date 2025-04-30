@@ -1,0 +1,21 @@
+{
+  "query": "Como entender se relaciona com educação?",
+  "timestamp": "2025-04-30T15:50:06.581446Z",
+  "qa": [
+    {
+      "question": "A Educação e sua Relação com a Sociedade - Educação e Cotidiano",
+      "answer": "Nessa perspectiva, a educação é vista como uma ferramenta para a conscientização e reflexão, capacitando os indivíduos a questionar e transformar a realidade social. O objetivo é superar desigualdades e construir uma sociedade mais justa.",
+      "url": "https://educacaoecotidiano.com.br/a-educacao-e-sua-relacao-com-a-sociedade/"
+    },
+    {
+      "question": "A educação e as transformações na sociedade - Brasil Escola",
+      "answer": "O artigo aborda as relações recíprocas entre educação e sociedade, caracterizando os paradigmas que têm dado sustentação às práticas pedagógicas vigentes nas instituições de ensino.",
+      "url": "https://meuartigo.brasilescola.uol.com.br/educacao/a-educacao-as-transformacoes-na-sociedade.htm"
+    },
+    {
+      "question": "O Papel da Educação na Formação do Conhecimento - Lucidarium",
+      "answer": "Através da educação, aprendemos a ler, escrever, fazer cálculos matemáticos, entender conceitos científicos e explorar outras áreas do conhecimento. É como se a educação fosse um mapa que nos guia por diferentes caminhos, permitindo-nos descobrir novas informações e compreender o mundo de forma mais ampla.",
+      "url": "https://lucidarium.com.br/o-papel-da-educacao-na-formacao-do-conhecimento/"
+    }
+  ]
+}
