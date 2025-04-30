@@ -1,0 +1,21 @@
+{
+  "query": "Como completo se relaciona com voitto?",
+  "timestamp": "2025-04-30T14:30:29.987086Z",
+  "qa": [
+    {
+      "question": "Veja os 7 artigos mais visitados na retrospectiva da Voitto!",
+      "answer": "Então se liga que a voitto vai se oferecer um presentão. Igualmente a nossa retrospectiva da Voitto, o All In, um pacote de cursos que contém um mix dos melhores e mais completos ensinamentos que você precisa para construir uma carreira de sucesso.",
+      "url": "https://voitto.com.br/blog/artigo/retrospectiva-voitto"
+    },
+    {
+      "question": "O que é e como fazer um MVP (Produto Mínimo Viável)? - Voitto",
+      "answer": "Descubra o que é, os tipos e como desenvolver o MVP (Produto mínimo Viável) do seu negócio que ajude na aquisição de seus primeiros clientes. Imagine que uma empresa pretende lançar um novo produto ou mesmo apresentar novas funcionalidades em um aplicativo.",
+      "url": "https://voitto.com.br/blog/artigo/mvp-minimum-viable-product"
+    },
+    {
+      "question": "Como aprender Seis Sigma com a Liga da Justiça? - Voitto",
+      "answer": "Entenda como funciona a metodologia que vem se tornando a tendência das empresas, veja como o Seis Sigma se relaciona com os heróis mais poderosos do planeta!",
+      "url": "https://voitto.com.br/blog/artigo/como-aprender-seis-sigma"
+    }
+  ]
+}
