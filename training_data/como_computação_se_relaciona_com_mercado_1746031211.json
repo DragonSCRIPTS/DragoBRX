@@ -1,0 +1,21 @@
+{
+  "query": "Como computação se relaciona com mercado?",
+  "timestamp": "2025-04-30T16:40:12.050241Z",
+  "qa": [
+    {
+      "question": "7 tendências e oportunidades na Engenharia da Computação",
+      "answer": "Este artigo explora quatro tendências e oportunidades emergentes na Engenharia da Computação, destacando como a inovação em tecnologia está pavimentando o caminho para um futuro promissor. Aproveite a leitura!",
+      "url": "https://www.unijorge.edu.br/postagens/7-tendencias-oportunidades-engenharia-da-computacao/"
+    },
+    {
+      "question": "Relatório KPMG Futures 2025 - KPMG Brasil",
+      "answer": "O Relatório KPMG Futures 2025 analisa as principais forças que estão moldando os mercados globais. Desse modo, proporciona uma série de insights e estratégias essenciais para que os líderes de empresas se mantenham no topo das transformações. O relatório deste ano também explora as sete fronteiras críticas que vão redefinir indústrias e entregar novas dinâmicas competitivas.",
+      "url": "https://kpmg.com/br/pt/home/insights/2025/03/relatorio-kpmg-futures-2025.html"
+    },
+    {
+      "question": "Tendências do mercado de computação de próxima geração",
+      "answer": "O tamanho do mercado global de computação da próxima geração foi avaliado em US$ 133,76 bilhões em 2023. O mercado deverá crescer de US$ 160,97 bilhões em 2024 para US$ 809,71 bilhões até 2032, exibindo um CAGR de 22,4% durante o período de previsão.",
+      "url": "https://www.fortunebusinessinsights.com/pt/next-generation-computing-market-108676"
+    }
+  ]
+}
