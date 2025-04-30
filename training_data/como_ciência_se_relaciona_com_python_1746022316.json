@@ -1,0 +1,21 @@
+{
+  "query": "Como ciência se relaciona com python?",
+  "timestamp": "2025-04-30T14:11:57.511044Z",
+  "qa": [
+    {
+      "question": "Python e a Ciência de Dados - ABRACD",
+      "answer": "Por que sempre que falamos em Ciência de Dados é inevitável não comentarmos sobre a linguagem Python? Python é uma linguagem de programação de código aberto, criada por Guido van Rossum em 1989 para ser a substituta da linguagem ABC no SO Amoeba. Seu foco era desenvolver uma linguagem que potencializasse a produtividade do programador. Ah!",
+      "url": "https://abracd.org/2020/02/17/python-e-a-ciencia-de-dados/"
+    },
+    {
+      "question": "Ciência de Dados com Python | Thiago Fitz - DIO",
+      "answer": "Python é realmente uma grande ferramenta e há várias razões pelas quais os Cientistas de Dados usam Python. Cientistas de Dados precisam criar visualizações de dados para comunicar claramente os resultados e as previsões em qualquer nível de um negócio.",
+      "url": "https://www.dio.me/articles/ciencia-de-dados-com-python"
+    },
+    {
+      "question": "O que é Ciência de Dados com Python? Guia completo para ... - Awari",
+      "answer": "Em resumo, aprender ciência de dados com Python é uma excelente escolha para quem deseja ingressar nessa área ou aprimorar suas habilidades. A combinação do poder da linguagem Python com as ferramentas específicas para análise de dados proporciona uma base sólida para explorar insights, tomar decisões embasadas e se destacar no mercado de trabalho.",
+      "url": "https://awari.com.br/o-que-e-ciencia-de-dados-com-python-guia-completo-para-iniciantes/"
+    }
+  ]
+}
