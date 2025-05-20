@@ -1,0 +1,64 @@
+# Lista de Pedidos para Roblox Studio
+
+## Pedidos de Scripts Básicos
+1. Criar um código para um NPC básico que patrulha uma área
+2. Criar um código para um sistema de diálogo simples entre jogador e NPCs
+3. Criar um código para um sistema de inventário básico
+4. Criar um código para controles de câmera personalizados
+5. Criar um código para um sistema de checkpoint e respawn
+
+## Pedidos de Mecânicas de Jogo
+1. Criar um código para mecânicas de combate corpo a corpo
+2. Criar um código para um sistema de armas de fogo com recarga
+3. Criar um código para um sistema de dash/esquiva
+4. Criar um código para um sistema de parkour
+5. Criar um código para um sistema de escalada em superfícies
+
+## Pedidos de Sistemas de Jogo
+1. Criar um código para um sistema de economia in-game
+2. Criar um código para um sistema de experiência e nivelamento
+3. Criar um código para um sistema de missões/quests
+4. Criar um código para um sistema de day/night cycle
+5. Criar um código para um sistema de clima dinâmico
+
+## Pedidos de Interface do Usuário
+1. Criar um código para uma barra de vida dinâmica
+2. Criar um código para um menu principal completo
+3. Criar um código para um sistema de notificações
+4. Criar um código para um minimapa funcional
+5. Criar um código para uma interface de loja in-game
+
+## Pedidos de Efeitos e Visuais
+1. Criar um código para efeitos de partículas personalizados
+2. Criar um código para animações de personagem avançadas
+3. Criar um código para efeitos de iluminação dinâmicos
+4. Criar um código para um sistema de ragdoll realista
+5. Criar um código para efeitos de tela (como motion blur ou damage overlay)
+
+## Pedidos de Multijogador
+1. Criar um código para um sistema de lobby
+2. Criar um código para um sistema de chat personalizado
+3. Criar um código para um sistema de clãs/grupos
+4. Criar um código para um sistema de matchmaking
+5. Criar um código para um sistema de leaderboards
+
+## Pedidos de Gerenciamento de Dados
+1. Criar um código para salvar dados do jogador
+2. Criar um código para um sistema de estatísticas de jogador
+3. Criar um código para sincronização de dados entre servidores
+4. Criar um código para um sistema de conquistas
+5. Criar um código para um sistema de administração para moderadores
+
+## Pedidos de Otimização
+1. Criar um código para otimização de renderização de mundo
+2. Criar um código para redução de lag em servidores lotados
+3. Criar um código para streaming de assets eficiente
+4. Criar um código para gerenciamento de memória otimizado
+5. Criar um código para técnicas de level of detail (LOD)
+
+## Pedidos de Mecânicas Avançadas
+1. Criar um código para um sistema de física de veículos
+2. Criar um código para um sistema de construção estilo Minecraft
+3. Criar um código para uma IA de inimigos com pathfinding avançado
+4. Criar um código para um sistema de crafting complexo
+5. Criar um código para um gerador de mundos procedural
