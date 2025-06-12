@@ -1,0 +1,20 @@
+[
+  {
+    "train_id": "T00001",
+    "requests": [
+      "Criar um NPC simples no Roblox",
+      "Como faço para spawnar um NPC básico?",
+      "Quero um script que crie um NPC no workspace"
+    ],
+    "response_code": "-- NPC Básico\nlocal npc = Instance.new(\"Part\")\nnpc.Name = \"NPC\"\nnpc.Size = Vector3.new(2, 5, 2)\nnpc.Position = Vector3.new(0, 5, 0)\nnpc.Anchored = true\nnpc.BrickColor = BrickColor.new(\"Bright blue\")\nnpc.Parent = workspace\nlocal humanoid = Instance.new(\"Humanoid\", npc)\nhumanoid.WalkSpeed = 16"
+  },
+  {
+    "train_id": "T00002",
+    "requests": [
+      "Preciso de um sistema de inventário para meu jogo",
+      "Como criar inventário simples?",
+      "Script de inventário básico"
+    ],
+    "response_code": "-- Sistema de Inventário Simples\nlocal Inventory = {}\nfunction AddItem(player, itemName)\n  local userId = player.UserId\n  Inventory[userId] = Inventory[userId] or {}\n  table.insert(Inventory[userId], itemName)\n  print(\\"Item adicionado:\\", itemName)\nend"
+  }
+]
