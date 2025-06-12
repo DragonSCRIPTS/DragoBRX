@@ -1,0 +1,54 @@
+[
+  {
+    "train_id": "T00026",
+    "requests": [
+      "Como criar comando de chat personalizado?",
+      "Script para comandos no chat",
+      "Chat commands Roblox"
+    ],
+    "response_code": "-- Comandos de Chat Personalizados\nlocal Players = game:GetService('Players')\n
+Players.PlayerAdded:Connect(function(player)\n  player.Chatted:Connect(function(msg)\n    if msg:sub(1,6) == '/dance' then\n      local char = player.Character\n      if char and char:FindFirstChild('Humanoid') then\n        char.Humanoid:LoadAnimation(game.ReplicatedStorage.DanceAnim):Play()\n      end\n    end\n  end)\nend)"
+  },
+  {
+    "train_id": "T00027",
+    "requests": [
+      "Como mudar o tempo/clima?",
+      "Script para chuva ou céu nublado",
+      "Adicionar chuva no jogo"
+    ],
+    "response_code": "-- Efeito de Chuva\nlocal RunService = game:GetService('RunService')\nlocal Lighting = game:GetService('Lighting')\n
+-- Cria partículas de chuva no workspace\nlocal rain = Instance.new('ParticleEmitter')\nrain.Texture = 'rbxassetid://241594419' -- textura de gota d'água\nrain.Rate = 1000\nrain.Lifetime = NumberRange.new(1, 2)\nrain.Speed = NumberRange.new(50)\nrain.Parent = workspace.Terrain\n
+-- Escurece o céu\nLighting.TimeOfDay = '17:00:00'\nLighting.CloudCover = 0.8"
+  },
+  {
+    "train_id": "T00028",
+    "requests": [
+      "Script para animação personalizada",
+      "Como tocar animação no player?",
+      "Adicionar animação customizada"
+    ],
+    "response_code": "-- Animação Personalizada\nlocal Players = game:GetService('Players')\nlocal anim = Instance.new('Animation')\nanim.AnimationId = 'rbxassetid://507766666' -- ID da animação
+
+Players.PlayerAdded:Connect(function(player)\n  player.CharacterAdded:Connect(function(char)\n    local humanoid = char:WaitForChild('Humanoid')\n    local track = humanoid:LoadAnimation(anim)\n    track:Play()\n  end)\nend)"
+  },
+  {
+    "train_id": "T00029",
+    "requests": [
+      "Como criar partículas no jogo?",
+      "Script para partículas custom",
+      "Efeito de poeira ao andar"
+    ],
+    "response_code": "-- Partículas de Poeira\nlocal Players = game:GetService('Players')\nlocal RunService = game:GetService('RunService')\n
+RunService.Heartbeat:Connect(function()\n  for _, player in ipairs(Players:GetPlayers()) do\n    local char = player.Character\n    if char and char:FindFirstChild('HumanoidRootPart') then\n      local emitter = Instance.new('ParticleEmitter')\n      emitter.Texture = 'rbxassetid://258128463'\n      emitter.Rate = 20\n      emitter.Lifetime = NumberRange.new(0.5)\n      emitter.Parent = char.HumanoidRootPart\n    end\n  end\nend)"
+  },
+  {
+    "train_id": "T00030",
+    "requests": [
+      "Como criar checkpoint visual?",
+      "Script para mostrar trilha de checkpoints",
+      "Visual indicators para checkpoints"
+    ],
+    "response_code": "-- Indicadores Visuais de Checkpoint\nlocal checkpointFolder = workspace:WaitForChild('Checkpoints')\n
+for _, cp in ipairs(checkpointFolder:GetChildren()) do\n  if cp:IsA('Part') then\n    local billboard = Instance.new('BillboardGui', cp)\n    billboard.Size = UDim2.new(0, 100, 0, 50)\n    billboard.AlwaysOnTop = true\n    local label = Instance.new('TextLabel', billboard)\n    label.Size = UDim2.new(1,0,1,0)\n    label.Text = 'Checkpoint'\n    label.TextColor3 = Color3.new(1,1,0)\n    label.BackgroundTransparency = 1\n  end\nend"
+  }
+]
