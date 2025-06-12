@@ -1,0 +1,47 @@
+[
+  {
+    "train_id": "T00081",
+    "requests": [
+      "Como criar elevador funcionando?",
+      "Script para elevador automático",
+      "Elevador com botões no Roblox"
+    ],
+    "response_code": "-- Sistema de Elevador\nlocal elevator = workspace.Elevator\nlocal floors = {0, 20, 40, 60} -- alturas dos andares\nlocal currentFloor = 1\nlocal moving = false\n\nlocal function moveToFloor(targetFloor)\n  if moving or targetFloor == currentFloor then return end\n  moving = true\n  \n  local targetY = floors[targetFloor]\n  local startY = elevator.Position.Y\n  local distance = math.abs(targetY - startY)\n  local speed = 10\n  local time = distance / speed\n  \n  local tween = game:GetService('TweenService'):Create(\n    elevator,\n    TweenInfo.new(time, Enum.EasingStyle.Linear),\n    {Position = Vector3.new(elevator.Position.X, targetY, elevator.Position.Z)}\n  )\n  \n  tween:Play()\n  tween.Completed:Connect(function()\n    currentFloor = targetFloor\n    moving = false\n    print('Elevador chegou ao andar ' .. targetFloor)\n  end)\nend\n\n-- Botões do elevador\nfor i, floor in ipairs(floors) do\n  local button = workspace['Button' .. i]\n  button.ClickDetector.MouseClick:Connect(function()\n    moveToFloor(i)\n  end)\nend"
+  },
+  {
+    "train_id": "T00082",
+    "requests": [
+      "Script para quebrar blocos como Minecraft",
+      "Como destruir partes com ferramenta?",
+      "Sistema de mineração"
+    ],
+    "response_code": "-- Sistema de Mineração\nlocal tool = script.Parent\nlocal player = game.Players.LocalPlayer\nlocal inventory = {}\n\ntool.Activated:Connect(function()\n  local mouse = player:GetMouse()\n  local target = mouse.Target\n  \n  if target and target.Name == 'Stone' then\n    -- Efeito de quebra\n    local sound = Instance.new('Sound')\n    sound.SoundId = 'rbxasset://sounds/impact_water_02.mp3'\n    sound.Volume = 0.5\n    sound.Parent = target\n    sound:Play()\n    \n    -- Adicionar ao inventário\n    inventory['Stone'] = (inventory['Stone'] or 0) + 1\n    print('Coletou pedra! Total: ' .. inventory['Stone'])\n    \n    -- Destruir bloco\n    target:Destroy()\n    \n    -- Spawnar drop\n    local drop = Instance.new('Part')\n    drop.Size = Vector3.new(0.5, 0.5, 0.5)\n    drop.Position = target.Position\n    drop.BrickColor = BrickColor.new('Dark stone grey')\n    drop.Name = 'StoneDrop'\n    drop.Parent = workspace\n    \n    drop.Touched:Connect(function(hit)\n      if hit.Parent == player.Character then\n        drop:Destroy()\n      end\n    end)\n  end\nend)"
+  },
+  {
+    "train_id": "T00083",
+    "requests": [
+      "Como fazer torre de defesa?",
+      "Script para torre que atira em inimigos",
+      "Sistema de defesa automática"
+    ],
+    "response_code": "-- Torre de Defesa\nlocal tower = script.Parent\nlocal range = 50\nlocal damage = 25\nlocal fireRate = 1 -- segundos entre tiros\nlocal lastShot = 0\n\nlocal function findNearestEnemy()\n  local nearestEnemy = nil\n  local shortestDistance = range\n  \n  for _, obj in pairs(workspace:GetChildren()) do\n    if obj.Name == 'Enemy' and obj:FindFirstChild('Humanoid') then\n      local distance = (tower.Position - obj.Position).Magnitude\n      if distance < shortestDistance then\n        shortestDistance = distance\n        nearestEnemy = obj\n      end\n    end\n  end\n  \n  return nearestEnemy\nend\n\nlocal function shoot(target)\n  if tick() - lastShot < fireRate then return end\n  lastShot = tick()\n  \n  local bullet = Instance.new('Part')\n  bullet.Size = Vector3.new(0.2, 0.2, 1)\n  bullet.BrickColor = BrickColor.new('Bright yellow')\n  bullet.CanCollide = false\n  bullet.Anchored = true\n  bullet.Position = tower.Position\n  bullet.Parent = workspace\n  \n  local direction = (target.Position - tower.Position).Unit\n  \n  for i = 1, 50 do\n    bullet.Position = bullet.Position + direction * 2\n    \n    local hit = workspace:FindPartOnRay(Ray.new(bullet.Position, direction))\n    if hit and hit.Parent.Name == 'Enemy' then\n      hit.Parent.Humanoid:TakeDamage(damage)\n      bullet:Destroy()\n      break\n    end\n    \n    wait(0.02)\n  end\n  \n  bullet:Destroy()\nend\n\n-- Loop principal\nwhile true do\n  local enemy = findNearestEnemy()\n  if enemy then\n    shoot(enemy)\n  end\n  wait(0.1)\nend"
+  },
+  {
+    "train_id": "T00084",
+    "requests": [
+      "Script para sistema de fome",
+      "Como criar barra de fome?",
+      "Necessidades básicas do jogador"
+    ],
+    "response_code": "-- Sistema de Fome\nlocal Players = game:GetService('Players')\nlocal RunService = game:GetService('RunService')\n\nPlayers.PlayerAdded:Connect(function(player)\n  local stats = Instance.new('Folder')\n  stats.Name = 'Needs'\n  stats.Parent = player\n  \n  local hunger = Instance.new('IntValue')\n  hunger.Name = 'Hunger'\n  hunger.Value = 100\n  hunger.Parent = stats\n  \n  local thirst = Instance.new('IntValue')\n  thirst.Name = 'Thirst'\n  thirst.Value = 100\n  thirst.Parent = stats\n  \n  -- GUI de fome\n  player.CharacterAdded:Connect(function(character)\n    local gui = Instance.new('ScreenGui')\n    gui.Name = 'NeedsGUI'\n    gui.Parent = player:WaitForChild('PlayerGui')\n    \n    local hungerBar = Instance.new('Frame', gui)\n    hungerBar.Size = UDim2.new(0, 200, 0, 20)\n    hungerBar.Position = UDim2.new(0, 10, 0, 50)\n    hungerBar.BackgroundColor3 = Color3.new(0.8, 0.4, 0)\n    \n    local thirstBar = Instance.new('Frame', gui)\n    thirstBar.Size = UDim2.new(0, 200, 0, 20)\n    thirstBar.Position = UDim2.new(0, 10, 0, 80)\n    thirstBar.BackgroundColor3 = Color3.new(0, 0.4, 0.8)\n    \n    -- Reduzir fome/sede com tempo\n    spawn(function()\n      while character.Parent do\n        wait(30) -- a cada 30 segundos\n        hunger.Value = math.max(0, hunger.Value - 5)\n        thirst.Value = math.max(0, thirst.Value - 8)\n        \n        -- Atualizar barras\n        hungerBar.Size = UDim2.new(0, 200 * (hunger.Value/100), 0, 20)\n        thirstBar.Size = UDim2.new(0, 200 * (thirst.Value/100), 0, 20)\n        \n        -- Efeitos da fome\n        if hunger.Value <= 0 or thirst.Value <= 0 then\n          character.Humanoid:TakeDamage(10)\n        end\n      end\n    end)\n  end)\nend)"
+  },
+  {
+    "train_id": "T00085",
+    "requests": [
+      "Como criar zona de construção?",
+      "Script para building system",
+      "Construir blocos no jogo"
+    ],
+    "response_code": "-- Sistema de Construção\nlocal Players = game:GetService('Players')\nlocal UserInputService = game:GetService('UserInputService')\nlocal player = Players.LocalPlayer\nlocal mouse = player:GetMouse()\nlocal buildMode = false\nlocal selectedBlock = 'Part'\n\nlocal blockTypes = {\n  Part = {Size = Vector3.new(4, 4, 4), Color = Color3.new(0.5, 0.5, 0.5)},\n  Wall = {Size = Vector3.new(4, 8, 1), Color = Color3.new(0.8, 0.6, 0.4)},\n  Floor = {Size = Vector3.new(8, 1, 8), Color = Color3.new(0.3, 0.3, 0.3)}\n}\n\nUserInputService.InputBegan:Connect(function(input, gameProcessed)\n  if gameProcessed then return end\n  \n  if input.KeyCode == Enum.KeyCode.B then\n    buildMode = not buildMode\n    print('Modo construção: ' .. (buildMode and 'ON' or 'OFF'))\n  elseif input.KeyCode == Enum.KeyCode.One then\n    selectedBlock = 'Part'\n  elseif input.KeyCode == Enum.KeyCode.Two then\n    selectedBlock = 'Wall'\n  elseif input.KeyCode == Enum.KeyCode.Three then\n    selectedBlock = 'Floor'\n  end\nend)\n\nmouse.Button1Down:Connect(function()\n  if buildMode and mouse.Target then\n    local blockInfo = blockTypes[selectedBlock]\n    local newBlock = Instance.new('Part')\n    newBlock.Size = blockInfo.Size\n    newBlock.Color = blockInfo.Color\n    newBlock.Anchored = true\n    newBlock.Position = mouse.Hit.Position + Vector3.new(0, blockInfo.Size.Y/2, 0)\n    newBlock.Parent = workspace\n    \n    -- Sistema de destruição\n    local clickDetector = Instance.new('ClickDetector', newBlock)\n    clickDetector.MouseClick:Connect(function(playerWhoClicked)\n      if playerWhoClicked == player and buildMode then\n        newBlock:Destroy()\n      end\n    end)\n  end\nend)"
+  }
+]
