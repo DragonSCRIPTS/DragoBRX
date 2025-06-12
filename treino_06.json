@@ -1,0 +1,71 @@
+[
+  {
+    "train_id": "T00031",
+    "requests": [
+      "Como ativar um force field?",
+      "Script para dar escudo ao jogador",
+      "ForceField ao tocar"
+    ],
+    "response_code": "-- Force Field ao Tocar\nlocal pad = workspace.ForceFieldPad\n
+pad.Touched:Connect(function(hit)\n  local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n  if player and player.Character then\n    local ff = Instance.new('ForceField')\n    ff.Parent = player.Character\n    wait(5) -- duração do escudo\n    ff:Destroy()\n  end\nend)"
+  },
+  {
+    "train_id": "T00032",
+    "requests": [
+      "Mostrar scoreboard na tela",
+      "Script para interface de pontuação",
+      "Como exibir placar em GUI?"
+    ],
+    "response_code": "-- GUI de Scoreboard\nlocal player = game.Players.LocalPlayer\nlocal gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))\nlocal frame = Instance.new('Frame', gui)\nframe.Size = UDim2.new(0.3,0,0.4,0)\nframe.Position = UDim2.new(0.05,0,0.05,0)\nframe.BackgroundTransparency = 0.3\n
+local stats = player:WaitForChild('leaderstats')\nfor _, stat in ipairs(stats:GetChildren()) do\n  local label = Instance.new('TextLabel', frame)\n  label.Size = UDim2.new(1,0,0,25)\n  label.Position = UDim2.new(0,0, (stat:FindFirstChild('Value') or stat).Value * 0 + 0,0)\n  label.Text = stat.Name .. ': ' .. stat.Value\n  label.TextColor3 = Color3.new(1,1,1)\n  label.BackgroundTransparency = 1\nend"
+  },
+  {
+    "train_id": "T00033",
+    "requests": [
+      "Zona de redução de velocidade?",
+      "Script para slow zone",
+      "Como diminuir a velocidade na área"
+    ],
+    "response_code": "-- Zona de Redução de Velocidade\nlocal slowZone = workspace.SlowZone\nlocal slowFactor = 0.5
+
+slowZone.Touched:Connect(function(hit)\n  local humanoid = hit.Parent:FindFirstChild('Humanoid')\n  if humanoid then\n    humanoid.WalkSpeed = humanoid.WalkSpeed * slowFactor\n  end\nend)
+
+slowZone.TouchEnded:Connect(function(hit)\n  local humanoid = hit.Parent:FindFirstChild('Humanoid')\n  if humanoid then\n    humanoid.WalkSpeed = humanoid.WalkSpeed / slowFactor\n  end\nend)"
+  },
+  {
+    "train_id": "T00034",
+    "requests": [
+      "Como criar comando de kick?",
+      "Script para expulsar jogador",
+      "Kick pelo chat"
+    ],
+    "response_code": "-- Comando de Kick pelo Chat\nlocal Players = game:GetService('Players')
+
+Players.PlayerAdded:Connect(function(player)
+  player.Chatted:Connect(function(msg)
+    local args = string.split(msg, ' ')
+    if args[1] == '/kick' and player.UserId == 123456 then -- 123456 é ID do admin
+      local targetName = args[2]
+      local target = Players:FindFirstChild(targetName)
+      if target then
+        target:Kick('Você foi expulso pelo admin')
+      end
+    end
+  end)
+end)"
+  },
+  {
+    "train_id": "T00035",
+    "requests": [
+      "Como ativar e desativar GUI via tecla?",
+      "Script para mostrar/ocultar interface",
+      "Toggle de menu com keybind"
+    ],
+    "response_code": "-- Toggle de GUI por Tecla\nlocal UserInput = game:GetService('UserInputService')\nlocal player = game.Players.LocalPlayer\nlocal gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))\nlocal frame = Instance.new('Frame', gui)\nframe.Size = UDim2.new(0.3,0,0.3,0)\nframe.Position = UDim2.new(0.35,0,0.35,0)\nframe.Visible = false
+
+UserInput.InputBegan:Connect(function(input)
+  if input.KeyCode == Enum.KeyCode.M then -- tecla M para toggle
+    frame.Visible = not frame.Visible
+  end
+end)"  }
+]
