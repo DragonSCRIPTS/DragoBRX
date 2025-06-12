@@ -1,0 +1,111 @@
+[
+  {
+    "train_id": "T00056",
+    "requests": [
+      "Como criar invisibilidade temporária?",
+      "Script para tornar jogador invisível",
+      "Invisibilidade no Roblox"
+    ],
+    "response_code": "-- Invisibilidade Temporária\nlocal pad = workspace.InvisibilityPad\nlocal duration = 5 -- segundos\n
+pad.Touched:Connect(function(hit)
+  local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+  if player and player.Character then
+    for _, part in ipairs(player.Character:GetDescendants()) do
+      if part:IsA('BasePart') then
+        part.Transparency = 1
+      end
+    end
+    wait(duration)
+    for _, part in ipairs(player.Character:GetDescendants()) do
+      if part:IsA('BasePart') then
+        part.Transparency = 0
+      end
+    end
+  end
+end)"
+  },
+  {
+    "train_id": "T00057",
+    "requests": [
+      "Como criar telecinesia?",
+      "Script para mover objetos com olhar",
+      "Telecinese no Roblox"
+    ],
+    "response_code": "-- Telecinese\nlocal Context = game:GetService('ContextActionService')
+local camera = workspace.CurrentCamera
+local heldPart
+
+Context:BindAction('Grab', function(actionName, state, input)
+  if state == Enum.UserInputState.Begin then
+    local unitRay = camera:ScreenPointToRay(input.Position.X, input.Position.Y)
+    local hitPart = workspace:FindPartOnRay(unitRay)
+    if hitPart and hitPart:IsA('BasePart') then
+      heldPart = hitPart
+      heldPart.Anchored = true
+    end
+  elseif state == Enum.UserInputState.End and heldPart then
+    heldPart.Anchored = false
+    heldPart = nil
+  end
+  if heldPart then
+    heldPart.CFrame = CFrame.new(camera.CFrame.Position + camera.CFrame.LookVector * 10)
+  end
+end, false, Enum.UserInputType.MouseButton1)"
+  },
+  {
+    "train_id": "T00058",
+    "requests": [
+      "Como fazer fade-in e fade-out de tela?",
+      "Script para transição de tela preta",
+      "Tela preta entre cenas"
+    ],
+    "response_code": "-- Fade In/Out de Tela\nlocal player = game.Players.LocalPlayer
+local gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))
+local frame = Instance.new('Frame', gui)
+frame.Size = UDim2.new(1,0,1,0)
+frame.BackgroundColor3 = Color3.new(0,0,0)
+
+-- Fade In
+for i = 1, 0, -0.05 do frame.BackgroundTransparency = i wait(0.05) end
+wait(1)
+-- Fade Out
+for i = 0, 1, 0.05 do frame.BackgroundTransparency = i wait(0.05) end
+frame:Destroy()"
+  },
+  {
+    "train_id": "T00059",
+    "requests": [
+      "Como criar respawn com delay?",
+      "Script para delay antes de reaparecer",
+      "Respawn time no Roblox"
+    ],
+    "response_code": "-- Respawn com Delay\nlocal Players = game:GetService('Players')
+
+Players.PlayerAdded:Connect(function(player)
+  player.CharacterAdded:Connect(function(char)
+    -- nada aqui
+  end)
+  player.CharacterRemoving:Connect(function(char)
+    wait(5) -- delay de 5 segundos
+    player:LoadCharacter()
+  end)
+end)"
+  },
+  {
+    "train_id": "T00060",
+    "requests": [
+      "Como criar multiplicador de XP?",
+      "Script para aumentar XP ganho",
+      "XP boost no jogo"
+    ],
+    "response_code": "-- Multiplicador de XP\nlocal multiplier = 1.5 -- 50% a mais
+
+function AddXP(player, amount)
+  local xp = player:FindFirstChild('XP')
+  if xp then
+    xp.Value = xp.Value + amount * multiplier
+  end
+end
+
+-- Exemplo: AddXP(game.Players.LocalPlayer, 100)"  }
+]
