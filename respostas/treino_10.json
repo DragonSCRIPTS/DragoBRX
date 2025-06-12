@@ -1,0 +1,118 @@
+[
+  {
+    "train_id": "T00051",
+    "requests": [
+      "Como adicionar sistema de achievements?",
+      "Script para conquistas no jogo",
+      "Como criar achievements no Roblox"
+    ],
+    "response_code": "-- Sistema de Achievements\nlocal HttpService = game:GetService('HttpService')\nlocal Players = game:GetService('Players')
+-- Exemplo simples de achievements em tabelas locais
+local Achievements = {
+  FirstKill = {Name = 'First Kill', Achieved = {}}
+}
+
+Players.PlayerAdded:Connect(function(player)
+  -- quando o jogador matar algo, chame UnlockAchievement(player, 'FirstKill')
+end)
+
+function UnlockAchievement(player, key)
+  if not Achievements[key].Achieved[player.UserId] then
+    Achievements[key].Achieved[player.UserId] = true
+    -- feedback visual
+    player:SendNotification({Title = 'Achievement Unlocked', Text = Achievements[key].Name})
+  end
+end"  
+  },
+  {
+    "train_id": "T00052",
+    "requests": [
+      "Script para barras de vida personalizadas",
+      "Como criar health bar acima da cabeça?",
+      "Mostrar HP do inimigo"
+    ],
+    "response_code": "-- Health Bar Acima da Cabeça\nlocal RunService = game:GetService('RunService')
+
+RunService.Heartbeat:Connect(function()
+  for _, npc in ipairs(workspace:GetChildren()) do
+    if npc:IsA('Model') and npc:FindFirstChild('Humanoid') then
+      if not npc:FindFirstChild('HealthBar') then
+        local billboard = Instance.new('BillboardGui', npc.PrimaryPart)
+        billboard.Name = 'HealthBar'
+        billboard.Size = UDim2.new(0, 100, 0, 10)
+        billboard.AlwaysOnTop = true
+        local frame = Instance.new('Frame', billboard)
+        frame.Size = UDim2.new(npc.Humanoid.Health/npc.Humanoid.MaxHealth,0,1,0)
+        frame.BackgroundColor3 = Color3.new(0,1,0)
+      else
+        local frame = npc.HealthBar:FindFirstChildOfClass('Frame')
+        frame.Size = UDim2.new(npc.Humanoid.Health/npc.Humanoid.MaxHealth,0,1,0)
+      end
+    end
+  end
+end)"  
+  },
+  {
+    "train_id": "T00053",
+    "requests": [
+      "Como criar tremor de câmera?",
+      "Script para screen shake",
+      "Camera shake no Roblox"
+    ],
+    "response_code": "-- Tremor de Câmera\nlocal camera = workspace.CurrentCamera
+local function shake(duration, magnitude)
+  local startTime = tick()
+  while tick() - startTime < duration do
+    local offset = Vector3.new(
+      (math.random() - 0.5) * magnitude,
+      (math.random() - 0.5) * magnitude,
+      (math.random() - 0.5) * magnitude
+    )
+    camera.CFrame = camera.CFrame + offset
+    wait()
+  end
+end
+
+-- Exemplo: shake(0.5, 1)"  
+  },
+  {
+    "train_id": "T00054",
+    "requests": [
+      "Script para valores de velocidade custom",
+      "Como acelerar NPC?",
+      "Alterar WalkSpeed dinamicamente"
+    ],
+    "response_code": "-- Alterar WalkSpeed Dynamically\nlocal RunService = game:GetService('RunService')
+local npc = workspace.FastNPC
+local speed = 16
+
+RunService.Heartbeat:Connect(function()
+  if npc and npc:FindFirstChild('Humanoid') then
+    npc.Humanoid.WalkSpeed = speed
+  end
+end)"  
+  },
+  {
+    "train_id": "T00055",
+    "requests": [
+      "Como dar recoil visual?",
+      "Script para recuo na câmera",
+      "Recoil mais realista no Roblox"
+    ],
+    "response_code": "-- Recoil Visual na Câmera\nlocal camera = workspace.CurrentCamera
+local UIS = game:GetService('UserInputService')
+
+function ApplyRecoil()
+  local originalCFrame = camera.CFrame
+  camera.CFrame = camera.CFrame * CFrame.Angles(math.rad(-5), 0, 0)
+  wait(0.1)
+  camera.CFrame = originalCFrame
+end
+
+UIS.InputBegan:Connect(function(input)
+  if input.UserInputType == Enum.UserInputType.MouseButton1 then
+    ApplyRecoil()
+  end
+end)"  
+  }
+]
