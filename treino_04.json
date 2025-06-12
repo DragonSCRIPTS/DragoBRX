@@ -1,0 +1,53 @@
+[
+  {
+    "train_id": "T00021",
+    "requests": [
+      "Como criar ataque corpo a corpo?",
+      "Script para soco ou chute do jogador",
+      "Quero adicionar combate físico no jogo"
+    ],
+    "response_code": "-- Ataque Corpo a Corpo\nlocal tool = Instance.new('Tool')\ntool.Name = 'Fist'\nlocal handle = Instance.new('Part', tool)\nhandle.Name = 'Handle'\nhandle.Size = Vector3.new(1,1,1)\ntool.Parent = game.Players.LocalPlayer.Backpack\n\ntool.Activated:Connect(function()\n  local character = game.Players.LocalPlayer.Character\n  local hrp = character and character:FindFirstChild('HumanoidRootPart')\n  if hrp then\n    local ray = Ray.new(hrp.Position, hrp.CFrame.LookVector * 3)\n    local part, pos = workspace:FindPartOnRay(ray, character)\n    if part and part.Parent:FindFirstChild('Humanoid') then\n      part.Parent.Humanoid:TakeDamage(20)\n    end\n  end\nend)"
+  },
+  {
+    "train_id": "T00022",
+    "requests": [
+      "Script para pegar item no chão",
+      "Como coletar objetos?",
+      "Quero pick up de itens quando tocar"
+    ],
+    "response_code": "-- Coleta de Itens\nlocal itemTemplate = workspace.ItemTemplate\n
+itemTemplate.Touched:Connect(function(hit)\n  local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n  if player then\n    -- Adiciona ao inventário (exemplo simples)\n    print('Item coletado por', player.Name)\n    itemTemplate:Destroy()\n  end\nend)"
+  },
+  {
+    "train_id": "T00023",
+    "requests": [
+      "Como criar neblina ambiental?",
+      "Script para efeito de fog no jogo",
+      "Adicionar fog no map"
+    ],
+    "response_code": "-- Neblina Ambiental\nlocal Lighting = game:GetService('Lighting')\nLighting.FogStart = 0\nLighting.FogEnd = 100\nLighting.FogColor = Color3.new(0.7, 0.7, 0.8)"
+  },
+  {
+    "train_id": "T00024",
+    "requests": [
+      "Script para regeneração de vida",
+      "Como curar o jogador com o tempo?",
+      "Auto heal no Roblox"
+    ],
+    "response_code": "-- Regeneração de Vida\nlocal regenRate = 5 -- HP por segundo\nlocal runService = game:GetService('RunService')\n
+runService.Heartbeat:Connect(function()\n  local player = game.Players.LocalPlayer\n  local humanoid = player.Character and player.Character:FindFirstChild('Humanoid')\n  if humanoid and humanoid.Health < humanoid.MaxHealth then\n    humanoid.Health = math.min(humanoid.MaxHealth, humanoid.Health + regenRate * runService.RenderStepped)
+  end\nend)"
+  },
+  {
+    "train_id": "T00025",
+    "requests": [
+      "Como criar multiplicador de pontos?",
+      "Script para aumentar score x2",
+      "Pontuação em dobro no jogo"
+    ],
+    "response_code": "-- Multiplicador de Pontos\nlocal Players = game:GetService('Players')\nlocal multiplier = 2
+
+function AddPoints(player, amount)\n  local stats = player:FindFirstChild('leaderstats')\n  if stats and stats:FindFirstChild('Score') then\n    stats.Score.Value = stats.Score.Value + amount * multiplier\n  end\nend\n
+-- Exemplo: AddPoints(game.Players.LocalPlayer, 10)  -- adiciona 20 pontos"
+  }
+]
