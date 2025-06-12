@@ -1,0 +1,121 @@
+[
+  {
+    "train_id": "T00046",
+    "requests": [
+      "Como enviar mensagem privada?",
+      "Script para whisper no chat",
+      "Chat privado entre jogadores"
+    ],
+    "response_code": "-- Mensagem Privada (Whisper)\nlocal Players = game:GetService('Players')
+
+Players.PlayerAdded:Connect(function(player)
+  player.Chatted:Connect(function(msg)
+    if msg:sub(1,7) == '/whisper' then
+      local args = string.split(msg, ' ')
+      local targetName = args[2]
+      local message = table.concat(args, ' ', 3)
+      local target = Players:FindFirstChild(targetName)
+      if target then
+        target:SendNotification({Title = 'Whisper from ' .. player.Name, Text = message})
+      end
+    end
+  end)
+end)"
+  },
+  {
+    "train_id": "T00047",
+    "requests": [
+      "Como criar checkpoint móvel?",
+      "Script para checkpoint que segue o jogador",
+      "Checkpoint dinâmico"
+    ],
+    "response_code": "-- Checkpoint Móvel\nlocal RunService = game:GetService('RunService')
+
+game.Players.PlayerAdded:Connect(function(player)
+  player.CharacterAdded:Connect(function(char)
+    local checkpoint = Instance.new('Part', workspace)
+    checkpoint.Name = 'MobileCheckpoint'
+    checkpoint.Size = Vector3.new(2,1,2)
+    checkpoint.Anchored = true
+    RunService.Heartbeat:Connect(function()
+      if char:FindFirstChild('HumanoidRootPart') then
+        checkpoint.Position = char.HumanoidRootPart.Position + Vector3.new(0, 0, -5)
+      end
+    end)
+  end)
+end)"
+  },
+  {
+    "train_id": "T00048",
+    "requests": [
+      "Como gerar NPC inimigo?",
+      "Script para spawnear inimigos automaticamente",
+      "Inimigos que atacam jogador"
+    ],
+    "response_code": "-- Spawn de Inimigos\nlocal spawnPoints = workspace:WaitForChild('EnemySpawns'):GetChildren()
+local enemyTemplate = workspace:WaitForChild('EnemyTemplate')
+local RunService = game:GetService('RunService')
+
+RunService.Heartbeat:Connect(function(dt)
+  if math.random() < 0.02 then
+    local sp = spawnPoints[math.random(#spawnPoints)]
+    local enemy = enemyTemplate:Clone()
+    enemy.PrimaryPart.CFrame = sp.CFrame
+    enemy.Parent = workspace
+    -- Ataque simples ao jogador mais próximo
+    spawn(function()
+      while enemy.Parent and enemy.PrimaryPart do
+        local players = game.Players:GetPlayers()
+        if #players > 0 then
+          local target = players[1].Character and players[1].Character:FindFirstChild('HumanoidRootPart')
+          if target then
+            local dir = (target.Position - enemy.PrimaryPart.Position).Unit
+            enemy:SetPrimaryPartCFrame(enemy.PrimaryPart.CFrame + dir * 2 * dt)
+          end
+        end
+        wait(0.5)
+      end
+    end)
+  end
+end)"  },
+  {
+    "train_id": "T00049",
+    "requests": [
+      "Como criar sistema de teams?",
+      "Script para times e cores",
+      "Dividir jogadores em equipes"
+    ],
+    "response_code": "-- Sistema de Teams\nlocal Teams = game:GetService('Teams')
+
+-- Cria equipes no serviço Teams
+local red = Instance.new('Team', Teams)
+red.Name = 'Red'
+red.TeamColor = BrickColor.new('Bright red')
+
+local blue = Instance.new('Team', Teams)
+blue.Name = 'Blue'
+blue.TeamColor = BrickColor.new('Bright blue')
+
+-- Atribui jogadores alternadamente
+game.Players.PlayerAdded:Connect(function(player)
+  local team = (#Teams.Red:GetPlayers() > #Teams.Blue:GetPlayers()) and blue or red
+  player.Team = team
+end)"  },
+  {
+    "train_id": "T00050",
+    "requests": [
+      "Script para sistema de recoil em armas?",
+      "Como adicionar recoil ao atirar?",
+      "Recoil ao usar tool de tiro"
+    ],
+    "response_code": "-- Recoil para Armas\nlocal tool = game.ReplicatedStorage:WaitForChild('Gun')
+
+tool.Activated:Connect(function()
+  local player = game.Players.LocalPlayer
+  local cam = workspace.CurrentCamera
+  cam.CFrame = cam.CFrame * CFrame.Angles(math.rad(-2), 0, 0)
+  -- Retornar recoil após delay
+  wait(0.1)
+  cam.CFrame = cam.CFrame * CFrame.Angles(math.rad(2), 0, 0)
+end)"  }
+]
