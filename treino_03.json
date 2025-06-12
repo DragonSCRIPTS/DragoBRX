@@ -1,0 +1,94 @@
+[
+  {
+    "train_id": "T00016",
+    "requests": [
+      "Como criar um Speed Boost?",
+      "Script para dar boost de velocidade ao jogador",
+      "Speed pad no jogo"
+    ],
+    "response_code": "-- Speed Boost Pad\nlocal pad = workspace.SpeedPad\nlocal boostAmount = 50\nlocal duration = 3 -- segundos\n
+pad.Touched:Connect(function(hit)\n  local character = hit.Parent\n  local player = game.Players:GetPlayerFromCharacter(character)\n  if player and character:FindFirstChild('Humanoid') then\n    local humanoid = character.Humanoid\n    local originalSpeed = humanoid.WalkSpeed\n    humanoid.WalkSpeed = originalSpeed + boostAmount\n    wait(duration)\n    humanoid.WalkSpeed = originalSpeed\n  end\nend)"
+  },
+
+  {
+    "train_id": "T00017",
+    "requests": [
+      "Quero um atirador de projéteis",
+      "Script para disparar bolas de fogo",
+      "Como criar um lançador de projéteis?"
+    ],
+    "response_code": "-- Lançador de Projéteis\nlocal launcher = workspace.ProjectileLauncher\nlocal template = workspace.FireballTemplate
+
+launcher.Touched:Connect(function(hit)
+  local origin = launcher.Position
+  local projectile = template:Clone()
+  projectile.CFrame = CFrame.new(origin)
+  projectile.Parent = workspace
+  local bodyVel = Instance.new('BodyVelocity', projectile)
+  bodyVel.Velocity = launcher.CFrame.LookVector * 100
+  game:GetService('Debris'):AddItem(projectile, 5)
+end)"
+  },
+
+  {
+    "train_id": "T00018",
+    "requests": [
+      "Script para porta automática",
+      "Como criar porta que abre quando o jogador se aproxima?",
+      "Porta com sensor de proximidade"
+    ],
+    "response_code": "-- Porta Automática\nlocal door = workspace.AutoDoor\nlocal proximity = Instance.new('ProximityPrompt', door)
+proximity.ActionText = 'Abrir Porta'
+proximity.ObjectText = 'Porta'
+proximity.MaxActivationDistance = 10
+
+proximity.Triggered:Connect(function(player)
+  door.Transparency = 0.5
+  door.CanCollide = false
+  wait(2)
+  door.Transparency = 0
+  door.CanCollide = true
+end)"
+  },
+
+  {
+    "train_id": "T00019",
+    "requests": [
+      "Como fazer NPC seguir o jogador?",
+      "Script de NPC que persegue o player",
+      "Seguir personagem no Roblox"
+    ],
+    "response_code": "-- NPC Seguidor\nlocal npc = workspace.FollowerNPC
+local runService = game:GetService('RunService')
+
+runService.Heartbeat:Connect(function()
+  local players = game.Players:GetPlayers()
+  if #players > 0 and npc.PrimaryPart then
+    local target = players[1].Character and players[1].Character:FindFirstChild('HumanoidRootPart')
+    if target then
+      local direction = (target.Position - npc.PrimaryPart.Position).Unit
+      npc:SetPrimaryPartCFrame(npc.PrimaryPart.CFrame + direction * 2 * runService.RenderStepped)
+    end
+  end
+end)"
+  },
+
+  {
+    "train_id": "T00020",
+    "requests": [
+      "Quero um contador regressivo",
+      "Script para timer de contagem regressiva",
+      "Como fazer countdown para o jogador?"
+    ],
+    "response_code": "-- Contador Regressivo\nlocal duration = 10 -- segundos\nlocal playerGui = game.Players.LocalPlayer:WaitForChild('PlayerGui')
+local screen = Instance.new('ScreenGui', playerGui)
+local textLabel = Instance.new('TextLabel', screen)
+textLabel.Size = UDim2.new(0.2,0,0.1,0)
+textLabel.Position = UDim2.new(0.4,0,0.45,0)
+textLabel.TextScaled = true
+
+for i = duration, 0, -1 do
+  textLabel.Text = 'Tempo: ' .. i
+  wait(1)
+end
+textLabel.Text = 'Fim!'
