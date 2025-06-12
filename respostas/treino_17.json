@@ -1,0 +1,20 @@
+[
+  {
+    "train_id": "T00020",
+    "requests": [
+      "Como criar um NPC que anda?",
+      "Quero um NPC que se movimente no mapa",
+      "Script para NPC andar no Roblox"
+    ],
+    "response_code": "-- Script para NPC que anda\nlocal npc = script.Parent\nlocal humanoid = npc:WaitForChild('Humanoid')\nlocal rootPart = npc:WaitForChild('HumanoidRootPart')\n\n-- Define pontos de patrulha\nlocal waypoints = {\n  Vector3.new(10, 0, 10),\n  Vector3.new(-10, 0, 10),\n  Vector3.new(-10, 0, -10),\n  Vector3.new(10, 0, -10)\n}\n\nlocal currentWaypoint = 1\n\nwhile true do\n  humanoid:MoveTo(waypoints[currentWaypoint])\n  humanoid.MoveToFinished:Wait()\n  currentWaypoint = currentWaypoint % #waypoints + 1\n  wait(1)\nend"
+  },
+  {
+    "train_id": "T00021",
+    "requests": [
+      "Quero um sistema de loja GUI para jogador",
+      "Como fazer uma loja com interface gráfica?",
+      "Script de loja GUI no Roblox Studio"
+    ],
+    "response_code": "-- Sistema de Loja GUI Simples\nlocal Players = game:GetService('Players')\nlocal player = Players.LocalPlayer\nlocal gui = Instance.new('ScreenGui')\ngui.Name = 'SimpleShop'\ngui.Parent = player:WaitForChild('PlayerGui')\n\nlocal frame = Instance.new('Frame', gui)\nframe.Size = UDim2.new(0, 300, 0, 200)\nframe.Position = UDim2.new(0.5, -150, 0.5, -100)\nframe.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)\n\nlocal itemButton = Instance.new('TextButton', frame)\nitemButton.Size = UDim2.new(0, 100, 0, 50)\nitemButton.Position = UDim2.new(0, 100, 0, 75)\nitemButton.Text = 'Comprar Item (50 moedas)'\nitemButton.BackgroundColor3 = Color3.new(0, 0.7, 0)\n\nitemButton.MouseButton1Click:Connect(function()\n  local money = player.leaderstats.Money.Value\n  if money >= 50 then\n    player.leaderstats.Money.Value = money - 50\n    print('Item comprado!')\n  else\n    print('Faltam moedas!')\n  end\nend)"
+  }
+]
