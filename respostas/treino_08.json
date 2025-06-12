@@ -1,0 +1,51 @@
+[
+  {
+    "train_id": "T00041",
+    "requests": [
+      "Como adicionar efeito de trilha ao personagem?",
+      "Script para trail ao correr",
+      "Trilha visual no Roblox"
+    ],
+    "response_code": "-- Efeito de Trilha\nlocal Players = game:GetService('Players')\n
+Players.PlayerAdded:Connect(function(player)\n  player.CharacterAdded:Connect(function(char)\n    local hrp = char:WaitForChild('HumanoidRootPart')\n    local attachment0 = Instance.new('Attachment', hrp)\n    local attachment1 = Instance.new('Attachment', hrp)\n    attachment1.Position = Vector3.new(0, -2, 0)\n    local trail = Instance.new('Trail', hrp)\n    trail.Attachment0 = attachment0\n    trail.Attachment1 = attachment1\n    trail.Lifetime = 0.5\n  end)\nend)"
+  },
+  {
+    "train_id": "T00042",
+    "requests": [
+      "Como tocar som ao coletar item?",
+      "Script para som de coleta",
+      "Efeito sonoro quando pega objeto"
+    ],
+    "response_code": "-- Som ao Coletar Item\nlocal item = workspace:WaitForChild('Collectible')\nlocal sound = Instance.new('Sound', item)\nsound.SoundId = 'rbxassetid://12222030' -- ID do som\nsound.Volume = 1
+
+item.Touched:Connect(function(hit)\n  local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n  if player then\n    sound:Play()\n    item:Destroy()\n  end\nend)"
+  },
+  {
+    "train_id": "T00043",
+    "requests": [
+      "Script para obstáculos dinâmicos",
+      "Como spawnar blocos aleatórios?",
+      "Gerar obstáculos em runtime"
+    ],
+    "response_code": "-- Obstáculos Dinâmicos\nlocal RunService = game:GetService('RunService')\nlocal obstacleTemplate = workspace:WaitForChild('ObstacleTemplate')\n
+RunService.Heartbeat:Connect(function(dt)\n  if math.random() < 0.01 then -- chance de spawn a cada frame\n    local clone = obstacleTemplate:Clone()\n    clone.Position = Vector3.new(math.random(-50,50), 5, math.random(-50,50))\n    clone.Parent = workspace\n  end\nend)"
+  },
+  {
+    "train_id": "T00044",
+    "requests": [
+      "Como aplicar dano ao longo do tempo?",
+      "Script para efeitos de queimadura",
+      "Dano em área contínuo"
+    ],
+    "response_code": "-- Dano ao Longo do Tempo\nlocal fireZone = workspace:WaitForChild('FireZone')\nlocal damagePerSecond = 5\n
+fireZone.Touched:Connect(function(hit)\n  local humanoid = hit.Parent:FindFirstChild('Humanoid')\n  if humanoid then\n    while humanoid and humanoid.Health > 0 and (hit.Parent.HumanoidRootPart.Position - fireZone.Position).Magnitude < fireZone.Size.Magnitude/2 do\n      humanoid:TakeDamage(damagePerSecond)\n      wait(1)\n    end\n  end\nend)"
+  },
+  {
+    "train_id": "T00045",
+    "requests": [
+      "Script para música de fundo",
+      "Como tocar música contínua?",
+      "Adicionar background music"
+    ],
+    "response_code": "-- Música de Fundo\nlocal sound = Instance.new('Sound')\nsound.SoundId = 'rbxassetid://184832' -- ID da música\nsound.Looped = true\nsound.Volume = 0.5\nsound.Parent = workspace.Audio -- parte de áudio no workspace\nsound:Play()"  }
+]
