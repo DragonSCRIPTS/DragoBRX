@@ -1,0 +1,122 @@
+[
+  {
+    "train_id": "T00066",
+    "requests": [
+      "Como criar área de regeneração de mana?",
+      "Script para recarregar mana do jogador",
+      "Zona de mana no Roblox"
+    ],
+    "response_code": "-- Zona de Regeneração de Mana\nlocal regenZone = workspace.ManaZone\nlocal regenRate = 10 -- pontos de mana por segundo
+
+regenZone.Touched:Connect(function(hit)
+  local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+  if player then
+    local mana = player:FindFirstChild('Mana')
+    if not mana then
+      mana = Instance.new('IntValue', player)
+      mana.Name = 'Mana'
+      mana.Value = 0
+    end
+    while hit.Parent:FindFirstChild('Humanoid') and (hit.Parent.HumanoidRootPart.Position - regenZone.Position).Magnitude < regenZone.Size.Magnitude/2 do
+      mana.Value = math.min(mana.Value + regenRate, 100)
+      wait(1)
+    end
+  end
+end)"
+  },
+  {
+    "train_id": "T00067",
+    "requests": [
+      "Script para exibir FPS no canto",
+      "Como mostrar contador de frames?",
+      "Mostrar FPS HUD"
+    ],
+    "response_code": "-- Exibição de FPS\nlocal RunService = game:GetService('RunService')
+local player = game.Players.LocalPlayer
+local gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))
+local fpsLabel = Instance.new('TextLabel', gui)
+fpsLabel.Size = UDim2.new(0,100,0,50)
+fpsLabel.Position = UDim2.new(0,0,0,0)
+fpsLabel.Text = 'FPS: 0'
+fpsLabel.TextColor3 = Color3.new(1,1,1)
+
+local lastTime = tick()
+RunService.RenderStepped:Connect(function()
+  local current = tick()
+  local fps = math.floor(1/(current - lastTime))
+  lastTime = current
+  fpsLabel.Text = 'FPS: ' .. fps
+end)"
+  },
+  {
+    "train_id": "T00068",
+    "requests": [
+      "Como criar luz dinâmica que segue o jogador?",
+      "Script para lanterna no Roblox",
+      "Luz de spot acoplada à câmera"
+    ],
+    "response_code": "-- Lanterna Dinâmica\nlocal player = game.Players.LocalPlayer
+local light = Instance.new('SpotLight')
+light.Angle = 45
+light.Brightness = 2
+light.Range = 30
+light.Parent = workspace.CurrentCamera
+
+-- Atualiza posição toda frame
+game:GetService('RunService').RenderStepped:Connect(function()
+  light.CFrame = workspace.CurrentCamera.CFrame
+end)"
+  },
+  {
+    "train_id": "T00069",
+    "requests": [
+      "Script para sistema de crafting",
+      "Como criar bancada de trabalho?",
+      "Menu de crafting no Roblox"
+    ],
+    "response_code": "-- Sistema de Crafting Simples\nlocal recipes = {
+  WoodPlank = {requires = {Wood = 2}}
+}
+
+local Players = game:GetService('Players')
+
+function Craft(player, item)
+  local inv = player:FindFirstChild('Inventory')
+  if inv and recipes[item] then
+    for req, qty in pairs(recipes[item].requires) do
+      local have = inv:FindFirstChild(req)
+      if not have or have.Value < qty then return end
+    end
+    -- remove materiais
+    for req, qty in pairs(recipes[item].requires) do
+      inv[req].Value = inv[req].Value - qty
+    end
+    -- adicionar item craftado
+    local newItem = Instance.new('IntValue', inv)
+    newItem.Name = item
+    newItem.Value = (newItem.Value or 0) + 1
+  end
+end"
+  },
+  {
+    "train_id": "T00070",
+    "requests": [
+      "Como fazer fade de música?",
+      "Script para crossfade entre tracks",
+      "Transição suave de áudio"
+    ],
+    "response_code": "-- Fade de Música\nlocal audio1 = workspace:WaitForChild('Music1')
+local audio2 = workspace:WaitForChild('Music2')
+
+audio2.Volume = 0
+audio2:Play()
+
+for i = 1, 0, -0.01 do
+  audio1.Volume = i
+  audio2.Volume = 1 - i
+  wait(0.1)
+end
+
+audio1:Stop()"
+  }
+]
