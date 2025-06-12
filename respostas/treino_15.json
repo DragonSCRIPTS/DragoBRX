@@ -1,0 +1,47 @@
+[
+  {
+    "train_id": "T00076",
+    "requests": [
+      "Script para drag and drop GUI",
+      "Como arrastar elementos na interface?",
+      "Arrastar janelas no Roblox"
+    ],
+    "response_code": "-- Drag and Drop GUI\nlocal UserInputService = game:GetService('UserInputService')\nlocal player = game.Players.LocalPlayer\nlocal gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))\nlocal frame = Instance.new('Frame', gui)\nframe.Size = UDim2.new(0, 200, 0, 100)\nframe.Position = UDim2.new(0.5, -100, 0.5, -50)\nframe.BackgroundColor3 = Color3.new(0.2, 0.2, 0.8)\n\nlocal dragging = false\nlocal dragStart, startPos\n\nframe.InputBegan:Connect(function(input)\n  if input.UserInputType == Enum.UserInputType.MouseButton1 then\n    dragging = true\n    dragStart = input.Position\n    startPos = frame.Position\n  end\nend)\n\nUserInputService.InputChanged:Connect(function(input)\n  if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then\n    local delta = input.Position - dragStart\n    frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)\n  end\nend)\n\nUserInputService.InputEnded:Connect(function(input)\n  if input.UserInputType == Enum.UserInputType.MouseButton1 then\n    dragging = false\n  end\nend)"
+  },
+  {
+    "train_id": "T00077",
+    "requests": [
+      "Como criar chuva de meteoros?",
+      "Script para meteoros caindo",
+      "Evento de meteoros no mapa"
+    ],
+    "response_code": "-- Chuva de Meteoros\nlocal function createMeteor()\n  local meteor = Instance.new('Part')\n  meteor.Name = 'Meteor'\n  meteor.Size = Vector3.new(2, 2, 2)\n  meteor.Shape = Enum.PartType.Ball\n  meteor.BrickColor = BrickColor.new('Really red')\n  meteor.Position = Vector3.new(math.random(-100, 100), 200, math.random(-100, 100))\n  meteor.Parent = workspace\n  \n  local fire = Instance.new('Fire', meteor)\n  fire.Size = 5\n  \n  local bodyVelocity = Instance.new('BodyVelocity', meteor)\n  bodyVelocity.Velocity = Vector3.new(math.random(-20, 20), -50, math.random(-20, 20))\n  \n  meteor.Touched:Connect(function(hit)\n    if hit.Name ~= 'Meteor' then\n      local explosion = Instance.new('Explosion')\n      explosion.Position = meteor.Position\n      explosion.BlastRadius = 20\n      explosion.Parent = workspace\n      meteor:Destroy()\n    end\n  end)\nend\n\n-- Spawnar meteoros a cada 3 segundos\nwhile true do\n  createMeteor()\n  wait(3)\nend"
+  },
+  {
+    "train_id": "T00078",
+    "requests": [
+      "Script para sistema de pets",
+      "Como criar pet que segue o jogador?",
+      "Pet companheiro no Roblox"
+    ],
+    "response_code": "-- Sistema de Pets\nlocal Players = game:GetService('Players')\nlocal RunService = game:GetService('RunService')\n\nfunction SpawnPet(player, petType)\n  local character = player.Character\n  if not character then return end\n  \n  local pet = Instance.new('Part')\n  pet.Name = 'Pet_' .. petType\n  pet.Size = Vector3.new(1, 1, 1)\n  pet.Shape = Enum.PartType.Ball\n  pet.BrickColor = BrickColor.new('Bright yellow')\n  pet.CanCollide = false\n  pet.Anchored = true\n  pet.Parent = workspace\n  \n  local bodyPosition = Instance.new('BodyPosition', pet)\n  bodyPosition.MaxForce = Vector3.new(4000, 4000, 4000)\n  \n  -- Pet segue o jogador\n  local connection\n  connection = RunService.Heartbeat:Connect(function()\n    if character and character:FindFirstChild('HumanoidRootPart') then\n      local targetPos = character.HumanoidRootPart.Position + Vector3.new(3, 2, 0)\n      pet.Position = pet.Position:lerp(targetPos, 0.1)\n    else\n      connection:Disconnect()\n      pet:Destroy()\n    end\n  end)\nend"
+  },
+  {
+    "train_id": "T00079",
+    "requests": [
+      "Como fazer sistema de montarias?",
+      "Script para cavalgar veículos",
+      "Montar em animais no Roblox"
+    ],
+    "response_code": "-- Sistema de Montarias\nlocal mount = workspace:WaitForChild('Horse')\nlocal seat = Instance.new('Seat')\nseat.Size = Vector3.new(2, 0.5, 2)\nseat.Position = mount.Position + Vector3.new(0, 3, 0)\nseat.Anchored = false\nseat.Parent = mount\n\nlocal weld = Instance.new('WeldConstraint')\nweld.Part0 = mount\nweld.Part1 = seat\nweld.Parent = mount\n\nlocal UserInputService = game:GetService('UserInputService')\nlocal mounted = false\n\nseat:GetPropertyChangedSignal('Occupant'):Connect(function()\n  local occupant = seat.Occupant\n  if occupant then\n    mounted = true\n    local player = game.Players:GetPlayerFromCharacter(occupant.Parent)\n    if player then\n      -- Controles de movimento\n      UserInputService.InputBegan:Connect(function(input, gameProcessed)\n        if not gameProcessed and mounted then\n          if input.KeyCode == Enum.KeyCode.W then\n            mount.Velocity = mount.CFrame.LookVector * 20\n          elseif input.KeyCode == Enum.KeyCode.S then\n            mount.Velocity = mount.CFrame.LookVector * -10\n          end\n        end\n      end)\n    end\n  else\n    mounted = false\n  end\nend)"
+  },
+  {
+    "train_id": "T00080",
+    "requests": [
+      "Script para sistema de clima",
+      "Como mudar tempo no jogo?",
+      "Controle de clima dinâmico"
+    ],
+    "response_code": "-- Sistema de Clima Dinâmico\nlocal Lighting = game:GetService('Lighting')\nlocal TweenService = game:GetService('TweenService')\n\nlocal weatherTypes = {\n  sunny = {Brightness = 2, FogEnd = 1000, TimeOfDay = '12:00:00'},\n  rainy = {Brightness = 0.5, FogEnd = 200, TimeOfDay = '18:00:00'},\n  night = {Brightness = 0.1, FogEnd = 500, TimeOfDay = '00:00:00'},\n  storm = {Brightness = 0.3, FogEnd = 100, TimeOfDay = '19:00:00'}\n}\n\nfunction ChangeWeather(weatherType)\n  local weather = weatherTypes[weatherType]\n  if weather then\n    local tween = TweenService:Create(Lighting, TweenInfo.new(5), weather)\n    tween:Play()\n    print('Clima mudou para: ' .. weatherType)\n  end\nend\n\n-- Mudar clima aleatoriamente a cada 2 minutos\nlocal weathers = {'sunny', 'rainy', 'night', 'storm'}\nwhile true do\n  local randomWeather = weathers[math.random(1, #weathers)]\n  ChangeWeather(randomWeather)\n  wait(120)\nend"
+  }
+]
