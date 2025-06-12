@@ -1,0 +1,359 @@
+class RobloxAI {
+  constructor() {
+    this.trainingData = [];
+    this.questionsData = [];
+    this.isLoaded = false;
+    this.baseURL = 'https://raw.githubusercontent.com/DragonSCRIPTS/DragoBRX/main/';
+  }
+
+  // Carregamento inicial de todos os dados
+  async initialize() {
+    try {
+      console.log('🚀 Inicializando RobloxAI...');
+      
+      // Carregar arquivos de treinamento (treino_01.json até treino_16.json e futuros)
+      await this.loadTrainingFiles();
+      
+      // Carregar arquivo de perguntas
+      await this.loadQuestionsFile();
+      
+      this.isLoaded = true;
+      console.log('✅ RobloxAI carregada com sucesso!');
+      console.log(`📊 Total de exemplos de treinamento: ${this.trainingData.length}`);
+      console.log(`❓ Total de perguntas/variações: ${this.questionsData.length}`);
+      
+    } catch (error) {
+      console.error('❌ Erro ao inicializar RobloxAI:', error);
+      throw error;
+    }
+  }
+
+  // Carrega todos os arquivos de treinamento da pasta respostas/
+  async loadTrainingFiles() {
+    const trainingFiles = [];
+    
+    // Tentar carregar treino_01.json até treino_30.json (expandível)
+    for (let i = 1; i <= 30; i++) {
+      const fileNumber = i.toString().padStart(2, '0');
+      const fileName = `treino_${fileNumber}.json`;
+      
+      try {
+        const response = await fetch(`${this.baseURL}respostas/${fileName}`);
+        if (response.ok) {
+          const data = await response.json();
+          this.trainingData.push(...data);
+          console.log(`✅ Carregado: ${fileName} (${data.length} exemplos)`);
+        }
+      } catch (error) {
+        // Arquivo não existe ou erro de rede - continua tentando próximos
+        if (i <= 16) { // Só mostra erro para arquivos que sabemos que existem
+          console.warn(`⚠️ Não foi possível carregar ${fileName}`);
+        }
+      }
+    }
+  }
+
+  // Carrega arquivo de perguntas da raiz
+  async loadQuestionsFile() {
+    try {
+      const response = await fetch(`${this.baseURL}perguntas_roblox_studio.json`);
+      if (response.ok) {
+        this.questionsData = await response.json();
+        console.log('✅ Arquivo de perguntas carregado');
+      }
+    } catch (error) {
+      console.warn('⚠️ Arquivo de perguntas não encontrado');
+    }
+  }
+
+  // Função principal para processar solicitação do usuário
+  async processRequest(userInput) {
+    if (!this.isLoaded) {
+      await this.initialize();
+    }
+
+    // Limpar e normalizar entrada do usuário
+    const cleanInput = this.normalizeText(userInput);
+    
+    // Encontrar melhor correspondência
+    const bestMatch = this.findBestMatch(cleanInput);
+    
+    if (bestMatch) {
+      return {
+        success: true,
+        confidence: bestMatch.confidence,
+        train_id: bestMatch.data.train_id,
+        code: bestMatch.data.response_code,
+        matchedRequest: bestMatch.matchedRequest,
+        explanation: this.generateExplanation(bestMatch.data)
+      };
+    } else {
+      return {
+        success: false,
+        message: 'Desculpe, não encontrei um exemplo que corresponda ao seu pedido. Tente reformular sua solicitação.',
+        suggestions: this.getSuggestions()
+      };
+    }
+  }
+
+  // Encontra a melhor correspondência usando múltiplas técnicas
+  findBestMatch(userInput) {
+    let bestMatch = null;
+    let highestScore = 0;
+
+    // Buscar nos dados de treinamento
+    for (const item of this.trainingData) {
+      for (const request of item.requests) {
+        const score = this.calculateSimilarity(userInput, request);
+        
+        if (score > highestScore && score > 0.3) { // threshold mínimo
+          highestScore = score;
+          bestMatch = {
+            data: item,
+            confidence: score,
+            matchedRequest: request
+          };
+        }
+      }
+    }
+
+    // Buscar também nas perguntas/variações se disponível
+    if (this.questionsData.length > 0) {
+      for (const question of this.questionsData) {
+        const originalScore = this.calculateSimilarity(userInput, question.original);
+        const variationScore = this.calculateSimilarity(userInput, question.variation);
+        
+        const maxScore = Math.max(originalScore, variationScore);
+        
+        if (maxScore > highestScore && maxScore > 0.3) {
+          // Buscar código correspondente nos dados de treinamento
+          const relatedTraining = this.findRelatedTraining(question.category, question.original);
+          if (relatedTraining) {
+            highestScore = maxScore;
+            bestMatch = {
+              data: relatedTraining,
+              confidence: maxScore,
+              matchedRequest: originalScore > variationScore ? question.original : question.variation
+            };
+          }
+        }
+      }
+    }
+
+    return bestMatch;
+  }
+
+  // Calcula similaridade entre textos usando múltiplas métricas
+  calculateSimilarity(text1, text2) {
+    const normalized1 = this.normalizeText(text1);
+    const normalized2 = this.normalizeText(text2);
+
+    // Palavras-chave específicas do Roblox com maior peso
+    const robloxKeywords = [
+      'npc', 'gui', 'script', 'part', 'player', 'character', 'humanoid',
+      'workspace', 'game', 'service', 'remote', 'function', 'event',
+      'inventory', 'dialog', 'camera', 'tween', 'animation', 'sound',
+      'leaderboard', 'spawn', 'teleport', 'damage', 'health', 'shop',
+      'checkpoint', 'zone', 'portal', 'level', 'experience', 'clan',
+      'pet', 'mount', 'weather', 'elevator', 'mining', 'tower', 'defense'
+    ];
+
+    let keywordScore = 0;
+    for (const keyword of robloxKeywords) {
+      if (normalized1.includes(keyword) && normalized2.includes(keyword)) {
+        keywordScore += 0.1;
+      }
+    }
+
+    // Similaridade baseada em palavras comuns
+    const words1 = normalized1.split(' ').filter(w => w.length > 2);
+    const words2 = normalized2.split(' ').filter(w => w.length > 2);
+    
+    const commonWords = words1.filter(word => words2.includes(word));
+    const wordSimilarity = commonWords.length / Math.max(words1.length, words2.length);
+
+    // Similaridade de substring
+    const substringScore = this.longestCommonSubstring(normalized1, normalized2) / 
+                          Math.max(normalized1.length, normalized2.length);
+
+    // Combinar scores com pesos
+    return (wordSimilarity * 0.5) + (substringScore * 0.3) + (keywordScore * 0.2);
+  }
+
+  // Encontra treinamento relacionado baseado na categoria
+  findRelatedTraining(category, original) {
+    // Mapear categorias para palavras-chave
+    const categoryKeywords = {
+      'Pedidos de Scripts Básicos': ['basic', 'simples', 'npc', 'dialog', 'inventory'],
+      'Sistemas de Jogo': ['system', 'game', 'player', 'mechanics'],
+      'Interface e GUI': ['gui', 'interface', 'button', 'menu', 'screen'],
+      'Efeitos e Animações': ['effect', 'animation', 'tween', 'visual'],
+      // Adicionar mais categorias conforme necessário
+    };
+
+    const keywords = categoryKeywords[category] || [];
+    const searchText = original.toLowerCase();
+
+    for (const item of this.trainingData) {
+      for (const request of item.requests) {
+        const requestLower = request.toLowerCase();
+        
+        // Verificar se contém palavras-chave da categoria
+        for (const keyword of keywords) {
+          if (searchText.includes(keyword) && requestLower.includes(keyword)) {
+            return item;
+          }
+        }
+        
+        // Similaridade direta
+        if (this.calculateSimilarity(searchText, requestLower) > 0.4) {
+          return item;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Normaliza texto para comparação
+  normalizeText(text) {
+    return text.toLowerCase()
+               .replace(/[^\w\s]/g, ' ')
+               .replace(/\s+/g, ' ')
+               .trim();
+  }
+
+  // Longest Common Substring para similaridade
+  longestCommonSubstring(str1, str2) {
+    let longest = 0;
+    for (let i = 0; i < str1.length; i++) {
+      for (let j = 0; j < str2.length; j++) {
+        let k = 0;
+        while (str1[i + k] === str2[j + k] && i + k < str1.length && j + k < str2.length) {
+          k++;
+        }
+        longest = Math.max(longest, k);
+      }
+    }
+    return longest;
+  }
+
+  // Gera explicação do código
+  generateExplanation(trainingItem) {
+    const code = trainingItem.response_code;
+    const lines = code.split('\n');
+    
+    let explanation = "Este código faz o seguinte:\n\n";
+    
+    // Analisar comentários no código
+    const comments = lines.filter(line => line.trim().startsWith('--'));
+    if (comments.length > 0) {
+      explanation += "📝 " + comments[0].replace('--', '').trim() + "\n\n";
+    }
+
+    // Identificar principais funcionalidades
+    if (code.includes('Instance.new')) {
+      explanation += "🔧 Cria novos objetos/partes no jogo\n";
+    }
+    if (code.includes('Touched:Connect')) {
+      explanation += "👆 Detecta quando o jogador toca em algo\n";
+    }
+    if (code.includes('ScreenGui')) {
+      explanation += "🖥️ Cria interface gráfica para o jogador\n";
+    }
+    if (code.includes('TweenService')) {
+      explanation += "🎬 Usa animações suaves\n";
+    }
+    if (code.includes('UserInputService')) {
+      explanation += "⌨️ Detecta entrada do jogador (teclado/mouse)\n";
+    }
+
+    return explanation;
+  }
+
+  // Sugestões quando não encontra correspondência
+  getSuggestions() {
+    const randomSuggestions = [];
+    const categories = [...new Set(this.trainingData.map(item => 
+      item.requests[0].split(' ').slice(0, 3).join(' ')
+    ))];
+    
+    for (let i = 0; i < Math.min(3, categories.length); i++) {
+      const randomIndex = Math.floor(Math.random() * categories.length);
+      randomSuggestions.push(categories[randomIndex]);
+    }
+    
+    return randomSuggestions;
+  }
+
+  // Método para atualizar dados (recarregar do GitHub)
+  async refresh() {
+    this.trainingData = [];
+    this.questionsData = [];
+    this.isLoaded = false;
+    await this.initialize();
+  }
+
+  // Estatísticas do sistema
+  getStats() {
+    return {
+      trainingExamples: this.trainingData.length,
+      questions: this.questionsData.length,
+      categories: [...new Set(this.questionsData.map(q => q.category))],
+      isLoaded: this.isLoaded
+    };
+  }
+}
+
+// Exemplo de uso
+const robloxAI = new RobloxAI();
+
+// Função de interface pública
+async function processUserRequest(userInput) {
+  try {
+    const result = await robloxAI.processRequest(userInput);
+    return result;
+  } catch (error) {
+    console.error('Erro ao processar solicitação:', error);
+    return {
+      success: false,
+      message: 'Erro interno. Tente novamente em alguns segundos.'
+    };
+  }
+}
+
+// Interface de chat simples (exemplo)
+async function chatInterface() {
+  console.log('🤖 RobloxAI - Assistente de Scripts do Roblox');
+  console.log('Digite sua solicitação ou "sair" para encerrar\n');
+  
+  // Simular entrada do usuário (em uma aplicação real, viria de um input)
+  const examples = [
+    "Como criar um NPC que anda?",
+    "Preciso de um sistema de loja",
+    "Quero fazer um portal de teletransporte",
+    "Como criar uma barra de vida?"
+  ];
+  
+  for (const example of examples) {
+    console.log(`👤 Usuário: ${example}`);
+    const response = await processUserRequest(example);
+    
+    if (response.success) {
+      console.log(`🤖 Assistente: Encontrei um exemplo com ${Math.round(response.confidence * 100)}% de confiança!`);
+      console.log(`📋 Código:\n${response.code}\n`);
+      console.log(`💡 ${response.explanation}\n`);
+    } else {
+      console.log(`🤖 Assistente: ${response.message}`);
+      if (response.suggestions) {
+        console.log(`💭 Sugestões: ${response.suggestions.join(', ')}\n`);
+      }
+    }
+    console.log('─'.repeat(80));
+  }
+}
+
+// Exportar para uso em outros módulos
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { RobloxAI, processUserRequest };
+}
