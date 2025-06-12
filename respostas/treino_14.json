@@ -1,0 +1,47 @@
+[
+  {
+    "train_id": "T00071",
+    "requests": [
+      "Como criar sistema de amizade?",
+      "Script para adicionar amigos no jogo",
+      "Lista de amigos no Roblox"
+    ],
+    "response_code": "-- Sistema de Amizade\nlocal Players = game:GetService('Players')\nlocal friendList = {}\n\nfunction AddFriend(player1, player2)\n  local id1, id2 = player1.UserId, player2.UserId\n  friendList[id1] = friendList[id1] or {}\n  friendList[id2] = friendList[id2] or {}\n  table.insert(friendList[id1], id2)\n  table.insert(friendList[id2], id1)\n  print(player1.Name .. ' e ' .. player2.Name .. ' agora são amigos!')\nend\n\nfunction GetFriends(player)\n  return friendList[player.UserId] or {}\nend"
+  },
+  {
+    "train_id": "T00072",
+    "requests": [
+      "Script para portal de teletransporte",
+      "Como criar portal entre mapas?",
+      "Teletransporte instantâneo no Roblox"
+    ],
+    "response_code": "-- Portal de Teletransporte\nlocal portal1 = workspace.Portal1\nlocal portal2 = workspace.Portal2\nlocal cooldown = {}\n\nportal1.Touched:Connect(function(hit)\n  local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n  if player and not cooldown[player.UserId] then\n    cooldown[player.UserId] = true\n    player.Character:SetPrimaryPartCFrame(portal2.CFrame + Vector3.new(0, 5, 0))\n    wait(2)\n    cooldown[player.UserId] = nil\n  end\nend)"
+  },
+  {
+    "train_id": "T00073",
+    "requests": [
+      "Como fazer sistema de level up?",
+      "Script para experiência e níveis",
+      "Progressão de level no jogo"
+    ],
+    "response_code": "-- Sistema de Level Up\nlocal Players = game:GetService('Players')\n\nPlayers.PlayerAdded:Connect(function(player)\n  local stats = Instance.new('Folder')\n  stats.Name = 'Stats'\n  stats.Parent = player\n  \n  local level = Instance.new('IntValue')\n  level.Name = 'Level'\n  level.Value = 1\n  level.Parent = stats\n  \n  local exp = Instance.new('IntValue')\n  exp.Name = 'Experience'\n  exp.Value = 0\n  exp.Parent = stats\nend)\n\nfunction GiveExp(player, amount)\n  local stats = player:FindFirstChild('Stats')\n  if stats then\n    stats.Experience.Value = stats.Experience.Value + amount\n    local expNeeded = stats.Level.Value * 100\n    if stats.Experience.Value >= expNeeded then\n      stats.Level.Value = stats.Level.Value + 1\n      stats.Experience.Value = 0\n      print(player.Name .. ' subiu para nível ' .. stats.Level.Value .. '!')\n    end\n  end\nend"
+  },
+  {
+    "train_id": "T00074",
+    "requests": [
+      "Script para mini-mapa",
+      "Como criar radar no canto da tela?",
+      "Mapa pequeno mostrando jogadores"
+    ],
+    "response_code": "-- Mini-mapa\nlocal player = game.Players.LocalPlayer\nlocal gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))\nlocal frame = Instance.new('Frame', gui)\nframe.Size = UDim2.new(0, 200, 0, 200)\nframe.Position = UDim2.new(1, -210, 0, 10)\nframe.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)\nframe.BorderSizePixel = 2\n\nlocal function updateMinimap()\n  for _, child in pairs(frame:GetChildren()) do\n    if child:IsA('Frame') then child:Destroy() end\n  end\n  \n  for _, p in pairs(game.Players:GetPlayers()) do\n    if p.Character and p.Character:FindFirstChild('HumanoidRootPart') then\n      local dot = Instance.new('Frame', frame)\n      dot.Size = UDim2.new(0, 4, 0, 4)\n      local pos = p.Character.HumanoidRootPart.Position\n      dot.Position = UDim2.new(0, pos.X/2 + 100, 0, pos.Z/2 + 100)\n      dot.BackgroundColor3 = p == player and Color3.new(0, 1, 0) or Color3.new(1, 0, 0)\n    end\n  end\nend\n\ngame:GetService('RunService').Heartbeat:Connect(updateMinimap)"
+  },
+  {
+    "train_id": "T00075",
+    "requests": [
+      "Como criar sistema de clãs?",
+      "Script para grupos de jogadores",
+      "Clãs e guilds no Roblox"
+    ],
+    "response_code": "-- Sistema de Clãs\nlocal clans = {}\nlocal playerClans = {}\n\nfunction CreateClan(ownerPlayer, clanName)\n  if not clans[clanName] then\n    clans[clanName] = {\n      owner = ownerPlayer.UserId,\n      members = {ownerPlayer.UserId},\n      created = os.time()\n    }\n    playerClans[ownerPlayer.UserId] = clanName\n    print('Clã ' .. clanName .. ' criado por ' .. ownerPlayer.Name)\n    return true\n  end\n  return false\nend\n\nfunction JoinClan(player, clanName)\n  if clans[clanName] and not playerClans[player.UserId] then\n    table.insert(clans[clanName].members, player.UserId)\n    playerClans[player.UserId] = clanName\n    print(player.Name .. ' entrou no clã ' .. clanName)\n    return true\n  end\n  return false\nend"
+  }
+]
