@@ -1,0 +1,126 @@
+[
+  {
+    "train_id": "T00061",
+    "requests": [
+      "Como criar sistema de missões?",
+      "Script para quests no jogo",
+      "Como adicionar missões para o jogador"
+    ],
+    "response_code": "-- Sistema de Missões\nlocal missions = {
+  [1] = {Description = 'Coletar 10 maçãs', Completed = {}}
+}
+
+local Players = game:GetService('Players')
+
+function AssignMission(player)
+  player:SetAttribute('CurrentMission', 1)
+  player:SendNotification({Title = 'Nova Missão', Text = missions[1].Description})
+end
+
+function UpdateProgress(player, amount)
+  local id = player:GetAttribute('CurrentMission')
+  if id and missions[id] then
+    local prog = player:GetAttribute('MissionProgress') or 0
+    prog = prog + amount
+    player:SetAttribute('MissionProgress', prog)
+    if prog >= 10 then
+      missions[id].Completed[player.UserId] = true
+      player:SendNotification({Title = 'Missão Concluída', Text = missions[id].Description})
+    end
+  end
+end
+
+Players.PlayerAdded:Connect(AssignMission)"
+  },
+  {
+    "train_id": "T00062",
+    "requests": [
+      "Script para radar no HUD",
+      "Como mostrar minimapa?",
+      "Radar de inimigos na tela"
+    ],
+    "response_code": "-- Radar de HUD\nlocal player = game.Players.LocalPlayer
+local gui = Instance.new('ScreenGui', player:WaitForChild('PlayerGui'))
+local radar = Instance.new('Frame', gui)
+radar.Size = UDim2.new(0, 200, 0, 200)
+radar.Position = UDim2.new(0.8, 0, 0.8, 0)
+radar.BackgroundTransparency = 0.5
+
+-- Exemplo simplificado: marcador de posição\nlocal marker = Instance.new('Frame', radar)
+marker.Size = UDim2.new(0, 5, 0, 5)
+marker.Position = UDim2.new(0.5, 0, 0.5, 0)
+marker.BackgroundColor3 = Color3.new(1, 0, 0)"
+  },
+  {
+    "train_id": "T00063",
+    "requests": [
+      "Como adicionar dinheiro ao jogador?",
+      "Script para dar cash",
+      "Como usar moeda no Roblox"
+    ],
+    "response_code": "-- Dar Dinheiro\nfunction GiveMoney(player, amount)
+  local cash = player:FindFirstChild('Cash')
+  if not cash then
+    cash = Instance.new('IntValue', player)
+    cash.Name = 'Cash'
+    cash.Value = 0
+  end
+  cash.Value = cash.Value + amount
+  player:SendNotification({Title = 'Dinheiro Recebido', Text = amount .. ' moedas'})
+end
+
+-- Exemplo: GiveMoney(game.Players.LocalPlayer, 100)"  
+  },
+  {
+    "train_id": "T00064",
+    "requests": [
+      "Script para leaderboard por time",
+      "Como exibir placar de equipes?",
+      "Scoreboard dividido por times"
+    ],
+    "response_code": "-- Leaderboard por Time\nlocal Teams = game:GetService('Teams')
+local Players = game:GetService('Players')
+
+function UpdateTeamStats(player)
+  local team = player.Team
+  if team then
+    local stats = team:FindFirstChild('TeamStats')
+    if not stats then
+      stats = Instance.new('IntValue', team)
+      stats.Name = 'Score'
+      stats.Value = 0
+    end
+    stats.Value = stats.Value + 1 -- ajuste conforme evento
+  end
+end
+
+Players.PlayerAdded:Connect(function(p)
+  p.CharacterAdded:Connect(function()
+    UpdateTeamStats(p)
+  end)
+end)"  
+  },
+  {
+    "train_id": "T00065",
+    "requests": [
+      "Como criar buff temporário?",
+      "Script para aumentar atributos por tempo",
+      "Power-up temporário"
+    ],
+    "response_code": "-- Buff Temporário\nlocal powerUp = workspace.PowerUpPad
+local duration = 5 -- segundos
+
+powerUp.Touched:Connect(function(hit)
+  local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+  if player then
+    local humanoid = player.Character and player.Character:FindFirstChild('Humanoid')
+    if humanoid then
+      local originalSpeed = humanoid.WalkSpeed
+      humanoid.WalkSpeed = originalSpeed * 2
+      wait(duration)
+      humanoid.WalkSpeed = originalSpeed
+    end
+  end
+end)"  
+  }
+]
