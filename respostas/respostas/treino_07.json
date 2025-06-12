@@ -1,0 +1,107 @@
+[
+  {
+    "train_id": "T00036",
+    "requests": [
+      "Como criar um sistema de salvamento?",
+      "Script para salvar dados do jogador",
+      "Como armazenar progresso no DataStore?"
+    ],
+    "response_code": "-- Sistema de Salvamento (DataStore)\nlocal DataStoreService = game:GetService('DataStoreService')\nlocal playerData = DataStoreService:GetDataStore('PlayerData')
+
+game.Players.PlayerAdded:Connect(function(player)
+  local key = 'user_' .. player.UserId
+  local data = playerData:GetAsync(key) or {coins = 0}
+  player:SetAttribute('Coins', data.coins)
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+  local key = 'user_' .. player.UserId
+  local success, err = pcall(function()
+    playerData:SetAsync(key, {coins = player:GetAttribute('Coins')})
+  end)
+  if not success then warn('Erro salvando dados:', err) end
+end)"
+  },
+
+  {
+    "train_id": "T00037",
+    "requests": [
+      "Script para carregar dados salvos",
+      "Como recuperar DataStore do jogador?",
+      "Carregar progresso anterior"
+    ],
+    "response_code": "-- Carregamento de Dados (DataStore)\n-- Utilizado no evento PlayerAdded acima\n-- Data já foi obtida com GetAsync e atribuída como atributo"
+  },
+
+  {
+    "train_id": "T00038",
+    "requests": [
+      "Como dar pet ao jogador?",
+      "Script para spawn de companheiro animal",
+      "Pet que segue o jogador"
+    ],
+    "response_code": "-- Spawn de Pet Seguidor\nlocal petTemplate = workspace.PetTemplate
+
+game.Players.PlayerAdded:Connect(function(player)
+  player.CharacterAdded:Connect(function(character)
+    local pet = petTemplate:Clone()
+    pet.Name = player.Name .. "_Pet"
+    pet.PrimaryPart.CFrame = character.HumanoidRootPart.CFrame * CFrame.new(2,0,0)
+    pet.Parent = workspace
+    -- Faz o pet seguir
+    local runService = game:GetService('RunService')
+    runService.Heartbeat:Connect(function()
+      if pet.PrimaryPart and character.PrimaryPart then
+        local dir = (character.PrimaryPart.Position - pet.PrimaryPart.Position).Unit
+        pet:SetPrimaryPartCFrame(pet.PrimaryPart.CFrame + dir * 2 * runService.RenderStepped)
+      end
+    end)
+  end)
+end)"
+  },
+
+  {
+    "train_id": "T00039",
+    "requests": [
+      "Script para loja de itens com DataStore",
+      "Como vender itens permanentes?",
+      "Loja que salva compras"
+    ],
+    "response_code": "-- Loja Persistente (DataStore)\nlocal DataStoreService = game:GetService('DataStoreService')\nlocal shopStore = DataStoreService:GetDataStore('ShopPurchases')
+
+function PurchaseItem(player, itemId)
+  local key = 'user_' .. player.UserId
+  local purchases = shopStore:GetAsync(key) or {}
+  table.insert(purchases, itemId)
+  shopStore:SetAsync(key, purchases)
+  -- lógica de entrega do item
+end
+
+-- Exemplo: PurchaseItem(player, 'Sword001')"
+  },
+
+  {
+    "train_id": "T00040",
+    "requests": [
+      "Como criar um sistema de ranking global?",
+      "Script para leaderboard global com DataStore",
+      "Mostrar top jogadores de todos"
+    ],
+    "response_code": "-- Leaderboard Global (DataStore)\nlocal DataStoreService = game:GetService('DataStoreService')\nlocal globalScores = DataStoreService:GetDataStore('GlobalScores')
+
+function UpdateGlobalScore(player)
+  local score = player.leaderstats.Score.Value
+  globalScores:SetAsync('score_' .. player.UserId, score)
+end
+
+game.Players.PlayerRemoving:Connect(function(player)
+  UpdateGlobalScore(player)
+end)
+
+function GetTopScores()
+  -- DataStore não suporta consulta; seria necessário usar uma solução externa ou OrderedDataStore
+end
+
+-- Exemplo de uso: UpdateGlobalScore(game.Players.LocalPlayer)"
+  }
+]
