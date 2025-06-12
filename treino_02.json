@@ -1,0 +1,57 @@
+[
+  {
+    "train_id": "T00011",
+    "requests": [
+      "Como spawno um veículo?",
+      "Script para criar e dirigir um carro",
+      "Quero adicionar um veículo que o jogador possa entrar"
+    ],
+    "response_code": "-- Spawn de Veículo Básico\nlocal vehicleModel = workspace:WaitForChild(\"CarModel\") -- Modelo pré-adicionado\nlocal function spawnVehicle(player)\n  local clone = vehicleModel:Clone()\n  clone:SetPrimaryPartCFrame(player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -5))\n  clone.Parent = workspace\nend\n
+-- Exemplo de uso: spawnVehicle(game.Players.LocalPlayer)"
+  },
+  {
+    "train_id": "T00012",
+    "requests": [
+      "Como crio ciclo dia e noite?",
+      "Script de iluminação dinâmica",
+      "Dia e noite automático no jogo"
+    ],
+    "response_code": "-- Ciclo Dia e Noite\nlocal Lighting = game:GetService(\"Lighting\")\nlocal time = 0\n
+game:GetService(\"RunService\").Heartbeat:Connect(function(dt)\n  time = (time + dt * 0.1) % 24 -- 24 horas
+  Lighting.ClockTime = time
+end)"
+  },
+  {
+    "train_id": "T00013",
+    "requests": [
+      "Preciso de um teleporte",
+      "Script para pad de teletransporte",
+      "Como criar área que teleporta jogador?"
+    ],
+    "response_code": "-- Teleport Pad\nlocal pad = workspace.TeleportPad\nlocal destination = workspace.DestinationPoint.Position\npad.Touched:Connect(function(hit)\n  local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n  if player and player.Character then\n    player.Character:SetPrimaryPartCFrame(CFrame.new(destination))\n  end\nend)"
+  },
+  {
+    "train_id": "T00014",
+    "requests": [
+      "Como faço zoom da câmera?",
+      "Script para ajustar FieldOfView",
+      "Controle de zoom da câmera no Roblox"
+    ],
+    "response_code": "-- Zoom de Câmera\nlocal camera = workspace.CurrentCamera\nlocal userInput = game:GetService(\"UserInputService\")
+
+userInput.InputBegan:Connect(function(input)\n  if input.KeyCode == Enum.KeyCode.Z then\n    camera.FieldOfView = 30 -- Zoom in\n  end\nend)
+
+userInput.InputEnded:Connect(function(input)\n  if input.KeyCode == Enum.KeyCode.Z then\n    camera.FieldOfView = 70 -- Reset zoom\n  end\nend)"
+  },
+  {
+    "train_id": "T00015",
+    "requests": [
+      "Dar uma ferramenta ao jogador",
+      "Script para adicionar tool",
+      "Como presentear o jogador com uma arma?"
+    ],
+    "response_code": "-- Entrega de Ferramenta\nlocal tool = game.ReplicatedStorage:WaitForChild(\"SwordTool\") -- Ferramenta guardada em ReplicatedStorage\n
+game.Players.PlayerAdded:Connect(function(player)\n  player.CharacterAdded:Connect(function(character)\n    local clone = tool:Clone()\n    clone.Parent = player.Backpack\n  end)
+end)"
+  }
+]
