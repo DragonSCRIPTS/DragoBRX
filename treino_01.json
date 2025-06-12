@@ -8,6 +8,7 @@
     ],
     "response_code": "-- NPC Básico\nlocal npc = Instance.new(\"Part\")\nnpc.Name = \"NPC\"\nnpc.Size = Vector3.new(2, 5, 2)\nnpc.Position = Vector3.new(0, 5, 0)\nnpc.Anchored = true\nnpc.BrickColor = BrickColor.new(\"Bright blue\")\nnpc.Parent = workspace\nlocal humanoid = Instance.new(\"Humanoid\", npc)\nhumanoid.WalkSpeed = 16"
   },
+
   {
     "train_id": "T00002",
     "requests": [
@@ -16,5 +17,87 @@
       "Script de inventário básico"
     ],
     "response_code": "-- Sistema de Inventário Simples\nlocal Inventory = {}\nfunction AddItem(player, itemName)\n  local userId = player.UserId\n  Inventory[userId] = Inventory[userId] or {}\n  table.insert(Inventory[userId], itemName)\n  print(\\"Item adicionado:\\", itemName)\nend"
+  },
+
+  {
+    "train_id": "T00003",
+    "requests": [
+      "Como criar um GUI de diálogo no Roblox?",
+      "Script para mostrar diálogo ao jogador",
+      "Quero um frame de diálogo na tela"
+    ],
+    "response_code": "-- GUI de Diálogo Básico\nlocal player = game.Players.LocalPlayer\nlocal gui = Instance.new(\"ScreenGui\", player:WaitForChild(\"PlayerGui\"))\nlocal frame = Instance.new(\"Frame\", gui)\nframe.Size = UDim2.new(0.6, 0, 0.3, 0)\nframe.Position = UDim2.new(0.2, 0, 0.65, 0)\nframe.BackgroundColor3 = Color3.new(0, 0, 0)\nframe.BackgroundTransparency = 0.5\nlocal label = Instance.new(\"TextLabel\", frame)\nlabel.Size = UDim2.new(1, -20, 1, -20)\nlabel.Position = UDim2.new(0, 10, 0, 10)\nlabel.Text = \"Olá, aventureiro!\"\nlabel.TextWrapped = true\nlabel.TextColor3 = Color3.new(1, 1, 1)\nlabel.BackgroundTransparency = 1"
+  },
+
+  {
+    "train_id": "T00004",
+    "requests": [
+      "Como fazer câmera orbit no jogo?",
+      "Script para câmera rotacional",
+      "Controle de câmera em círculo"
+    ],
+    "response_code": "-- Controle de Câmera Orbit\nlocal player = game.Players.LocalPlayer\nlocal cam = workspace.CurrentCamera\nlocal RunService = game:GetService(\"RunService\")\nlocal angle, radius = 0, 10\nRunService:BindToRenderStep(\"OrbitCam\", Enum.RenderPriority.Camera.Value, function(dt)\n  angle = angle + dt * 0.5\n  local offset = Vector3.new(math.cos(angle) * radius, 5, math.sin(angle) * radius)\n  cam.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + offset, player.Character.HumanoidRootPart.Position)\nend)"
+  },
+
+  {
+    "train_id": "T00005",
+    "requests": [
+      "Spawn de health packs no mapa",
+      "Script para criar health packs",
+      "Como gerar itens de cura?"
+    ],
+    "response_code": "-- Spawn de Health Pack\nlocal spawnPos = workspace.HealthSpawn.Position\nfor i = 1, 5 do\n  local pack = Instance.new(\"Part\") pack.Name = \"HealthPack\" pack.Size = Vector3.new(1,1,1) pack.Position = spawnPos + Vector3.new(i*2, 0, 0) pack.BrickColor = BrickColor.new(\"Bright green\") pack.Anchored = true pack.Parent = workspace\n  local s = Instance.new(\"Script\", pack)\n  s.Source = [[\n    script.Parent.Touched:Connect(function(hit)\n      local p = game.Players:GetPlayerFromCharacter(hit.Parent)\n      if p then p.Character.Humanoid.Health = math.min(p.Character.Humanoid.MaxHealth, p.Character.Humanoid.Health + 25) script.Parent:Destroy() end\n    end)\n  ]]\nend"
+  },
+
+  {
+    "train_id": "T00006",
+    "requests": [
+      "Quero um jump pad",
+      "Como criar plataforma de salto?",
+      "Script para jump pad no jogo"
+    ],
+    "response_code": "-- Jump Pad\nlocal pad = workspace.JumpPad\npad.Touched:Connect(function(hit)\n  local hrp = hit.Parent:FindFirstChild(\\"HumanoidRootPart\\")\n  if hrp then hrp.Velocity = Vector3.new(0,100,0) end\nend)"
+  },
+
+  {
+    "train_id": "T00007",
+    "requests": [
+      "Criar leaderboard e pontuação",
+      "Como faço sistema de score?",
+      "Script para leaderboard no Roblox"
+    ],
+    "response_code": "-- Sistema de Pontuação e Leaderboard\nlocal Players = game:GetService(\\"Players\\")\nPlayers.PlayerAdded:Connect(function(player)\n  local stats = Instance.new(\\"Folder\\") stats.Name = \\\"leaderstats\\\" stats.Parent = player\n  local score = Instance.new(\\"IntValue\\") score.Name = \\\"Score\\\" score.Value = 0 score.Parent = stats\nend)\nfunction AddPoints(player, amount)\n  local s = player:FindFirstChild(\\"leaderstats\\")\n  if s then s.Score.Value = s.Score.Value + amount end\nend"
+  },
+
+  {
+    "train_id": "T00008",
+    "requests": [
+      "Adicionar checkpoint no mapa",
+      "Script para checkpoints",
+      "Como faço sistema de respawn em checkpoints?"
+    ],
+    "response_code": "-- Sistema de Checkpoints\nlocal checkpointFolder = workspace:WaitForChild(\\"Checkpoints\\")\n
+for i, cp in ipairs(checkpointFolder:GetChildren()) do\n  if cp:IsA(\\"Part\\") then\n    cp.Touched:Connect(function(hit)\n      local player = game.Players:GetPlayerFromCharacter(hit.Parent)\n      if player then\n        player.RespawnLocation = cp\n      end\n    end)\n  end\nend"
+  },
+
+  {
+    "train_id": "T00009",
+    "requests": [
+      "Como criar zona de dano?",
+      "Script para area que causa dano",
+      "Dano em área ao tocar"
+    ],
+    "response_code": "-- Zona de Dano\nlocal damageZone = workspace.DamageZone\ndamageZone.Touched:Connect(function(hit)\n  local humanoid = hit.Parent:FindFirstChild(\\"Humanoid\\")\n  if humanoid then humanoid:TakeDamage(10) end\nend)"
+  },
+
+  {
+    "train_id": "T00010",
+    "requests": [
+      "Quero uma loja no jogo",
+      "Script para vender itens",
+      "Como implementar shop GUI?"
+    ],
+    "response_code": "-- Sistema de Loja\nlocal ShopGui = Instance.new(\\"ScreenGui\\", game.Players.LocalPlayer:WaitForChild(\\"PlayerGui\\"))\nlocal frame = Instance.new(\\"Frame\\", ShopGui) frame.Size = UDim2.new(0.3,0,0.4,0) frame.Position = UDim2.new(0.35,0,0.3,0)\n
+-- Exemplo de botão de compra\nlocal buyButton = Instance.new(\\"TextButton\\", frame)\nbuyButton.Size = UDim2.new(0.5,0,0.2,0) buyButton.Position = UDim2.new(0.25,0,0.7,0) buyButton.Text = \\\"Comprar Espada (100 moedas)\\\"\nbuyButton.MouseButton1Click:Connect(function()\n  -- lógica de compra aqui\nend)"
   }
 ]
