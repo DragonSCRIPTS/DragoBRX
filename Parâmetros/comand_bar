@@ -1,0 +1,362 @@
+{
+  "parameters": {
+    "script": {
+      "description": "Server-side Script for handling server logic, e.g., spawning a collectible item",
+      "type": "Instance",
+      "class": "Script",
+      "parent": "game.ServerScriptService",
+      "properties": {
+        "Name": {
+          "value": "ItemSpawner",
+          "type": "string",
+          "description": "Name of the server script"
+        },
+        "Source": {
+          "value": "while true do\n\tlocal item = Instance.new('Part')\n\titem.Name = 'SpawnedItem'\n\titem.Size = Vector3.new(2, 2, 2)\n\titem.Position = Vector3.new(math.random(-50, 50), 5, math.random(-50, 50))\n\titem.Anchored = false\n\titem.Parent = workspace\n\twait(5)\nend",
+          "type": "string",
+          "description": "Lua code to spawn items randomly in the workspace every 5 seconds"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the script is created",
+        "type": "Instance",
+        "value": "game.ServerScriptService",
+        "descriptionDetails": "Server scripts are typically placed in ServerScriptService for server-side execution"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "Script",
+        "descriptionDetails": "Server-side Lua script for game logic"
+      }
+    },
+    "localScript": {
+      "description": "Client-side LocalScript for handling player-specific actions, e.g., camera effects",
+      "type": "Instance",
+      "class": "LocalScript",
+      "parent": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+      "properties": {
+        "Name": {
+          "value": "CameraShake",
+          "type": "string",
+          "description": "Name of the local script"
+        },
+        "Source": {
+          "value": "local camera = workspace.CurrentCamera\nlocal player = game.Players.LocalPlayer\nplayer.Chatted:Connect(function(msg)\n\tif msg == '/shake' then\n\t\tcamera.CameraType = Enum.CameraType.Scriptable\n\t\tfor i = 1, 10 do\n\t\t\tcamera.CFrame = camera.CFrame * CFrame.new(math.random(-0.5, 0.5), math.random(-0.5, 0.5), 0)\n\t\t\twait(0.1)\n\t\tend\n\t\tcamera.CameraType = Enum.CameraType.Custom\n\tend\nend)",
+          "type": "string",
+          "description": "Lua code to shake the camera when the player types '/shake' in chat"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the local script is created",
+        "type": "Instance",
+        "value": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+        "descriptionDetails": "Local scripts are typically placed in PlayerGui for client-side execution"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "LocalScript",
+        "descriptionDetails": "Client-side Lua script for player-specific functionality"
+      }
+    },
+    "moduleScript": {
+      "description": "ModuleScript for reusable code, e.g., a utility to manage player stats",
+      "type": "Instance",
+      "class": "ModuleScript",
+      "parent": "game.ReplicatedStorage",
+      "properties": {
+        "Name": {
+          "value": "PlayerStats",
+          "type": "string",
+          "description": "Name of the module script"
+        },
+        "Source": {
+          "value": "local Stats = {}\nStats.__index = Stats\nfunction Stats.new()\n\tlocal self = setmetatable({}, Stats)\n\tself.Health = 100\n\tself.Score = 0\n\treturn self\nend\nfunction Stats:AddScore(points)\n\tself.Score = self.Score + points\n\treturn self.Score\nend\nreturn Stats",
+          "type": "string",
+          "description": "Lua code defining a module to manage player health and score"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the module script is created",
+        "type": "Instance",
+        "value": "game.ReplicatedStorage",
+        "descriptionDetails": "Module scripts are typically placed in ReplicatedStorage for shared access"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "ModuleScript",
+        "descriptionDetails": "Reusable Lua module for shared game logic"
+      }
+    },
+    "screenGui": {
+      "description": "ScreenGui for a simple UI with a TextButton to toggle visibility",
+      "type": "Instance",
+      "class": "ScreenGui",
+      "parent": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+      "properties": {
+        "Name": {
+          "value": "MainMenu",
+          "type": "string",
+          "description": "Name of the ScreenGui"
+        },
+        "Enabled": {
+          "value": true,
+          "type": "boolean",
+          "description": "Initial visibility state of the GUI"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the ScreenGui is created",
+        "type": "Instance",
+        "value": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+        "descriptionDetails": "ScreenGui is parented to PlayerGui for client-side UI"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "ScreenGui",
+        "descriptionDetails": "GUI container for displaying user interfaces"
+      },
+      "childElements": {
+        "description": "Child elements of the ScreenGui",
+        "type": "table",
+        "elements": [
+          {
+            "description": "Frame to hold UI elements",
+            "type": "Instance",
+            "class": "Frame",
+            "parent": "screenGui",
+            "properties": {
+              "Name": {
+                "value": "MenuFrame",
+                "type": "string",
+                "description": "Name of the frame"
+              },
+              "Size": {
+                "value": {
+                  "UDim2": {
+                    "x": {"scale": 0.3, "offset": 0},
+                    "y": {"scale": 0.4, "offset": 0}
+                  }
+                },
+                "type": "UDim2",
+                "description": "Size of the frame"
+              },
+              "Position": {
+                "value": {
+                  "UDim2": {
+                    "x": {"scale": 0.35, "offset": 0},
+                    "y": {"scale": 0.3, "offset": 0}
+                  }
+                },
+                "type": "UDim2",
+                "description": "Position of the frame on the screen"
+              },
+              "BackgroundColor3": {
+                "value": {
+                  "Color3": {"r": 0.1, "g": 0.1, "b": 0.1}
+                },
+                "type": "Color3",
+                "description": "Background color of the frame"
+              },
+              "BackgroundTransparency": {
+                "value": 0.4,
+                "type": "number",
+                "description": "Transparency of the frame"
+              }
+            }
+          },
+          {
+            "description": "TextButton to toggle a game action",
+            "type": "Instance",
+            "class": "TextButton",
+            "parent": "screenGui.MenuFrame",
+            "properties": {
+              "Name": {
+                "value": "ToggleButton",
+                "type": "string",
+                "description": "Name of the button"
+              },
+              "Size": {
+                "value": {
+                  "UDim2": {
+                    "x": {"scale": 0.5, "offset": 0},
+                    "y": {"scale": 0.3, "offset": 0}
+                  }
+                },
+                "type": "UDim2",
+                "description": "Size of the button"
+              },
+              "Position": {
+                "value": {
+                  "UDim2": {
+                    "x": {"scale": 0.25, "offset": 0},
+                    "y": {"scale": 0.35, "offset": 0}
+                  }
+                },
+                "type": "UDim2",
+                "description": "Position of the button within the frame"
+              },
+              "Text": {
+                "value": "Toggle Action",
+                "type": "string",
+                "description": "Text displayed on the button"
+              },
+              "TextColor3": {
+                "value": {
+                  "Color3": {"r": 1, "g": 1, "b": 1}
+                },
+                "type": "Color3",
+                "description": "Text color of the button"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "part": {
+      "description": "Physical Part object, e.g., a platform in the workspace",
+      "type": "Instance",
+      "class": "Part",
+      "parent": "workspace",
+      "properties": {
+        "Name": {
+          "value": "Platform",
+          "type": "string",
+          "description": "Name of the part"
+        },
+        "Size": {
+          "value": {
+            "Vector3": {"x": 10, "y": 1, "z": 10}
+          },
+          "type": "Vector3",
+          "description": "Size of the platform"
+        },
+        "Position": {
+          "value": {
+            "Vector3": {"x": 0, "y": 2, "z": 0}
+          },
+          "type": "Vector3",
+          "description": "Position of the platform in the workspace"
+        },
+        "Anchored": {
+          "value": true,
+          "type": "boolean",
+          "description": "Keeps the platform fixed in place"
+        },
+        "Material": {
+          "value": "Concrete",
+          "type": "Enum.Material",
+          "description": "Material of the platform"
+        },
+        "Color": {
+          "value": {
+            "Color3": {"r": 0.5, "g": 0.5, "b": 0.5}
+          },
+          "type": "Color3",
+          "description": "Color of the platform (gray)"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the part is created",
+        "type": "Instance",
+        "value": "workspace",
+        "descriptionDetails": "Parts are typically parented to the workspace for physical objects"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "Part",
+        "descriptionDetails": "Physical object in the game world"
+      }
+    },
+    "model": {
+      "description": "Model to group objects, e.g., a simple NPC structure",
+      "type": "Instance",
+      "class": "Model",
+      "parent": "workspace",
+      "properties": {
+        "Name": {
+          "value": "SimpleNPC",
+          "type": "string",
+          "description": "Name of the model"
+        }
+      },
+      "creationLocation": {
+        "description": "Location where the model is created",
+        "type": "Instance",
+        "value": "workspace",
+        "descriptionDetails": "Models are typically parented to the workspace for grouped objects"
+      },
+      "fileType": {
+        "description": "Type of artifact created",
+        "type": "string",
+        "value": "Model",
+        "descriptionDetails": "Container for grouping multiple objects like parts and humanoids"
+      },
+      "childElements": {
+        "description": "Child elements of the model",
+        "type": "table",
+        "elements": [
+          {
+            "description": "Main part for the NPC's body",
+            "type": "Instance",
+            "class": "Part",
+            "parent": "model",
+            "properties": {
+              "Name": {
+                "value": "Body",
+                "type": "string",
+                "description": "Name of the NPC's body part"
+              },
+              "Size": {
+                "value": {
+                  "Vector3": {"x": 2, "y": 4, "z": 1}
+                },
+                "type": "Vector3",
+                "description": "Size of the NPC's body"
+              },
+              "Position": {
+                "value": {
+                  "Vector3": {"x": 0, "y": 4, "z": 0}
+                },
+                "type": "Vector3",
+                "description": "Position of the body part"
+              },
+              "Anchored": {
+                "value": true,
+                "type": "boolean",
+                "description": "Keeps the NPC fixed in place"
+              }
+            }
+          },
+          {
+            "description": "Humanoid for NPC behavior",
+            "type": "Instance",
+            "class": "Humanoid",
+            "parent": "model",
+            "properties": {
+              "Name": {
+                "value": "Humanoid",
+                "type": "string",
+                "description": "Name of the humanoid"
+              },
+              "WalkSpeed": {
+                "value": 0,
+                "type": "number",
+                "description": "Prevents NPC from moving"
+              },
+              "Health": {
+                "value": 100,
+                "type": "number",
+                "description": "Health of the NPC"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
