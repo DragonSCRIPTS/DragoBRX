@@ -1,0 +1,124 @@
+{
+  "parameters": {
+    "npc": {
+      "description": "Reference to the NPC model",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "humanoid": {
+      "description": "Humanoid component of the NPC",
+      "type": "Instance",
+      "path": "npc:WaitForChild('Humanoid')",
+      "properties": {
+        "WalkSpeed": {
+          "value": 0,
+          "type": "number",
+          "description": "Prevents NPC from moving"
+        },
+        "JumpPower": {
+          "value": 0,
+          "type": "number",
+          "description": "Prevents NPC from jumping"
+        }
+      }
+    },
+    "rootPart": {
+      "description": "HumanoidRootPart of the NPC",
+      "type": "Instance",
+      "path": "npc:WaitForChild('HumanoidRootPart')"
+    },
+    "clickDetector": {
+      "description": "ClickDetector for player interaction",
+      "type": "Instance",
+      "parent": "npc",
+      "properties": {
+        "MaxActivationDistance": {
+          "value": 10,
+          "type": "number",
+          "description": "Maximum distance for player to interact with NPC"
+        }
+      }
+    },
+    "dialog": {
+      "description": "BillboardGui for displaying NPC dialogue",
+      "type": "Instance",
+      "name": "NPCDialog",
+      "parent": "npc",
+      "properties": {
+        "Size": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 0, "offset": 200},
+              "y": {"scale": 0, "offset": 50}
+            }
+          },
+          "type": "UDim2",
+          "description": "Size of the dialogue GUI"
+        },
+        "StudsOffset": {
+          "value": {
+            "Vector3": {"x": 0, "y": 3, "z": 0}
+          },
+          "type": "Vector3",
+          "description": "Position offset above NPC's head"
+        },
+        "Adornee": {
+          "value": "npc.Head",
+          "type": "Instance",
+          "description": "Part to which the GUI is anchored"
+        }
+      }
+    },
+    "textLabel": {
+      "description": "TextLabel for dialogue text",
+      "type": "Instance",
+      "parent": "dialog",
+      "properties": {
+        "Size": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 1, "offset": 0},
+              "y": {"scale": 1, "offset": 0}
+            }
+          },
+          "type": "UDim2",
+          "description": "Size of the text label relative to dialog"
+        },
+        "BackgroundTransparency": {
+          "value": 0.5,
+          "type": "number",
+          "description": "Transparency of the text label background"
+        },
+        "BackgroundColor3": {
+          "value": {
+            "Color3": {"r": 0, "g": 0, "b": 0}
+          },
+          "type": "Color3",
+          "description": "Background color of the text label"
+        },
+        "TextColor3": {
+          "value": {
+            "Color3": {"r": 1, "g": 1, "b": 1}
+          },
+          "type": "Color3",
+          "description": "Color of the dialogue text"
+        },
+        "Text": {
+          "value": "Olá, aventureiro! Bem-vindo!",
+          "type": "string",
+          "description": "Text displayed in the dialogue"
+        },
+        "TextScaled": {
+          "value": true,
+          "type": "boolean",
+          "description": "Scales text to fit the label size"
+        }
+      }
+    },
+    "dialogDuration": {
+      "description": "Time in seconds before dialogue is removed",
+      "type": "number",
+      "value": 3
+    }
+  }
+}
