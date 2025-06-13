@@ -1,0 +1,124 @@
+{
+  "parameters": {
+    "collectible": {
+      "description": "Reference to the collectible item (e.g., a coin or gem)",
+      "type": "Instance",
+      "class": "Part",
+      "path": "script.Parent"
+    },
+    "collectibleProperties": {
+      "description": "Physical properties of the collectible item",
+      "type": "table",
+      "properties": {
+        "Size": {
+          "value": {
+            "Vector3": {"x": 2, "y": 2, "z": 2}
+          },
+          "type": "Vector3",
+          "description": "Size of the collectible item"
+        },
+        "Material": {
+          "value": "Neon",
+          "type": "Enum.Material",
+          "description": "Material to give the collectible a glowing effect"
+        },
+        "Color": {
+          "value": {
+            "Color3": {"r": 1, "g": 0.84, "b": 0}
+          },
+          "type": "Color3",
+          "description": "Color of the collectible (e.g., gold)"
+        },
+        "CanCollide": {
+          "value": false,
+          "type": "boolean",
+          "description": "Prevents physical collision with players"
+        },
+        "Anchored": {
+          "value": true,
+          "type": "boolean",
+          "description": "Keeps the collectible in place"
+        }
+      }
+    },
+    "touchDetector": {
+      "description": "Event to detect when a player touches the collectible",
+      "type": "RBXScriptSignal",
+      "path": "collectible.Touched"
+    },
+    "pointsValue": {
+      "description": "Points awarded to the player upon collecting the item",
+      "type": "number",
+      "value": 10
+    },
+    "leaderstats": {
+      "description": "Reference to the player's leaderstats folder for score tracking",
+      "type": "Instance",
+      "path": "player:WaitForChild('leaderstats')",
+      "properties": {
+        "Points": {
+          "type": "IntValue",
+          "description": "Integer value to store the player's points"
+        }
+      }
+    },
+    "visualEffect": {
+      "description": "Particle effect when the collectible is picked up",
+      "type": "Instance",
+      "class": "ParticleEmitter",
+      "parent": "collectible",
+      "properties": {
+        "Texture": {
+          "value": "rbxassetid://243728913",
+          "type": "string",
+          "description": "Texture for the particle effect (e.g., sparkles)"
+        },
+        "Rate": {
+          "value": 50,
+          "type": "number",
+          "description": "Number of particles emitted per second"
+        },
+        "Lifetime": {
+          "value": {
+            "NumberRange": {"min": 0.5, "max": 1}
+          },
+          "type": "NumberRange",
+          "description": "Duration particles are visible"
+        },
+        "Enabled": {
+          "value": false,
+          "type": "boolean",
+          "description": "Initial state of the particle emitter"
+        }
+      }
+    },
+    "soundEffect": {
+      "description": "Sound played when the collectible is picked up",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "collectible",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://9120386446",
+          "type": "string",
+          "description": "Asset ID for the collection sound"
+        },
+        "Volume": {
+          "value": 0.5,
+          "type": "number",
+          "description": "Volume of the sound effect"
+        }
+      }
+    },
+    "respawnTime": {
+      "description": "Time in seconds before the collectible reappears",
+      "type": "number",
+      "value": 5
+    },
+    "isCollectibleActive": {
+      "description": "Flag to track if the collectible is currently active",
+      "type": "boolean",
+      "value": true
+    }
+  }
+}
