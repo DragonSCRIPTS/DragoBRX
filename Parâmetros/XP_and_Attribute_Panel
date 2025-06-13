@@ -1,0 +1,302 @@
+{
+  "parameters": {
+    "playerData": {
+      "description": "Reference to the player's data folder for storing XP and attributes",
+      "type": "Instance",
+      "path": "player:WaitForChild('PlayerData')",
+      "properties": {
+        "XP": {
+          "type": "IntValue",
+          "value": 0,
+          "description": "Current experience points of the player"
+        },
+        "Level": {
+          "type": "IntValue",
+          "value": 1,
+          "description": "Current level of the player"
+        },
+        "AttributePoints": {
+          "type": "IntValue",
+          "value": 0,
+          "description": "Unspent attribute points available for distribution"
+        },
+        "Strength": {
+          "type": "IntValue",
+          "value": 0,
+          "description": "Player's strength attribute"
+        },
+        "Speed": {
+          "type": "IntValue",
+          "value": 0,
+          "description": "Player's speed attribute"
+        },
+        "Defense": {
+          "type": "IntValue",
+          "value": 0,
+          "description": "Player's defense attribute"
+        }
+      }
+    },
+    "xpToNextLevel": {
+      "description": "XP required to reach the next level",
+      "type": "number",
+      "value": 100,
+      "scalingFormula": {
+        "description": "Formula to calculate XP needed for next level",
+        "type": "string",
+        "value": "baseXP * (1.2 ^ (currentLevel - 1))",
+        "variables": {
+          "baseXP": 100,
+          "currentLevel": "playerData.Level.Value"
+        }
+      }
+    },
+    "pointsPerLevel": {
+      "description": "Number of attribute points gained per level up",
+      "type": "number",
+      "value": 5
+    },
+    "attributePanel": {
+      "description": "ScreenGui for the attribute distribution panel",
+      "type": "Instance",
+      "class": "ScreenGui",
+      "path": "game.Players.LocalPlayer:WaitForChild('PlayerGui'):WaitForChild('AttributePanel')",
+      "properties": {
+        "Enabled": {
+          "value": false,
+          "type": "boolean",
+          "description": "Initial visibility state of the panel"
+        }
+      }
+    },
+    "panelFrame": {
+      "description": "Main frame containing the attribute panel UI elements",
+      "type": "Instance",
+      "class": "Frame",
+      "parent": "attributePanel",
+      "properties": {
+        "Size": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 0.4, "offset": 0},
+              "y": {"scale": 0.5, "offset": 0}
+            }
+          },
+          "type": "UDim2",
+          "description": "Size of the panel frame"
+        },
+        "Position": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 0.3, "offset": 0},
+              "y": {"scale": 0.25, "offset": 0}
+            }
+          },
+          "type": "UDim2",
+          "description": "Position of the panel frame on the screen"
+        },
+        "BackgroundColor3": {
+          "value": {
+            "Color3": {"r": 0.2, "g": 0.2, "b": 0.2}
+          },
+          "type": "Color3",
+          "description": "Background color of the panel"
+        },
+        "BackgroundTransparency": {
+          "value": 0.3,
+          "type": "number",
+          "description": "Transparency of the panel background"
+        }
+      }
+    },
+    "attributeButtons": {
+      "description": "Buttons for distributing points to each attribute",
+      "type": "table",
+      "elements": [
+        {
+          "name": "StrengthButton",
+          "type": "Instance",
+          "class": "TextButton",
+          "parent": "panelFrame",
+          "properties": {
+            "Size": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.3, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Size of the strength button"
+            },
+            "Position": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.1, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Position of the strength button"
+            },
+            "Text": {
+              "value": "Add Strength",
+              "type": "string",
+              "description": "Text displayed on the button"
+            },
+            "TextColor3": {
+              "value": {
+                "Color3": {"r": 1, "g": 1, "b": 1}
+              },
+              "type": "Color3",
+              "description": "Text color of the button"
+            }
+          }
+        },
+        {
+          "name": "SpeedButton",
+          "type": "Instance",
+          "class": "TextButton",
+          "parent": "panelFrame",
+          "properties": {
+            "Size": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.3, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Size of the speed button"
+            },
+            "Position": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.4, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Position of the speed button"
+            },
+            "Text": {
+              "value": "Add Speed",
+              "type": "string",
+              "description": "Text displayed on the button"
+            },
+            "TextColor3": {
+              "value": {
+                "Color3": {"r": 1, "g": 1, "b": 1}
+              },
+              "type": "Color3",
+              "description": "Text color of the button"
+            }
+          }
+        },
+        {
+          "name": "DefenseButton",
+          "type": "Instance",
+          "class": "TextButton",
+          "parent": "panelFrame",
+          "properties": {
+            "Size": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.3, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Size of the defense button"
+            },
+            "Position": {
+              "value": {
+                "UDim2": {
+                  "x": {"scale": 0.7, "offset": 0},
+                  "y": {"scale": 0.2, "offset": 0}
+                }
+              },
+              "type": "UDim2",
+              "description": "Position of the defense button"
+            },
+            "Text": {
+              "value": "Add Defense",
+              "type": "string",
+              "description": "Text displayed on the button"
+            },
+            "TextColor3": {
+              "value": {
+                "Color3": {"r": 1, "g": 1, "b": 1}
+              },
+              "type": "Color3",
+              "description": "Text color of the button"
+            }
+          }
+        }
+      ]
+    },
+    "toggleButton": {
+      "description": "Button to toggle the visibility of the attribute panel",
+      "type": "Instance",
+      "class": "TextButton",
+      "parent": "attributePanel",
+      "properties": {
+        "Size": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 0.1, "offset": 0},
+              "y": {"scale": 0.1, "offset": 0}
+            }
+          },
+          "type": "UDim2",
+          "description": "Size of the toggle button"
+        },
+        "Position": {
+          "value": {
+            "UDim2": {
+              "x": {"scale": 0.9, "offset": 0},
+              "y": {"scale": 0.05, "offset": 0}
+            }
+          },
+          "type": "UDim2",
+          "description": "Position of the toggle button"
+        },
+        "Text": {
+          "value": "Open Panel",
+          "type": "string",
+          "description": "Text displayed on the toggle button"
+        },
+        "BackgroundColor3": {
+          "value": {
+            "Color3": {"r": 0, "g": 0.5, "b": 0}
+          },
+          "type": "Color3",
+          "description": "Background color of the toggle button"
+        }
+      }
+    },
+    "levelUpSound": {
+      "description": "Sound played when the player levels up",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://9120386446",
+          "type": "string",
+          "description": "Asset ID for the level-up sound"
+        },
+        "Volume": {
+          "value": 0.7,
+          "type": "number",
+          "description": "Volume of the level-up sound"
+        }
+      }
+    },
+    "maxLevel": {
+      "description": "Maximum level a player can reach",
+      "type": "number",
+      "value": 50
+    }
+  }
+}
