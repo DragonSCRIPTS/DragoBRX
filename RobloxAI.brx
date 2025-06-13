@@ -1,5 +1,7 @@
 // Importa fetch do node-fetch
 const fetch = require('node-fetch');
+// Importa readline para entrada interativa
+const readline = require('readline');
 
 class RobloxAI {
   constructor() {
@@ -246,17 +248,34 @@ class RobloxAI {
 }
 
 if (require.main === module) {
-  (async () => {
-    const robloxAI = new RobloxAI();
-    try {
-      await robloxAI.initialize();
-      const question = process.argv[2] || "Quero um sistema de loja GUI para jogador";
-      const response = await robloxAI.processRequest(question);
-      console.log(response);
-    } catch (err) {
-      console.error("Erro em execução:", err);
-    }
-  })();
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  const robloxAI = new RobloxAI();
+
+  async function promptQuestion() {
+    rl.question('Digite sua pergunta sobre Roblox Studio (ou "sair" para encerrar): ', async (input) => {
+      if (input.toLowerCase() === 'sair') {
+        rl.close();
+        return;
+      }
+
+      try {
+        await robloxAI.initialize();
+        const response = await robloxAI.processRequest(input);
+        console.log(response);
+      } catch (err) {
+        console.error('Erro em execução:', err);
+      }
+
+      // Pergunta novamente após responder
+      promptQuestion();
+    });
+  }
+
+  promptQuestion();
 } else {
   module.exports = RobloxAI;
 }
