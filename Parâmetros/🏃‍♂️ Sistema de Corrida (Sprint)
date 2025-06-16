@@ -1,0 +1,39 @@
+{
+  "parameters": {
+    "player": {
+      "description": "Jogador local que vai correr",
+      "type": "Instance",
+      "path": "game.Players.LocalPlayer"
+    },
+    "sprintKey": {
+      "description": "Tecla usada para correr",
+      "type": "Enum.KeyCode",
+      "value": "LeftShift"
+    },
+    "normalSpeed": {
+      "description": "Velocidade padrão do jogador",
+      "type": "number",
+      "value": 16
+    },
+    "sprintSpeed": {
+      "description": "Velocidade ao correr",
+      "type": "number",
+      "value": 26
+    },
+    "staminaMax": {
+      "description": "Quantidade máxima de estamina",
+      "type": "number",
+      "value": 100
+    },
+    "staminaRegenRate": {
+      "description": "Velocidade de regeneração de estamina",
+      "type": "number",
+      "value": 5
+    },
+    "staminaDrainRate": {
+      "description": "Velocidade de gasto da estamina ao correr",
+      "type": "number",
+      "value": 10
+    }
+  }
+}
