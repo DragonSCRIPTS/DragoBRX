@@ -1,0 +1,31 @@
+{
+  "parameters": {
+    "button": {
+      "description": "Botão físico no jogo",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "target": {
+      "description": "Objeto que será ativado pelo botão",
+      "type": "Instance",
+      "path": "workspace:WaitForChild('ObjetoAlvo')"
+    },
+    "proximityPrompt": {
+      "description": "Prompt de ativação",
+      "type": "Instance",
+      "class": "ProximityPrompt",
+      "parent": "button",
+      "properties": {
+        "ActionText": {
+          "value": "Ativar",
+          "type": "string"
+        }
+      }
+    },
+    "toggle": {
+      "description": "Se o botão liga/desliga ou só ativa uma vez",
+      "type": "boolean",
+      "value": true
+    }
+  }
+}
