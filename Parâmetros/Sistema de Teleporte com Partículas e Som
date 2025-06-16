@@ -1,0 +1,60 @@
+{
+  "parameters": {
+    "teleportPart": {
+      "description": "Parte que ao ser tocada teleporta o jogador",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "destination": {
+      "description": "Destino para onde o jogador será teletransportado",
+      "type": "Instance",
+      "path": "workspace:WaitForChild('TeleportDestination')"
+    },
+    "teleportCooldown": {
+      "description": "Tempo em segundos antes que o jogador possa ser teleportado novamente",
+      "type": "number",
+      "value": 3
+    },
+    "recentTeleportedPlayers": {
+      "description": "Tabela para evitar teleporte duplicado durante o cooldown",
+      "type": "table",
+      "value": {}
+    },
+    "particleEffect": {
+      "description": "Partícula de efeito visual ao teleportar",
+      "type": "Instance",
+      "class": "ParticleEmitter",
+      "parent": "teleportPart",
+      "properties": {
+        "Color": {
+          "value": "Color3.fromRGB(100, 255, 255)",
+          "type": "Color3"
+        },
+        "Speed": {
+          "value": 5,
+          "type": "number"
+        },
+        "Lifetime": {
+          "value": 1,
+          "type": "number"
+        }
+      }
+    },
+    "soundEffect": {
+      "description": "Som reproduzido ao teleportar",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "teleportPart",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://12222185",
+          "type": "string"
+        },
+        "Volume": {
+          "value": 1,
+          "type": "number"
+        }
+      }
+    }
+  }
+}
