@@ -1,0 +1,140 @@
+{
+  "parameters": {
+    "screenGui": {
+      "description": "Interface principal que vai no PlayerGui",
+      "type": "Instance",
+      "class": "ScreenGui",
+      "properties": {
+        "Name": "LootBoxUI_Rolling",
+        "ResetOnSpawn": false
+      }
+    },
+    "mainFrame": {
+      "description": "Painel principal da UI",
+      "type": "Instance",
+      "class": "Frame",
+      "parent": "screenGui",
+      "properties": {
+        "Name": "MainFrame",
+        "Size": "{0.6, 0}, {0.4, 0}",
+        "Position": "{0.2, 0}, {0.3, 0}",
+        "BackgroundColor3": "Color3.fromRGB(20, 20, 20)",
+        "BorderSizePixel": 0,
+        "Visible": true
+      }
+    },
+    "titleLabel": {
+      "description": "Título no topo da UI",
+      "type": "Instance",
+      "class": "TextLabel",
+      "parent": "mainFrame",
+      "properties": {
+        "Text": "ABRIR CAIXA",
+        "Font": "Enum.Font.GothamBold",
+        "TextSize": 30,
+        "TextColor3": "Color3.fromRGB(255, 255, 255)",
+        "BackgroundTransparency": 1,
+        "Size": "{1, 0}, {0.15, 0}",
+        "Position": "{0, 0}, {0, 0}"
+      }
+    },
+    "rollingFrame": {
+      "description": "Área onde as armas vão 'rolar' horizontalmente",
+      "type": "Instance",
+      "class": "Frame",
+      "parent": "mainFrame",
+      "properties": {
+        "Name": "RollingFrame",
+        "Size": "{0.9, 0}, {0.5, 0}",
+        "Position": "{0.05, 0}, {0.25, 0}",
+        "BackgroundColor3": "Color3.fromRGB(35, 35, 35)",
+        "BorderSizePixel": 0,
+        "ClipsDescendants": true
+      }
+    },
+    "weaponContainer": {
+      "description": "Container interno para os ícones das armas, que se move para o efeito de rolagem",
+      "type": "Instance",
+      "class": "Frame",
+      "parent": "rollingFrame",
+      "properties": {
+        "Name": "WeaponContainer",
+        "Size": "{3, 0}, {1, 0}",
+        "Position": "{0, 0}, {0, 0}",
+        "BackgroundTransparency": 1
+      }
+    },
+    "weaponIconTemplate": {
+      "description": "Template para os ícones das armas (será clonada para cada arma)",
+      "type": "Instance",
+      "class": "ImageLabel",
+      "parent": "weaponContainer",
+      "properties": {
+        "Name": "WeaponIconTemplate",
+        "Size": "{0.15, 0}, {0.9, 0}",
+        "Position": "{0, 0}, {0.05, 0}",
+        "BackgroundColor3": "Color3.fromRGB(50, 50, 50)",
+        "BorderSizePixel": 0,
+        "Image": "",  
+        "Visible": false
+      }
+    },
+    "arrowIndicator": {
+      "description": "Seta fixa que indica a arma sorteada (centralizada no rollingFrame)",
+      "type": "Instance",
+      "class": "ImageLabel",
+      "parent": "mainFrame",
+      "properties": {
+        "Name": "ArrowIndicator",
+        "Size": "{0.05, 0}, {0.2, 0}",
+        "Position": "{0.475, 0}, {0.78, 0}",
+        "BackgroundTransparency": 1,
+        "Image": "rbxassetid://6031094677"
+      }
+    },
+    "openButton": {
+      "description": "Botão para abrir a caixa e iniciar a rolagem",
+      "type": "Instance",
+      "class": "TextButton",
+      "parent": "mainFrame",
+      "properties": {
+        "Name": "OpenButton",
+        "Text": "ABRIR",
+        "Font": "Enum.Font.GothamBold",
+        "TextSize": 24,
+        "TextColor3": "Color3.fromRGB(255, 255, 255)",
+        "BackgroundColor3": "Color3.fromRGB(0, 170, 0)",
+        "Size": "{0.3, 0}, {0.15, 0}",
+        "Position": "{0.35, 0}, {0.8, 0}",
+        "BorderSizePixel": 0
+      }
+    },
+    "resultLabel": {
+      "description": "Texto que mostra o nome da arma ganha após a rolagem",
+      "type": "Instance",
+      "class": "TextLabel",
+      "parent": "mainFrame",
+      "properties": {
+        "Name": "ResultLabel",
+        "Text": "",
+        "Font": "Enum.Font.Gotham",
+        "TextSize": 22,
+        "TextColor3": "Color3.fromRGB(255, 255, 0)",
+        "BackgroundTransparency": 1,
+        "Size": "{1, 0}, {0.15, 0}",
+        "Position": "{0, 0}, {0.95, 0}",
+        "TextScaled": false
+      }
+    },
+    "rollingSpeed": {
+      "description": "Velocidade inicial da rolagem das armas (pixels por frame)",
+      "type": "number",
+      "value": 15
+    },
+    "rollingDeceleration": {
+      "description": "Taxa de desaceleração da rolagem para parar suavemente",
+      "type": "number",
+      "value": 0.2
+    }
+  }
+}
