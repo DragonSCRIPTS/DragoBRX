@@ -1,0 +1,28 @@
+{
+  "parameters": {
+    "platform": {
+      "description": "Parte que será rotacionada continuamente",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "rotationSpeed": {
+      "description": "Velocidade de rotação em graus por segundo",
+      "type": "number",
+      "value": 45
+    },
+    "runService": {
+      "description": "Serviço para conectar ao evento Heartbeat e atualizar a rotação a cada frame",
+      "type": "Instance",
+      "path": "game:GetService('RunService')"
+    },
+    "heartbeatConnection": {
+      "description": "Conexão com o evento Heartbeat para atualizar a rotação",
+      "type": "RBXScriptConnection"
+    },
+    "isRotating": {
+      "description": "Flag que habilita ou desabilita a rotação",
+      "type": "boolean",
+      "value": true
+    }
+  }
+}
