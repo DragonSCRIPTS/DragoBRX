@@ -1,0 +1,31 @@
+{
+  "parameters": {
+    "item": {
+      "description": "Objeto coletável no mundo",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "pickupSound": {
+      "description": "Som ao coletar o item",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "item",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://6026984224",
+          "type": "string"
+        }
+      }
+    },
+    "collectedMessage": {
+      "description": "Texto exibido ao jogador quando coleta o item",
+      "type": "string",
+      "value": "Você coletou um item!"
+    },
+    "destroyOnCollect": {
+      "description": "Se o item deve desaparecer após ser coletado",
+      "type": "boolean",
+      "value": true
+    }
+  }
+}
