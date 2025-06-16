@@ -1,0 +1,79 @@
+{
+  "parameters": {
+    "door": {
+      "description": "Modelo da porta que será aberta/fechada",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "openPosition": {
+      "description": "Posição aberta da porta (Vector3)",
+      "type": "Vector3",
+      "value": {
+        "x": 0,
+        "y": 5,
+        "z": 0
+      }
+    },
+    "closedPosition": {
+      "description": "Posição fechada da porta (Vector3)",
+      "type": "Vector3",
+      "value": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "proximityPrompt": {
+      "description": "Prompt de interação para abrir a porta",
+      "type": "Instance",
+      "parent": "door",
+      "class": "ProximityPrompt",
+      "properties": {
+        "ActionText": {
+          "value": "Abrir Porta",
+          "type": "string"
+        },
+        "ObjectText": {
+          "value": "Porta",
+          "type": "string"
+        },
+        "RequiresLineOfSight": {
+          "value": false,
+          "type": "boolean"
+        },
+        "MaxActivationDistance": {
+          "value": 10,
+          "type": "number"
+        }
+      }
+    },
+    "tweenService": {
+      "description": "Serviço usado para animar a porta",
+      "type": "Instance",
+      "path": "game:GetService('TweenService')"
+    },
+    "tweenInfo": {
+      "description": "Configuração da animação de abertura/fechamento",
+      "type": "TweenInfo",
+      "properties": {
+        "Time": {
+          "value": 1,
+          "type": "number"
+        },
+        "EasingStyle": {
+          "value": "Quad",
+          "type": "Enum.EasingStyle"
+        },
+        "EasingDirection": {
+          "value": "Out",
+          "type": "Enum.EasingDirection"
+        }
+      }
+    },
+    "isOpen": {
+      "description": "Estado atual da porta",
+      "type": "boolean",
+      "value": false
+    }
+  }
+}
