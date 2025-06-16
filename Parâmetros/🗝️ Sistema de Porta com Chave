@@ -1,0 +1,50 @@
+{
+  "parameters": {
+    "door": {
+      "description": "Modelo da porta que será aberta",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "requiredToolName": {
+      "description": "Nome da ferramenta/chave necessária para abrir a porta",
+      "type": "string",
+      "value": "ChaveDourada"
+    },
+    "proximityPrompt": {
+      "description": "Prompt para tentar abrir a porta",
+      "type": "Instance",
+      "class": "ProximityPrompt",
+      "parent": "door",
+      "properties": {
+        "ActionText": {
+          "value": "Abrir com chave",
+          "type": "string"
+        }
+      }
+    },
+    "successSound": {
+      "description": "Som ao abrir a porta com sucesso",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "door",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://12221967",
+          "type": "string"
+        }
+      }
+    },
+    "failureSound": {
+      "description": "Som ao falhar por falta da chave",
+      "type": "Instance",
+      "class": "Sound",
+      "parent": "door",
+      "properties": {
+        "SoundId": {
+          "value": "rbxassetid://138097048",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
