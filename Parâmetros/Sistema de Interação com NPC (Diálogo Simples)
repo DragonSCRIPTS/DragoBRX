@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "npc": {
+      "description": "NPC com quem o jogador vai interagir",
+      "type": "Instance",
+      "path": "script.Parent"
+    },
+    "dialogueGui": {
+      "description": "GUI de diálogo que será exibida ao interagir",
+      "type": "Instance",
+      "path": "game.StarterGui:WaitForChild('DialogueGui')"
+    },
+    "proximityPrompt": {
+      "description": "Prompt para iniciar o diálogo",
+      "type": "Instance",
+      "class": "ProximityPrompt",
+      "parent": "npc",
+      "properties": {
+        "ActionText": {
+          "value": "Falar",
+          "type": "string"
+        },
+        "ObjectText": {
+          "value": "NPC",
+          "type": "string"
+        }
+      }
+    },
+    "dialogueLines": {
+      "description": "Lista de falas que o NPC vai dizer",
+      "type": "table",
+      "value": ["Olá!", "Você está pronto para o desafio?", "Boa sorte!"]
+    },
+    "lineDelay": {
+      "description": "Tempo entre cada linha de diálogo",
+      "type": "number",
+      "value": 2
+    }
+  }
+}
