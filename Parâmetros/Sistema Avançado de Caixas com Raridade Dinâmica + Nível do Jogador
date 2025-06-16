@@ -1,0 +1,85 @@
+{
+  "parameters": {
+    "playerData": {
+      "description": "Dados do jogador, incluindo nível e moedas",
+      "type": "table",
+      "value": {
+        "level": 1,
+        "currency": 0,
+        "inventory": []
+      }
+    },
+    "rarities": {
+      "description": "Níveis de raridade com peso base para sorteio",
+      "type": "table",
+      "value": {
+        "Comum": 50,
+        "Incomum": 30,
+        "Raro": 15,
+        "Épico": 4,
+        "Lendário": 1
+      }
+    },
+    "lootTables": {
+      "description": "Tabela de loot separada por tipo de caixa",
+      "type": "table",
+      "value": {
+        "freeCrate": {
+          "cost": 0,
+          "levelRequirement": 1,
+          "availableRarities": ["Comum", "Incomum"],
+          "modifier": 0.5,
+          "description": "Caixa gratuita com loot limitado"
+        },
+        "levelCrate": {
+          "cost": 150,
+          "levelRequirement": 5,
+          "availableRarities": ["Comum", "Incomum", "Raro"],
+          "modifier": 1.0,
+          "description": "Caixa que desbloqueia mais raridades conforme o nível"
+        },
+        "eliteCrate": {
+          "cost": 500,
+          "levelRequirement": 10,
+          "availableRarities": ["Comum", "Incomum", "Raro", "Épico", "Lendário"],
+          "modifier": 1.8,
+          "description": "Caixa premium com todas as raridades e maior chance de itens raros"
+        }
+      }
+    },
+    "weaponCatalog": {
+      "description": "Armas agrupadas por raridade",
+      "type": "table",
+      "value": {
+        "Comum": [
+          { "name": "Faca Velha", "value": 5 },
+          { "name": "Pistola Quebrada", "value": 7 }
+        ],
+        "Incomum": [
+          { "name": "Espada Curta", "value": 15 },
+          { "name": "Revolver Básico", "value": 20 }
+        ],
+        "Raro": [
+          { "name": "Espada Rúnica", "value": 60 },
+          { "name": "SMG Avançada", "value": 75 }
+        ],
+        "Épico": [
+          { "name": "Lança de Plasma", "value": 150 }
+        ],
+        "Lendário": [
+          { "name": "Cajado da Eternidade", "value": 300 }
+        ]
+      }
+    },
+    "rarityBoostByLevel": {
+      "description": "Modificadores de chance de raridade baseado no nível do jogador",
+      "type": "table",
+      "value": {
+        "1": { "Comum": 0, "Incomum": 0, "Raro": 0, "Épico": 0, "Lendário": 0 },
+        "5": { "Raro": 2 },
+        "10": { "Raro": 5, "Épico": 2 },
+        "20": { "Épico": 5, "Lendário": 1 }
+      }
+    }
+  }
+}
