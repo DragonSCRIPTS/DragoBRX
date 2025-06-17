@@ -1,0 +1,46 @@
+{
+  "parameters": {
+    "npcModel": {
+      "description": "Modelo do NPC no workspace",
+      "type": "Instance",
+      "class": "Model",
+      "properties": {
+        "Name": "NPC_Example"
+      }
+    },
+    "humanoid": {
+      "description": "Humanoid dentro do modelo NPC",
+      "type": "Instance",
+      "class": "Humanoid",
+      "parent": "npcModel",
+      "properties": {
+        "Health": 100,
+        "MaxHealth": 100,
+        "WalkSpeed": 16
+      }
+    },
+    "npcRootPart": {
+      "description": "Parte central para movimentação do NPC",
+      "type": "Instance",
+      "class": "BasePart",
+      "parent": "npcModel",
+      "properties": {
+        "Name": "HumanoidRootPart"
+      }
+    },
+    "dialogueEnabled": {
+      "description": "Se o NPC deve responder ao jogador com diálogo",
+      "type": "boolean",
+      "value": true
+    },
+    "dialogueLines": {
+      "description": "Linhas de diálogo do NPC",
+      "type": "table",
+      "value": [
+        "Olá, viajante!",
+        "Posso ajudar você com alguma coisa?",
+        "Cuidado com os monstros à frente."
+      ]
+    }
+  }
+}
