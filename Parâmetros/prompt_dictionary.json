@@ -1,0 +1,511 @@
+{
+  "prompts": [
+    {
+      "description": "Request to create a platform or similar physical object in the workspace",
+      "keywords": ["platform", "block", "surface", "floor", "ground"],
+      "synonyms": ["create", "make", "place", "spawn", "add"],
+      "instance_type": "Part",
+      "parameters": {
+        "part": {
+          "description": "Physical Part object in the workspace",
+          "type": "Instance",
+          "class": "Part",
+          "parent": "workspace",
+          "properties": {
+            "Name": {
+              "value": "Platform",
+              "type": "string",
+              "description": "Name of the part"
+            },
+            "Size": {
+              "value": {
+                "Vector3": {"x": 10, "y": 1, "z": 10}
+              },
+              "type": "Vector3",
+              "description": "Size of the platform"
+            },
+            "Position": {
+              "value": {
+                "Vector3": {"x": 0, "y": 2, "z": 0}
+              },
+              "type": "Vector3",
+              "description": "Position of the platform in the workspace"
+            },
+            "Anchored": {
+              "value": true,
+              "type": "boolean",
+              "description": "Keeps the platform fixed in place"
+            },
+            "Material": {
+              "value": "Concrete",
+              "type": "Enum.Material",
+              "description": "Material of the platform"
+            },
+            "Color": {
+              "value": {
+                "Color3": {"r": 0.5, "g": 0.5, "b": 0.5}
+              },
+              "type": "Color3",
+              "description": "Color of the platform"
+            }
+          },
+          "creationLocation": {
+            "description": "Location where the part is created",
+            "type": "Instance",
+            "value": "workspace",
+            "descriptionDetails": "Parts are parented to the workspace"
+          },
+          "fileType": {
+            "description": "Type of artifact created",
+            "type": "string",
+            "value": "Part",
+            "descriptionDetails": "Physical object in the game world"
+          }
+        }
+      },
+      "modifiers": {
+        "invisible": {
+          "keywords": ["invisible", "transparent", "see-through"],
+          "properties": {
+            "Transparency": {
+              "value": 1,
+              "type": "number",
+              "description": "Makes the platform invisible"
+            },
+            "CanCollide": {
+              "value": true,
+              "type": "boolean",
+              "description": "Ensures the platform is still collidable"
+            }
+          }
+        },
+        "floating": {
+          "keywords": ["floating", "in the air", "above ground"],
+          "properties": {
+            "Position": {
+              "value": {
+                "Vector3": {"x": 0, "y": 50, "z": 0}
+              },
+              "type": "Vector3",
+              "description": "Places the platform high in the air"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Request to create a server-side script for spawning objects periodically",
+      "keywords": ["spawn", "generate", "create", "every", "seconds"],
+      "synonyms": ["make", "add", "place"],
+      "instance_type": "Script",
+      "parameters": {
+        "script": {
+          "description": "Server-side script for spawning objects",
+          "type": "Instance",
+          "class": "Script",
+          "parent": "game.ServerScriptService",
+          "properties": {
+            "Name": {
+              "value": "SpawnerScript",
+              "type": "string",
+              "description": "Name of the script"
+            },
+            "Source": {
+              "value": "while true do\n\t-- Placeholder for spawn logic\n\twait(10)\nend",
+              "type": "string",
+              "description": "Script to spawn objects periodically"
+            }
+          },
+          "creationLocation": {
+            "description": "Location where the script is created",
+            "type": "Instance",
+            "value": "game.ServerScriptService",
+            "descriptionDetails": "Server scripts are placed in ServerScriptService"
+          },
+          "fileType": {
+            "description": "Type of artifact created",
+            "type": "string",
+            "value": "Script",
+            "descriptionDetails": "Server-side Lua script"
+          }
+        }
+      },
+      "modifiers": {
+        "interval": {
+          "keywords": ["every", "seconds"],
+          "regex": "every\\s+(\\d+)\\s+seconds",
+          "action": {
+            "replace_source_wait": {
+              "pattern": "wait\\(10\\)",
+              "replacement": "wait({interval})"
+            }
+          }
+        },
+        "platform": {
+          "keywords": ["platform", "block"],
+          "source_append": {
+            "value": (
+              "\tlocal part = Instance.new('Part')\n"
+              "\tpart.Name = 'SpawnedPlatform'\n"
+              "\tpart.Size = Vector3.new(10, 1, 10)\n"
+              "\tpart.Position = Vector3.new(math.random(-50, 50), 50, math.random(-50, 50))\n"
+              "\tpart.Anchored = true\n"
+              "\tpart.Parent = workspace\n"
+            ),
+            "description": "Appends logic to spawn a platform"
+          }
+        },
+        "invisible": {
+          "keywords": ["invisible", "transparent"],
+          "source_append": {
+            "value": "\tpart.Transparency = 1\n\tpart.CanCollide = true\n",
+            "description": "Makes the spawned platform invisible but collidable"
+          }
+        }
+      }
+    },
+    {
+      "description": "Request to create a UI with a button",
+      "keywords": ["button", "gui", "interface", "menu", "screen"],
+      "synonyms": ["create", "make", "add"],
+      "instance_type": "ScreenGui",
+      "parameters": {
+        "screenGui": {
+          "description": "ScreenGui for a simple UI with a button",
+          "type": "Instance",
+          "class": "ScreenGui",
+          "parent": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+          "properties": {
+            "Name": {
+              "value": "SimpleUI",
+              "type": "string",
+              "description": "Name of the ScreenGui"
+            },
+            "Enabled": {
+              "value": true,
+              "type": "boolean",
+              "description": "Initial visibility state of the GUI"
+            }
+          },
+          "creationLocation": {
+            "description": "Location where the ScreenGui is created",
+            "type": "Instance",
+            "value": "game.Players.LocalPlayer:WaitForChild('PlayerGui')",
+            "descriptionDetails": "ScreenGui is parented to PlayerGui"
+          },
+          "fileType": {
+            "description": "Type of artifact created",
+            "type": "string",
+            "value": "ScreenGui",
+            "descriptionDetails": "GUI container for user interfaces"
+          },
+          "childElements": {
+            "description": "Child elements of the ScreenGui",
+            "type": "table",
+            "elements": [
+              {
+                "description": "Frame to hold the button",
+                "type": "Instance",
+                "class": "Frame",
+                "parent": "screenGui",
+                "properties": {
+                  "Name": {
+                    "value": "ButtonFrame",
+                    "type": "string",
+                    "description": "Name of the frame"
+                  },
+                  "Size": {
+                    "value": {
+                      "UDim2": {
+                        "x": {"scale": 0.3, "offset": 0},
+                        "y": {"scale": 0.3, "offset": 0}
+                      }
+                    },
+                    "type": "UDim2",
+                    "description": "Size of the frame"
+                  },
+                  "Position": {
+                    "value": {
+                      "UDim2": {
+                        "x": {"scale": 0.35, "offset": 0},
+                        "y": {"scale": 0.35, "offset": 0}
+                      }
+                    },
+                    "type": "UDim2",
+                    "description": "Position of the frame"
+                  },
+                  "BackgroundColor3": {
+                    "value": {
+                      "Color3": {"r": 0.2, "g": 0.2, "b": 0.2}
+                    },
+                    "type": "Color3",
+                    "description": "Background color of the frame"
+                  },
+                  "BackgroundTransparency": {
+                    "value": 0.5,
+                    "type": "number",
+                    "description": "Transparency of the frame"
+                  }
+                }
+              },
+              {
+                "description": "TextButton for user interaction",
+                "type": "Instance",
+                "class": "TextButton",
+                "parent": "screenGui.ButtonFrame",
+                "properties": {
+                  "Name": {
+                    "value": "ActionButton",
+                    "type": "string",
+                    "description": "Name of the button"
+                  },
+                  "Size": {
+                    "value": {
+                      "UDim2": {
+                        "x": {"scale": 0.5, "offset": 0},
+                        "y": {"scale": 0.5, "offset": 0}
+                      }
+                    },
+                    "type": "UDim2",
+                    "description": "Size of the button"
+                  },
+                  "Position": {
+                    "value": {
+                      "UDim2": {
+                        "x": {"scale": 0.25, "offset": 0},
+                        "y": {"scale": 0.25, "offset": 0}
+                      }
+                    },
+                    "type": "UDim2",
+                    "description": "Position of the button"
+                  },
+                  "Text": {
+                    "value": "Click Me",
+                    "type": "string",
+                    "description": "Text displayed on the button"
+                  },
+                  "TextColor3": {
+                    "value": {
+                      "Color3": {"r": 1, "g": 1, "b": 1}
+                    },
+                    "type": "Color3",
+                    "description": "Text color of the button"
+                  },
+                  "BackgroundColor3": {
+                    "value": {
+                      "Color3": {"r": 0, "g": 0.5, "b": 0}
+                    },
+                    "type": "Color3",
+                    "description": "Background color of the button"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "modifiers": {
+        "text": {
+          "keywords": ["text", "label", "says"],
+          "regex": "(?:text|says)\\s+['\"]?([^'\"]+)['\"]?",
+          "properties": {
+            "Text": {
+              "value": "{matched_text}",
+              "type": "string",
+              "description": "Custom text for the button"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Request to create an NPC model",
+      "keywords": ["npc", "character", "person"],
+      "synonyms": ["create", "make", "spawn"],
+      "instance_type": "Model",
+      "parameters": {
+        "model": {
+          "description": "Model for an NPC structure",
+          "type": "Instance",
+          "class": "Model",
+          "parent": "workspace",
+          "properties": {
+            "Name": {
+              "value": "SimpleNPC",
+              "type": "string",
+              "description": "Name of the model"
+            }
+          },
+          "creationLocation": {
+            "description": "Location where the model is created",
+            "type": "Instance",
+            "value": "workspace",
+            "descriptionDetails": "Models are parented to the workspace"
+          },
+          "fileType": {
+            "description": "Type of artifact created",
+            "type": "string",
+            "value": "Model",
+            "descriptionDetails": "Container for NPC objects"
+          },
+          "childElements": {
+            "description": "Child elements of the model",
+            "type": "table",
+            "elements": [
+              {
+                "description": "Main part for the NPC's body",
+                "type": "Instance",
+                "class": "Part",
+                "parent": "model",
+                "properties": {
+                  "Name": {
+                    "value": "Body",
+                    "type": "string",
+                    "description": "Name of the NPC's body part"
+                  },
+                  "Size": {
+                    "value": {
+                      "Vector3": {"x": 2, "y": 4, "z": 1}
+                    },
+                    "type": "Vector3",
+                    "description": "Size of the NPC's body"
+                  },
+                  "Position": {
+                    "value": {
+                      "Vector3": {"x": 0, "y": 4, "z": 0}
+                    },
+                    "type": "Vector3",
+                    "description": "Position of the body part"
+                  },
+                  "Anchored": {
+                    "value": true,
+                    "type": "boolean",
+                    "description": "Keeps the NPC fixed in place"
+                  }
+                }
+              },
+              {
+                "description": "Humanoid for NPC behavior",
+                "type": "Instance",
+                "class": "Humanoid",
+                "parent": "model",
+                "properties": {
+                  "Name": {
+                    "value": "Humanoid",
+                    "type": "string",
+                    "description": "Name of the humanoid"
+                  },
+                  "WalkSpeed": {
+                    "value": 0,
+                    "type": "number",
+                    "description": "Prevents NPC from moving"
+                  },
+                  "Health": {
+                    "value": 100,
+                    "type": "number",
+                    "description": "Health of the NPC"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "modifiers": {
+        "dialog": {
+          "keywords": ["dialog", "talk", "speak"],
+          "childElements": [
+            {
+              "description": "BillboardGui for NPC dialogue",
+              "type": "Instance",
+              "class": "BillboardGui",
+              "parent": "model",
+              "properties": {
+                "Name": {
+                  "value": "NPCDialog",
+                  "type": "string",
+                  "description": "Name of the dialogue GUI"
+                },
+                "Size": {
+                  "value": {
+                    "UDim2": {
+                      "x": {"scale": 0, "offset": 200},
+                      "y": {"scale": 0, "offset": 50}
+                    }
+                  },
+                  "type": "UDim2",
+                  "description": "Size of the dialogue GUI"
+                },
+                "StudsOffset": {
+                  "value": {
+                    "Vector3": {"x": 0, "y": 3, "z": 0}
+                  },
+                  "type": "Vector3",
+                  "description": "Position offset above NPC's head"
+                }
+              },
+              "childElements": {
+                "description": "Child elements of the BillboardGui",
+                "type": "table",
+                "elements": [
+                  {
+                    "description": "TextLabel for dialogue text",
+                    "type": "Instance",
+                    "class": "TextLabel",
+                    "parent": "model.NPCDialog",
+                    "properties": {
+                      "Name": {
+                        "value": "DialogueText",
+                        "type": "string",
+                        "description": "Name of the text label"
+                      },
+                      "Size": {
+                        "value": {
+                          "UDim2": {
+                            "x": {"scale": 1, " Gallego: 1, "offset": 0},
+                            "y": {"scale": 1, "offset": 0}
+                          }
+                        },
+                        "type": "UDim2",
+                        "description": "Size of the text label"
+                      },
+                      "BackgroundTransparency": {
+                        "value": 0.5,
+                        "type": "number",
+                        "description": "Transparency of the text label"
+                      },
+                      "BackgroundColor3": {
+                        "value": {
+                          "Color3": {"r": 0, "g": 0, "b": 0}
+                        },
+                        "type": "Color3",
+                        "description": "Background color of the text label"
+                      },
+                      "TextColor3": {
+                        "value": {
+                          "Color3": {"r": 1, "g": 1, "b": 1}
+                        },
+                        "type": "Color3",
+                        "description": "Color of the dialogue text"
+                      },
+                      "Text": {
+                        "value": "Hello, adventurer!",
+                        "type": "string",
+                        "description": "Default dialogue text"
+                      },
+                      "TextScaled": {
+                        "value": true,
+                        "type": "boolean",
+                        "description": "Scales text to fit the label"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
