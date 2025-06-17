@@ -1,0 +1,169 @@
+{
+  "intents": {
+    "NPC": {
+      "keywords": ["npc", "personagem", "bot", "autômato", "entidade", "criatura"],
+      "examples": [
+        "Crie um NPC",
+        "Quero um personagem que fique parado",
+        "Me dá um script de bot inimigo",
+        "Como faço um npc no Roblox Studio?",
+        "Gera um autômato com AI básica",
+        "Faz um robô estático para o jogo",
+        "Provisione uma criatura não-jogável que vagueie aleatoriamente",
+        "Codifique uma entidade autônoma com pathfinding",
+        "Preciso de um agente NPC sem complicações",
+        "Solicito a orquestração de um autômato virtual"
+      ]
+    },
+    "Part": {
+      "keywords": ["parte", "bloco", "plataforma", "cubo", "tile", "geom"],
+      "examples": [
+        "Me dá um bloco que fique flutuando",
+        "Quero uma parede invisível que impeça o jogador",
+        "Como crio um tile modular no mapa?",
+        "Gera um cubo experimental com física custom",
+        "Provisione um plano pontilhado na arena",
+        "Implementa um piso hexagonal aleatório",
+        "Crie um polígono 3D minimalista no workspace",
+        "Desencadeie um objeto de teste pra colisão",
+        "Fabrique um piso de concreto com textura programática",
+        "Part pra mapa estilo labirinto"
+      ]
+    },
+    "Script": {
+      "keywords": ["script", "código", "server", "servidor", "logica", "spawn"],
+      "examples": [
+        "Crie um script que spawna itens",
+        "Quero um código que rode no servidor",
+        "Preciso de um server-side infinito",
+        "Automatize a geração de moedas a cada 3s",
+        "Estruture um loop para instanciar traps",
+        "Embarque um executor de comandos remotos",
+        "Programar uma rotina server com eventos custom",
+        "Implementa um gerador de loot procedural",
+        "Desenvolva um daemon em Lua para spawn",
+        "Escreva um orchestrator de instâncias no ServerScriptService"
+      ]
+    },
+    "LocalScript": {
+      "keywords": ["local", "cliente", "efeito", "camera", "ui", "evento"],
+      "examples": [
+        "Faça um shake de câmera quando clicar",
+        "Código client-only pra mudar a cor da UI",
+        "Detecção de tecla W para zoom na tela",
+        "Interface reativa a interações do jogador",
+        "Script local que detecta proximidade",
+        "Programe um shader visual pra o player",
+        "Gera um HUD dinâmico com barras de status",
+        "Desperte uma tela de debug debugável",
+        "Plugin local script com mouse hover",
+        "Invoque um prompt personalizado no PlayerGui"
+      ]
+    },
+    "ScreenGui": {
+      "keywords": ["gui", "interface", "botão", "menu", "hud", "janela"],
+      "examples": [
+        "Crie uma interface simples com botão",
+        "Me dá um menu animado full screen",
+        "Interface estilo sci-fi com transparências",
+        "HUD que mostra tabela de líderes dinâmicos",
+        "Botão flutuante que ativa comando secreto",
+        "Popup com confirmação sim/não",
+        "Tela de loading procedural",
+        "Canvas interativo para seleção de skins",
+        "Janela de diálogo estilo novela",
+        "Overlay minimalista para notificações"
+      ]
+    },
+    "ModuleScript": {
+      "keywords": ["modulo", "module", "classe", "lib", "util"],
+      "examples": [
+        "Crie um módulo para pontuação",
+        "Quero uma classe Stats em ModuleScript",
+        "Utilitário de data store reutilizável",
+        "Factory pattern em ModuleScript",
+        "Package de funções matemáticas básicas",
+        "Biblioteca de gerenciamento de inventário",
+        "Engine de diálogo modular",
+        "Wrapper para HTTPService em Lua",
+        "Sistema de caching de dados player",
+        "Template de service locator em Lua"
+      ]
+    },
+    "Teleport": {
+      "keywords": ["teleporte", "portal", "tp", "warp", "traslado"],
+      "examples": [
+        "Como faço teleporte no Roblox?",
+        "Script de portal que leva pra spawn",
+        "Warp o jogador pra X,Y,Z ao tocar",
+        "Gera um pad de tp com cooldown",
+        "Implementa teletransporte instantâneo",
+        "Provisione um beamer de posição",
+        "Teleport trigger quando apertar tecla",
+        "Movimentação espacial via script",
+        "Função warpTo(targetPosition)",
+        "Estação de tp com interface GUI"
+      ]
+    },
+    "Leaderboard": {
+      "keywords": ["placar", "rank", "tabela", "leaderboard", "scoreboard"],
+      "examples": [
+        "Crie um leaderboard top 10",
+        "HUD com pontuação dos jogadores",
+        "Tabela de rankings em tempo real",
+        "Script para exibir scores no canto",
+        "Sistema de medalhas e certificados",
+        "Classificação por kills e deaths",
+        "Painel de campeões da partida",
+        "Mostre ranking global de moedas",
+        "Leaderboard em GUI flutuante",
+        "Visor de recordes e estatísticas"
+      ]
+    },
+    "Animacao": {
+      "keywords": ["animação", "fbx", "keyframe", "tween", "motion"],
+      "examples": [
+        "Code TweenService pra mover braço",
+        "Gerar keyframes pra salto",
+        "Import FBX e tocar animação",
+        "Script de blend de animações",
+        "Loop de Idle e WalkCycle",
+        "Desenho de spline pra câmera",
+        "Motion capture simplificado",
+        "Script de ParticleEmitter sync",
+        "Animação procedural de alongamento",
+        "FSM de estados de animação"
+      ]
+    },
+    "Ferramenta": {
+      "keywords": ["tool", "ferramenta", "arma", "gadget", "item"],
+      "examples": [
+        "Crie uma tool tipo espada",
+        "Gera uma arma de fogo simples",
+        "Ferramenta que dá dano ao clicar",
+        "Me dá um item pickupable",
+        "Tool com cooldown e som",
+        "Objeto que segue o mouse",
+        "Prototype de grappling hook",
+        "Script de pet que ataca inimigo",
+        "Crie um scanner de objetos",
+        "Sistema de crafting básico"
+      ]
+    },
+    "Pet": {
+      "keywords": ["pet", "companheiro", "bicho", "animal", "mascote"],
+      "examples": [
+        "Faça um pet que segue o jogador",
+        "Código de mascote voador",
+        "Companion que coleta itens",
+        "Gera um gato virtual no mapa",
+        "Animação de pet pulando",
+        "Pet que ganha XP com o player",
+        "Invocar companheiro de batalha",
+        "Script para alimentar o pet",
+        "Pet modular com stats",
+        "Bichinho com emoticons no chat"
+      ]
+    }
+  }
+}
