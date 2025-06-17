@@ -1,0 +1,65 @@
+{
+  "parameters": {
+    "playerInventory": {
+      "description": "Inventário do jogador contendo armas obtidas",
+      "type": "table",
+      "value": []
+    },
+    "weaponPool": {
+      "description": "Lista completa de armas disponíveis no jogo",
+      "type": "table",
+      "value": [
+        { "name": "Faca Enferrujada", "rarity": "Comum", "value": 5, "chance": 50 },
+        { "name": "Pistola Velha", "rarity": "Comum", "value": 10, "chance": 30 },
+        { "name": "Espada de Bronze", "rarity": "Incomum", "value": 30, "chance": 10 },
+        { "name": "Rifle Moderno", "rarity": "Rara", "value": 100, "chance": 5 },
+        { "name": "Espada Lendária", "rarity": "Lendária", "value": 300, "chance": 1 }
+      ]
+    },
+    "crates": {
+      "description": "Tipos de caixas disponíveis para o jogador",
+      "type": "table",
+      "value": {
+        "freeCrate": {
+          "name": "Caixa Gratuita",
+          "cost": 0,
+          "cooldown": 0,
+          "lootModifier": 0.5,
+          "description": "Caixa infinita que dá armas comuns e fracas",
+          "uses": "ilimitado"
+        },
+        "basicCrate": {
+          "name": "Caixa Básica",
+          "cost": 100,
+          "cooldown": 0,
+          "lootModifier": 1.0,
+          "description": "Caixa com chances equilibradas de armas comuns e raras",
+          "uses": "ilimitado"
+        },
+        "premiumCrate": {
+          "name": "Caixa Premium",
+          "cost": 500,
+          "cooldown": 0,
+          "lootModifier": 2.0,
+          "description": "Caixa com maiores chances de itens valiosos",
+          "uses": "ilimitado"
+        }
+      }
+    },
+    "currency": {
+      "description": "Moeda do jogador para abrir caixas e vender itens",
+      "type": "number",
+      "value": 0
+    },
+    "sellFunctionEnabled": {
+      "description": "Define se o jogador pode vender as armas do inventário",
+      "type": "boolean",
+      "value": true
+    },
+    "maxInventorySize": {
+      "description": "Número máximo de armas no inventário (0 = ilimitado)",
+      "type": "number",
+      "value": 0
+    }
+  }
+}
