@@ -1,0 +1,576 @@
+-- Services
+local Players = game:GetService('Players')
+local TweenService = game:GetService('TweenService')
+local UserInputService = game:GetService('UserInputService')
+local MarketplaceService = game:GetService('MarketplaceService')
+
+-- Variables
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild('PlayerGui')
+local currentGameName = 'Loading...'
+
+-- Get current game name
+pcall(function()
+    currentGameName = MarketplaceService:GetProductInfo(game.PlaceId).Name
+end)
+
+-- Main GUI Setup
+local gui = Instance.new('ScreenGui')
+gui.Name = 'XetraHub'
+gui.ResetOnSpawn = false
+gui.Parent = playerGui
+
+-- Loading Screen
+local loadingFrame = Instance.new('Frame')
+loadingFrame.Name = 'LoadingScreen'
+loadingFrame.Size = UDim2.new(1, 0, 1, 0)
+loadingFrame.Position = UDim2.new(0, 0, 0, 0)
+loadingFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+loadingFrame.BorderSizePixel = 0
+loadingFrame.Parent = gui
+
+-- Loading Background Gradient
+local gradient = Instance.new('UIGradient')
+gradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(25, 25, 35)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 20)),
+})
+gradient.Rotation = 45
+gradient.Parent = loadingFrame
+
+-- Logo Container
+local logoContainer = Instance.new('Frame')
+logoContainer.Name = 'LogoContainer'
+logoContainer.Size = UDim2.new(0, 200, 0, 200)
+logoContainer.Position = UDim2.new(0.5, -100, 0.5, -150)
+logoContainer.BackgroundTransparency = 1
+logoContainer.Parent = loadingFrame
+
+-- Logo Image
+local logo = Instance.new('ImageLabel')
+logo.Name = 'Logo'
+logo.Size = UDim2.new(1, 0, 1, 0)
+logo.Position = UDim2.new(0, 0, 0, 0)
+logo.BackgroundTransparency = 1
+logo.Image = 'rbxassetid://111108278176277'
+logo.ImageTransparency = 0.2
+logo.Parent = logoContainer
+
+-- Logo Corner
+local logoCorner = Instance.new('UICorner')
+logoCorner.CornerRadius = UDim.new(0, 20)
+logoCorner.Parent = logo
+
+-- Credits Text
+local creditsText = Instance.new('TextLabel')
+creditsText.Name = 'Credits'
+creditsText.Size = UDim2.new(0, 400, 0, 60)
+creditsText.Position = UDim2.new(0.5, -200, 0.5, 80)
+creditsText.BackgroundTransparency = 1
+creditsText.Text = 'Xetra Hub'
+creditsText.TextColor3 = Color3.fromRGB(255, 255, 255)
+creditsText.TextSize = 32
+creditsText.Font = Enum.Font.GothamBold
+creditsText.TextTransparency = 1
+creditsText.Parent = loadingFrame
+
+-- Made By Text
+local madeByText = Instance.new('TextLabel')
+madeByText.Name = 'MadeBy'
+madeByText.Size = UDim2.new(0, 400, 0, 40)
+madeByText.Position = UDim2.new(0.5, -200, 0.5, 130)
+madeByText.BackgroundTransparency = 1
+madeByText.Text = 'Made By Bebo Mods'
+madeByText.TextColor3 = Color3.fromRGB(180, 180, 190)
+madeByText.TextSize = 18
+madeByText.Font = Enum.Font.Gotham
+madeByText.TextTransparency = 1
+madeByText.Parent = loadingFrame
+
+-- Game Name Display
+local gameNameText = Instance.new('TextLabel')
+gameNameText.Name = 'GameName'
+gameNameText.Size = UDim2.new(0, 600, 0, 30)
+gameNameText.Position = UDim2.new(0.5, -300, 0.5, 170)
+gameNameText.BackgroundTransparency = 1
+gameNameText.Text = '🎮 ' .. currentGameName
+gameNameText.TextColor3 = Color3.fromRGB(100, 200, 255)
+gameNameText.TextSize = 16
+gameNameText.Font = Enum.Font.GothamBold
+gameNameText.TextTransparency = 1
+gameNameText.Parent = loadingFrame
+
+-- Loading Status Text
+local statusText = Instance.new('TextLabel')
+statusText.Name = 'StatusText'
+statusText.Size = UDim2.new(0, 400, 0, 25)
+statusText.Position = UDim2.new(0.5, -200, 0.75, 0)
+statusText.BackgroundTransparency = 1
+statusText.Text = 'Initializing...'
+statusText.TextColor3 = Color3.fromRGB(150, 150, 160)
+statusText.TextSize = 14
+statusText.Font = Enum.Font.Gotham
+statusText.TextTransparency = 1
+statusText.Parent = loadingFrame
+
+-- Loading Bar Container
+local loadingBarContainer = Instance.new('Frame')
+loadingBarContainer.Name = 'LoadingBarContainer'
+loadingBarContainer.Size = UDim2.new(0, 400, 0, 8)
+loadingBarContainer.Position = UDim2.new(0.5, -200, 0.8, 0)
+loadingBarContainer.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+loadingBarContainer.BorderSizePixel = 0
+loadingBarContainer.Parent = loadingFrame
+
+local loadingBarCorner = Instance.new('UICorner')
+loadingBarCorner.CornerRadius = UDim.new(0, 4)
+loadingBarCorner.Parent = loadingBarContainer
+
+-- Loading Bar Fill
+local loadingBar = Instance.new('Frame')
+loadingBar.Name = 'LoadingBar'
+loadingBar.Size = UDim2.new(0, 0, 1, 0)
+loadingBar.Position = UDim2.new(0, 0, 0, 0)
+loadingBar.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+loadingBar.BorderSizePixel = 0
+loadingBar.Parent = loadingBarContainer
+
+local loadingBarFillCorner = Instance.new('UICorner')
+loadingBarFillCorner.CornerRadius = UDim.new(0, 4)
+loadingBarFillCorner.Parent = loadingBar
+
+-- Loading Percentage
+local loadingPercent = Instance.new('TextLabel')
+loadingPercent.Size = UDim2.new(0, 100, 0, 25)
+loadingPercent.Position = UDim2.new(0.5, -50, 0.85, 0)
+loadingPercent.BackgroundTransparency = 1
+loadingPercent.Text = '0%'
+loadingPercent.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadingPercent.TextSize = 14
+loadingPercent.Font = Enum.Font.GothamBold
+loadingPercent.TextTransparency = 1
+loadingPercent.Parent = loadingFrame
+
+-- Main Hub Interface
+local function createMainHub()
+    -- Main Hub Frame
+    local hubFrame = Instance.new('Frame')
+    hubFrame.Name = 'MainHub'
+    hubFrame.Size = UDim2.new(0, 600, 0, 400)
+    hubFrame.Position = UDim2.new(0.5, -300, 0.5, -200)
+    hubFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+    hubFrame.BorderSizePixel = 0
+    hubFrame.Parent = gui
+
+    local hubCorner = Instance.new('UICorner')
+    hubCorner.CornerRadius = UDim.new(0, 12)
+    hubCorner.Parent = hubFrame
+
+    -- Hub Shadow
+    local hubShadow = Instance.new('ImageLabel')
+    hubShadow.Name = 'HubShadow'
+    hubShadow.Image = 'rbxassetid://1316045217'
+    hubShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    hubShadow.ImageTransparency = 0.8
+    hubShadow.ScaleType = Enum.ScaleType.Slice
+    hubShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+    hubShadow.Size = UDim2.new(0, 620, 0, 420)
+    hubShadow.Position = UDim2.new(0.5, -310, 0.5, -210)
+    hubShadow.BackgroundTransparency = 1
+    hubShadow.ZIndex = 0
+    hubShadow.Parent = gui
+
+    -- Header
+    local header = Instance.new('Frame')
+    header.Name = 'Header'
+    header.Size = UDim2.new(1, 0, 0, 60)
+    header.Position = UDim2.new(0, 0, 0, 0)
+    header.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+    header.BorderSizePixel = 0
+    header.Parent = hubFrame
+
+    local headerCorner = Instance.new('UICorner')
+    headerCorner.CornerRadius = UDim.new(0, 12)
+    headerCorner.Parent = header
+
+    -- Fix header corner at bottom
+    local headerFix = Instance.new('Frame')
+    headerFix.Size = UDim2.new(1, 0, 0, 12)
+    headerFix.Position = UDim2.new(0, 0, 1, -12)
+    headerFix.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
+    headerFix.BorderSizePixel = 0
+    headerFix.Parent = header
+
+    -- Hub Title
+    local hubTitle = Instance.new('TextLabel')
+    hubTitle.Name = 'HubTitle'
+    hubTitle.Size = UDim2.new(1, -100, 1, 0)
+    hubTitle.Position = UDim2.new(0, 20, 0, 0)
+    hubTitle.BackgroundTransparency = 1
+    hubTitle.Text = '🚀 Xetra Hub - Ready!'
+    hubTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    hubTitle.TextSize = 20
+    hubTitle.Font = Enum.Font.GothamBold
+    hubTitle.TextXAlignment = Enum.TextXAlignment.Left
+    hubTitle.Parent = header
+
+    -- Close Button
+    local closeBtn = Instance.new('TextButton')
+    closeBtn.Size = UDim2.new(0, 40, 0, 40)
+    closeBtn.Position = UDim2.new(1, -50, 0, 10)
+    closeBtn.Text = '×'
+    closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeBtn.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+    closeBtn.Font = Enum.Font.GothamBold
+    closeBtn.TextSize = 24
+    closeBtn.Parent = header
+
+    local closeBtnCorner = Instance.new('UICorner')
+    closeBtnCorner.CornerRadius = UDim.new(0, 8)
+    closeBtnCorner.Parent = closeBtn
+
+    closeBtn.MouseButton1Click:Connect(function()
+        gui:Destroy()
+    end)
+
+    -- Content Area
+    local contentArea = Instance.new('Frame')
+    contentArea.Name = 'ContentArea'
+    contentArea.Size = UDim2.new(1, -40, 1, -100)
+    contentArea.Position = UDim2.new(0, 20, 0, 80)
+    contentArea.BackgroundTransparency = 1
+    contentArea.Parent = hubFrame
+
+    -- Welcome Message
+    local welcomeMsg = Instance.new('TextLabel')
+    welcomeMsg.Name = 'WelcomeMessage'
+    welcomeMsg.Size = UDim2.new(1, 0, 0, 80)
+    welcomeMsg.Position = UDim2.new(0, 0, 0, 0)
+    welcomeMsg.BackgroundTransparency = 1
+    welcomeMsg.Text = '✅ Hub carregado com sucesso!\n🎮 Jogo: ' .. currentGameName .. '\n👤 Usuário: ' .. player.Name
+    welcomeMsg.TextColor3 = Color3.fromRGB(200, 200, 200)
+    welcomeMsg.TextSize = 16
+    welcomeMsg.Font = Enum.Font.Gotham
+    welcomeMsg.TextXAlignment = Enum.TextXAlignment.Left
+    welcomeMsg.TextYAlignment = Enum.TextYAlignment.Top
+    welcomeMsg.Parent = contentArea
+
+    -- Features Container
+    local featuresContainer = Instance.new('ScrollingFrame')
+    featuresContainer.Name = 'FeaturesContainer'
+    featuresContainer.Size = UDim2.new(1, 0, 1, -100)
+    featuresContainer.Position = UDim2.new(0, 0, 0, 100)
+    featuresContainer.BackgroundTransparency = 1
+    featuresContainer.ScrollBarThickness = 6
+    featuresContainer.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+    featuresContainer.CanvasSize = UDim2.new(0, 0, 0, 500)
+    featuresContainer.Parent = contentArea
+
+    -- Feature Buttons
+    local features = {
+        {name = "🏃 Speed Boost", desc = "Aumenta a velocidade do jogador"},
+        {name = "🦘 Jump Power", desc = "Aumenta a força do pulo"},
+        {name = "👻 Noclip", desc = "Permite atravessar paredes"},
+        {name = "🔍 ESP Players", desc = "Mostra localização dos jogadores"},
+        {name = "💰 Auto Farm", desc = "Farming automático"},
+        {name = "🎯 Aimbot", desc = "Mira automática"},
+        {name = "🌟 Fly Mode", desc = "Modo voar"},
+        {name = "💡 Full Bright", desc = "Iluminação máxima"},
+    }
+
+    for i, feature in ipairs(features) do
+        local featureBtn = Instance.new('TextButton')
+        featureBtn.Name = 'Feature' .. i
+        featureBtn.Size = UDim2.new(1, -20, 0, 50)
+        featureBtn.Position = UDim2.new(0, 10, 0, (i-1) * 60)
+        featureBtn.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+        featureBtn.BorderSizePixel = 0
+        featureBtn.Parent = featuresContainer
+
+        local featureBtnCorner = Instance.new('UICorner')
+        featureBtnCorner.CornerRadius = UDim.new(0, 8)
+        featureBtnCorner.Parent = featureBtn
+
+        local featureTitle = Instance.new('TextLabel')
+        featureTitle.Size = UDim2.new(1, -20, 0, 25)
+        featureTitle.Position = UDim2.new(0, 10, 0, 5)
+        featureTitle.BackgroundTransparency = 1
+        featureTitle.Text = feature.name
+        featureTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        featureTitle.TextSize = 14
+        featureTitle.Font = Enum.Font.GothamBold
+        featureTitle.TextXAlignment = Enum.TextXAlignment.Left
+        featureTitle.Parent = featureBtn
+
+        local featureDesc = Instance.new('TextLabel')
+        featureDesc.Size = UDim2.new(1, -20, 0, 20)
+        featureDesc.Position = UDim2.new(0, 10, 0, 25)
+        featureDesc.BackgroundTransparency = 1
+        featureDesc.Text = feature.desc
+        featureDesc.TextColor3 = Color3.fromRGB(150, 150, 150)
+        featureDesc.TextSize = 12
+        featureDesc.Font = Enum.Font.Gotham
+        featureDesc.TextXAlignment = Enum.TextXAlignment.Left
+        featureDesc.Parent = featureBtn
+
+        -- Button hover effects
+        featureBtn.MouseEnter:Connect(function()
+            TweenService:Create(featureBtn, TweenInfo.new(0.2), {
+                BackgroundColor3 = Color3.fromRGB(55, 55, 65)
+            }):Play()
+        end)
+
+        featureBtn.MouseLeave:Connect(function()
+            TweenService:Create(featureBtn, TweenInfo.new(0.2), {
+                BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+            }):Play()
+        end)
+
+        featureBtn.MouseButton1Click:Connect(function()
+            -- Aqui você pode adicionar a funcionalidade de cada feature
+            pcall(function()
+                game.StarterGui:SetCore('SendNotification', {
+                    Title = 'Xetra Hub',
+                    Text = feature.name .. ' foi ativado!',
+                    Duration = 3,
+                })
+            end)
+        end)
+    end
+
+    -- Make the hub draggable
+    local dragging = false
+    local dragInput = nil
+    local dragStart = nil
+    local startPos = nil
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        hubFrame.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+        hubShadow.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X - 10,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y - 10
+        )
+    end
+
+    header.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+            dragStart = input.Position
+            startPos = hubFrame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    header.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+end
+
+-- Loading Animations
+local function playLoadingAnimations()
+    -- Logo fade in with scale
+    logo.ImageTransparency = 1
+    logoContainer.Size = UDim2.new(0, 150, 0, 150)
+    logoContainer.Position = UDim2.new(0.5, -75, 0.5, -150)
+
+    local logoScaleTween = TweenService:Create(
+        logoContainer,
+        TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+        {
+            Size = UDim2.new(0, 200, 0, 200),
+            Position = UDim2.new(0.5, -100, 0.5, -150),
+        }
+    )
+
+    local logoFadeTween = TweenService:Create(
+        logo,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            ImageTransparency = 0.2,
+        }
+    )
+
+    logoScaleTween:Play()
+    wait(0.3)
+    logoFadeTween:Play()
+
+    -- Credits text fade in
+    wait(0.5)
+    local creditsFadeTween = TweenService:Create(
+        creditsText,
+        TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 0,
+        }
+    )
+    creditsFadeTween:Play()
+
+    -- Made by text fade in
+    wait(0.3)
+    local madeByFadeTween = TweenService:Create(
+        madeByText,
+        TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 0,
+        }
+    )
+    madeByFadeTween:Play()
+
+    -- Game name fade in
+    wait(0.3)
+    local gameNameFadeTween = TweenService:Create(
+        gameNameText,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 0,
+        }
+    )
+    gameNameFadeTween:Play()
+
+    -- Status text fade in
+    wait(0.3)
+    local statusFadeTween = TweenService:Create(
+        statusText,
+        TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 0,
+        }
+    )
+    statusFadeTween:Play()
+
+    -- Loading percentage fade in
+    wait(0.2)
+    local percentFadeTween = TweenService:Create(
+        loadingPercent,
+        TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 0,
+        }
+    )
+    percentFadeTween:Play()
+
+    -- Loading sequence
+    wait(0.5)
+
+    local loadingSteps = {
+        {text = 'Inicializando ambiente...', percent = 10, duration = 0.5},
+        {text = 'Carregando módulos...', percent = 25, duration = 0.4},
+        {text = 'Verificando compatibilidade...', percent = 40, duration = 0.6},
+        {text = 'Carregando recursos do jogo...', percent = 60, duration = 0.5},
+        {text = 'Configurando interface...', percent = 80, duration = 0.4},
+        {text = 'Finalizando inicialização...', percent = 95, duration = 0.3},
+        {text = 'Pronto para usar!', percent = 100, duration = 0.3},
+    }
+
+    for _, step in ipairs(loadingSteps) do
+        statusText.Text = step.text
+        loadingPercent.Text = step.percent .. '%'
+
+        local barTween = TweenService:Create(
+            loadingBar,
+            TweenInfo.new(step.duration * 0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {
+                Size = UDim2.new(step.percent / 100, 0, 1, 0),
+            }
+        )
+        barTween:Play()
+
+        wait(step.duration)
+    end
+
+    wait(0.8)
+
+    -- Fade out loading screen
+    local fadeOutTween = TweenService:Create(
+        loadingFrame,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            BackgroundTransparency = 1,
+        }
+    )
+
+    local logoFadeOutTween = TweenService:Create(
+        logo,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            ImageTransparency = 1,
+        }
+    )
+
+    local creditsFadeOutTween = TweenService:Create(
+        creditsText,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 1,
+        }
+    )
+
+    local madeByFadeOutTween = TweenService:Create(
+        madeByText,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 1,
+        }
+    )
+
+    local gameNameFadeOutTween = TweenService:Create(
+        gameNameText,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 1,
+        }
+    )
+
+    local statusFadeOutTween = TweenService:Create(
+        statusText,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 1,
+        }
+    )
+
+    local percentFadeOutTween = TweenService:Create(
+        loadingPercent,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {
+            TextTransparency = 1,
+        }
+    )
+
+    fadeOutTween:Play()
+    logoFadeOutTween:Play()
+    creditsFadeOutTween:Play()
+    madeByFadeOutTween:Play()
+    gameNameFadeOutTween:Play()
+    statusFadeOutTween:Play()
+    percentFadeOutTween:Play()
+
+    fadeOutTween.Completed:Connect(function()
+        loadingFrame:Destroy()
+        createMainHub()
+    end)
+end
+
+-- Start loading sequence
+playLoadingAnimations()
