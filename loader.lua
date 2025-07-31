@@ -24,7 +24,9 @@ if F and Q then
 end
 
 -- Directly load the script without key validation
-local E = (loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua")))()
-E.script_id = "ed58a7c08024fcb2909098cc898418c1"
-E.load_script()
+local G = "ed58a7c08024fcb2909098cc898418c1" -- Set script_id directly
+local function V()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/" .. tostring(G) .. ".lua"))()
+end
+V()
 print("Script loaded successfully.")
